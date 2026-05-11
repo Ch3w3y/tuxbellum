@@ -8,11 +8,7 @@ A GTK4 application that handles everything: GPU detection, Proton setup, Wine pr
 
 ## About
 
-I got tired of booting into Windows just to play Bellum. The existing community installer worked but was fragile — a Python GUI shelling out to a Go binary with hardcoded CLI flags and stdin pipes.
-
-TuxBellum is the result of tearing that down and rebuilding it as a single, cohesive GTK4 application. Everything that was spread across three codebases now lives in one Python package. No fragile subprocess calls. Real install progress. Proper error handling.
-
-The name? Tux + Bellum. Seemed obvious.
+For those of us who appreciate the freedom Linux provides but still want to play our MilSim sessions. Thanks to the efforts of Joe Paji [joepaji/bellum-linux-installer](https://github.com/joepaji/bellum-linux-installer) Bellum is now a reality on Linux. I wanted to package his work up and deploy it in as many ways as possible to provide Linux gamers with the easiest possible way to install and run Bellum on their distro of choice.
 
 ---
 
@@ -117,7 +113,7 @@ Driver 595 is broken for UE5 on Wine/Proton — shaders will fail to load. Downg
 
 This project builds directly on the work of **Joe Paji** ([joepaji/bellum-linux-installer](https://github.com/joepaji/bellum-linux-installer)), who created the original Linux installer for Bellum. Joe's project proved it could be done and handled all the hard reverse-engineering of what Bellum needs to run under Wine/Proton. His DXVK patches, winetricks modifications, and FSR integration are bundled here.
 
-TuxBellum is a refactoring and evolution of that work — consolidating the GTK3+Go architecture into a single GTK4 Python application — but the foundations are his.
+TuxBellum is a refactoring and evolution of that work — consolidating the GTK3+Go architecture into a single GTK4 Python application — but the foundations are his and that of the Faugus launcher project.
 
 If you appreciate having Bellum on Linux, consider supporting Joe:
 
