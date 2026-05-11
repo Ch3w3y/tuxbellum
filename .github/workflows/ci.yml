@@ -27,6 +27,11 @@ jobs:
         with:
           python-version: ${{ env.PYTHON_VERSION }}
 
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libcairo2-dev libgirepository1.0-dev pkg-config gir1.2-gtk-4.0
+
       - name: Install dependencies
         run: pip install ruff black mypy PyGObject
 

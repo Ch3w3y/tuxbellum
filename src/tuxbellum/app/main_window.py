@@ -157,8 +157,9 @@ class MainWindow(Gtk.ApplicationWindow):
             wineprefix = data.get("wineprefix", "")
 
             # Check NVMe
-            from tuxbellum.installer.precheck import _is_ssd
             import os
+
+            from tuxbellum.installer.precheck import _is_ssd
 
             parent = wineprefix.rstrip("/")
             while not os.path.isdir(parent) and parent != "/":
@@ -170,7 +171,10 @@ class MainWindow(Gtk.ApplicationWindow):
                     modal=True,
                     message_type=Gtk.MessageType.WARNING,
                     buttons=Gtk.ButtonsType.YES_NO,
-                    text=_tr("Astarte Developers strongly recommend using NVMe or SSD for the game.\n\nAre you sure you want to proceed?"),
+                    text=_tr(
+                        "Astarte Developers strongly recommend using NVMe or SSD "
+                        "for the game.\n\nAre you sure you want to proceed?"
+                    ),
                 )
                 def _on_response(d, resp):
                     d.destroy()
@@ -199,9 +203,9 @@ class MainWindow(Gtk.ApplicationWindow):
 
         def _run():
             try:
-                from tuxbellum.installer.run import InstallConfig, run_installation
                 from tuxbellum.core.gpu import detect_gpu
                 from tuxbellum.core.logging import Logger
+                from tuxbellum.installer.run import InstallConfig, run_installation
 
                 wineprefix = data.get("wineprefix", "")
                 workdir = os.path.dirname(os.path.abspath(__file__))

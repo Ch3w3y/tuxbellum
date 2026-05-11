@@ -7,7 +7,10 @@ IS_FLATPAK = "FLATPAK_ID" in os.environ or os.path.exists("/.flatpak-info")
 class PathManager:
     @staticmethod
     def user_home(*paths: str) -> str:
-        home = Path(os.getenv("HOST_HOME", Path.home())) if IS_FLATPAK else Path(os.getenv("HOME", str(Path.home())))
+        if IS_FLATPAK:
+            home = Path(os.getenv("HOST_HOME", Path.home()))
+        else:
+            home = Path(os.getenv("HOME", str(Path.home())))
         return str(home.joinpath(*paths))
 
     @staticmethod

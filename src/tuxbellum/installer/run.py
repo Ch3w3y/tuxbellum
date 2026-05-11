@@ -4,17 +4,16 @@ import os
 from dataclasses import dataclass
 from pathlib import Path
 
-from tuxbellum.config.versions import DEFAULT_VERSIONS
-from tuxbellum.core.system import run_command, RunMode
 from tuxbellum.core.logging import Logger
-from tuxbellum.installer.wineprefix import init_wineprefix, install_winedlls
+from tuxbellum.core.system import RunMode, run_command
+from tuxbellum.installer.desktop import copy_icon, generate_desktop_files
+from tuxbellum.installer.dll_overrides import update_dlls
 from tuxbellum.installer.dxvk import install_dxvk
 from tuxbellum.installer.fsr import upgrade_fsr
-from tuxbellum.installer.launcher import download_launcher_installer, cleanup_launcher_installer
-from tuxbellum.installer.dll_overrides import update_dlls
-from tuxbellum.installer.wrappers import generate_launcher_wrapper
-from tuxbellum.installer.desktop import generate_desktop_files, copy_icon
 from tuxbellum.installer.launch_vars import generate_launch_vars_file
+from tuxbellum.installer.launcher import cleanup_launcher_installer, download_launcher_installer
+from tuxbellum.installer.wineprefix import init_wineprefix, install_winedlls
+from tuxbellum.installer.wrappers import generate_launcher_wrapper
 
 
 @dataclass
@@ -30,7 +29,6 @@ class InstallConfig:
 
 def run_installation(config: InstallConfig, logger: Logger) -> None:
     """Execute the full Bellum installation pipeline."""
-
     original_env = os.environ.copy()
     try:
         os.environ["PROTONPATH"] = config.proton_path
@@ -89,7 +87,10 @@ def _run_pipeline(config: InstallConfig, launcher_exe: str, logger: Logger) -> N
         "Astarte Industries/Astarte Launcher/AstarteLauncher.exe",
     )
     if not os.path.isfile(installed_exe):
-        raise RuntimeError(f"Launcher installation failed (exit code {ret_code}): executable not found at {installed_exe}")
+        raise RuntimeError(
+            f"Launcher installation failed (exit code {ret_code}):"
+            f" executable not found at {installed_exe}"
+        )
 
     logger.info("Astarte Launcher install completed successfully! Few more steps to go...")
     logger.warn("I'm not done! Don't launch game or close this script just yet")
@@ -114,7 +115,7 @@ def _run_pipeline(config: InstallConfig, launcher_exe: str, logger: Logger) -> N
     generate_launcher_wrapper(
         config.wineprefix, config.proton_path, config.gpu_type, logger
     )
-    logger.info(f"[OK] Game launcher installed: /usr/local/bin/Bellum")
+    logger.info("[OK] Game launcher installed: /usr/local/bin/Bellum")
 
     generate_launch_vars_file(config.wineprefix, config.gpu_type, config.is_fsr41)
 

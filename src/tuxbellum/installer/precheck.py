@@ -6,18 +6,18 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from tuxbellum.config.versions import DEFAULT_VERSIONS
+from tuxbellum.core.gpu import detect_gpu
+from tuxbellum.core.gui_picker import pick_directory, pick_directory_existing, validate_directory
+from tuxbellum.core.logging import Color, Logger, colorize
 from tuxbellum.core.system import (
-    run_command,
-    run_command_with_output,
     RunMode,
-    look_path,
     ask_bool,
     is_dir,
     is_writable,
+    look_path,
+    run_command,
+    run_command_with_output,
 )
-from tuxbellum.core.logging import Logger, colorize, Color
-from tuxbellum.core.gpu import detect_gpu
-from tuxbellum.core.gui_picker import pick_directory, pick_directory_existing, validate_directory
 from tuxbellum.installer.proton import ensure_proton, get_proton_install_path, get_proton_url
 
 
@@ -38,7 +38,8 @@ def validate_wineprefix(
     wineprefix_arg: str,
     logger: Logger,
 ) -> tuple[str, str, bool]:
-    """Validate/resolve the WINEPREFIX path.
+    """
+    Validate/resolve the WINEPREFIX path.
 
     Returns ``(wineprefix, source, use_existing)``.
     """
@@ -97,7 +98,10 @@ def validate_wineprefix(
             entries = []
         if entries:
             logger.info(f"WINEPREFIX directory already exists at {wineprefix}")
-            logger.warn("If you want to reinstall, please uninstall the existing installation first.")
+            logger.warn(
+                "If you want to reinstall, please uninstall"
+                " the existing installation first."
+            )
             raise RuntimeError(f"WINEPREFIX directory '{wineprefix}' already exists")
 
     if not is_writable(parent):
@@ -199,12 +203,12 @@ def check_wine_version(logger: Logger, force: bool = False) -> None:
     installed = _get_wine_version(logger)
     if not installed:
         raise RuntimeError("Wine binary not found in PATH")
-        
+
     installed_parts = []
     for p in installed.split("."):
         if p.isdigit():
             installed_parts.append(int(p))
-            
+
     if not installed_parts or installed_parts[0] < 11:
         if not force:
             logger.error(
