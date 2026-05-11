@@ -160,7 +160,7 @@ jobs:
         run: make release
 
       - name: Build AppImage
-        run: bash scripts/build-appimage.sh
+        run: bash scripts/build-appimage.sh ${{ steps.version.outputs.VERSION }}
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2

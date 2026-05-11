@@ -3,7 +3,7 @@
 # Requires: Ubuntu 22.04+ with GTK4 dev libraries
 set -euo pipefail
 
-VERSION="${1:-$(grep '^version' pyproject.toml | head -1 | sed "s/.*= *'\([^']*\)'.*/\1/")}"
+VERSION="${1:-$(grep '^version' pyproject.toml | head -1 | sed 's/.*= *["'\'']\([^"'\'']*\)["'\''].*/\1/')}"
 APP_NAME="TuxBellum"
 WORKDIR="$(mktemp -d)"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
