@@ -55,17 +55,13 @@ def _try_picker(title: str, initial_path: str = "") -> DirectoryPickerResult:
                 if path:
                     return DirectoryPickerResult(path=path, success=True)
             elif result.returncode == 1:
-                return DirectoryPickerResult(
-                    error="Selection cancelled by user"
-                )
+                return DirectoryPickerResult(error="Selection cancelled by user")
         except Exception:
             continue
 
     print("\nNo GUI directory picker found. Using terminal input.")
     try:
-        path = input(
-            "Enter directory path (or press Enter for current dir): "
-        ).strip()
+        path = input("Enter directory path (or press Enter for current dir): ").strip()
         if not path:
             path = os.getcwd()
         return DirectoryPickerResult(path=path, success=True)

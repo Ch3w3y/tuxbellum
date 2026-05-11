@@ -1,6 +1,7 @@
 """Install configuration dialog for the Bellum Linux Installer."""
 
 import os
+
 import gi
 
 gi.require_version("Gtk", "4.0")
@@ -63,9 +64,7 @@ class InstallDialog(Gtk.Dialog):
         grid.attach(label, 0, row, 3, 1)
         row += 1
 
-        default_prefix = os.path.join(
-            os.path.expanduser("~"), "Games", "Bellum", "wineprefix"
-        )
+        default_prefix = os.path.join(os.path.expanduser("~"), "Games", "Bellum", "wineprefix")
         self.entry_prefix = Gtk.Entry(text=default_prefix)
         self.entry_prefix.set_hexpand(True)
         btn_browse2 = Gtk.Button.new_from_icon_name("folder-open-symbolic")
@@ -145,16 +144,12 @@ class InstallDialog(Gtk.Dialog):
         btn_box.set_halign(Gtk.Align.CENTER)
 
         btn_cancel = Gtk.Button(label=_("Cancel"))
-        btn_cancel.connect(
-            "clicked", lambda b: self.response(Gtk.ResponseType.CANCEL)
-        )
+        btn_cancel.connect("clicked", lambda b: self.response(Gtk.ResponseType.CANCEL))
         btn_cancel.set_size_request(140, -1)
         btn_box.append(btn_cancel)
 
         btn_install = Gtk.Button(label=_("Install"))
-        btn_install.connect(
-            "clicked", lambda b: self.response(Gtk.ResponseType.OK)
-        )
+        btn_install.connect("clicked", lambda b: self.response(Gtk.ResponseType.OK))
         btn_install.set_size_request(140, -1)
         btn_box.append(btn_install)
 
@@ -170,9 +165,7 @@ class InstallDialog(Gtk.Dialog):
         try:
             folder = dialog.select_folder_finish(result)
             if folder:
-                self.entry_dir.set_text(
-                    os.path.join(folder.get_path(), "Bellum")
-                )
+                self.entry_dir.set_text(os.path.join(folder.get_path(), "Bellum"))
         except Exception:  # noqa: S110
             pass  # user cancelled
 

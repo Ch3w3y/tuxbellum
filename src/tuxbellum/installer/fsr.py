@@ -4,8 +4,8 @@ import os
 import shutil
 
 from tuxbellum.config.versions import DEFAULT_VERSIONS
-from tuxbellum.core.system import run_command, RunMode
 from tuxbellum.core.logging import Logger
+from tuxbellum.core.system import RunMode, run_command
 
 
 def copy_fsr41_upgrade_dll(workdir: str, logger: Logger) -> None:
@@ -50,15 +50,30 @@ def upgrade_fsr(
     prog_files = "Program Files"
 
     fg_target_dir = os.path.join(
-        drive, prog_files,
-        "Astarte Industries", "Bellum", "Project_Bellum",
-        "Plugins", "AMD", "FSR", "Source",
-        "fidelityfx-sdk", "Kits", "FidelityFX", "signedbin",
+        drive,
+        prog_files,
+        "Astarte Industries",
+        "Bellum",
+        "Project_Bellum",
+        "Plugins",
+        "AMD",
+        "FSR",
+        "Source",
+        "fidelityfx-sdk",
+        "Kits",
+        "FidelityFX",
+        "signedbin",
     )
     d3d_target_dir = os.path.join(
-        drive, prog_files,
-        "Astarte Industries", "Bellum", "Project_Bellum",
-        "Binaries", "Win64", "D3D12", "x64",
+        drive,
+        prog_files,
+        "Astarte Industries",
+        "Bellum",
+        "Project_Bellum",
+        "Binaries",
+        "Win64",
+        "D3D12",
+        "x64",
     )
 
     run_command(
@@ -81,10 +96,13 @@ def upgrade_fsr(
         RunMode.SILENT,
         [
             DEFAULT_VERSIONS.binaries.wine,
-            "reg", "add",
+            "reg",
+            "add",
             r"HKEY_CURRENT_USER\Software\Wine\DllOverrides",
-            "/v", "amdxcffx64",
-            "/d", "native",
+            "/v",
+            "amdxcffx64",
+            "/d",
+            "native",
             "/f",
         ],
     )

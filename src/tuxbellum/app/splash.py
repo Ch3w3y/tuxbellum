@@ -1,11 +1,12 @@
 """Game launch splash window."""
 
 import os
+
 import gi
 
 gi.require_version("Gtk", "4.0")
 gi.require_version("GdkPixbuf", "2.0")
-from gi.repository import Gtk, GdkPixbuf  # noqa: E402
+from gi.repository import GdkPixbuf, Gtk  # noqa: E402
 
 from tuxbellum.config.paths import path_mgr
 from tuxbellum.i18n.locale import setup_gettext
@@ -31,18 +32,12 @@ class SplashWindow(Gtk.Window):
         if icon_path and os.path.exists(icon_path):
             try:
                 pixbuf = GdkPixbuf.Pixbuf.new_from_file(icon_path)
-                scaled = pixbuf.scale_simple(
-                    80, 80, GdkPixbuf.InterpType.BILINEAR
-                )
+                scaled = pixbuf.scale_simple(80, 80, GdkPixbuf.InterpType.BILINEAR)
                 image = Gtk.Image.new_from_pixbuf(scaled)
             except Exception:  # noqa: S110
-                image = Gtk.Image.new_from_icon_name(
-                    "applications-games-symbolic"
-                )
+                image = Gtk.Image.new_from_icon_name("applications-games-symbolic")
         else:
-            image = Gtk.Image.new_from_icon_name(
-                "applications-games-symbolic"
-            )
+            image = Gtk.Image.new_from_icon_name("applications-games-symbolic")
 
         image.set_pixel_size(80)
         image.set_margin_top(20)

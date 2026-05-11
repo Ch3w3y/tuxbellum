@@ -1,4 +1,5 @@
 import os
+
 from tuxbellum.config.paths import path_mgr
 from tuxbellum.i18n.locale import get_system_locale
 
@@ -27,7 +28,7 @@ class ConfigManager:
         self.config["language"] = get_system_locale()
 
         if os.path.isfile(self.config_file):
-            with open(self.config_file, "r") as f:
+            with open(self.config_file) as f:
                 for line in f:
                     line = line.strip()
                     if "=" in line:

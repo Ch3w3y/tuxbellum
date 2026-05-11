@@ -1,12 +1,13 @@
 """GTK4 application entry point for the Bellum Linux Installer."""
 
 import sys
+
 import gi
 
 gi.require_version("Gtk", "4.0")
 gi.require_version("Gdk", "4.0")
 gi.require_version("GLib", "2.0")
-from gi.repository import Gtk, Gdk, GLib, Gio  # noqa: E402
+from gi.repository import Gio, Gtk  # noqa: E402
 
 from tuxbellum.app.main_window import MainWindow
 from tuxbellum.i18n.locale import setup_gettext

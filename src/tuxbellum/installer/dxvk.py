@@ -5,8 +5,8 @@ import shutil
 import tempfile
 
 from tuxbellum.config.versions import DEFAULT_VERSIONS
-from tuxbellum.core.system import run_command, RunMode, look_path
 from tuxbellum.core.logging import Logger
+from tuxbellum.core.system import RunMode, run_command
 
 
 def install_dxvk(gpu_type: str, workdir: str, logger: Logger) -> None:

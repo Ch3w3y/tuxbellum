@@ -3,9 +3,8 @@
 import os
 import tempfile
 
-from tuxbellum.core.system import run_command, RunMode
 from tuxbellum.core.logging import Logger
-
+from tuxbellum.core.system import RunMode, run_command
 
 _TAIL_NAME = "Bellum"
 
@@ -107,6 +106,7 @@ def _write_via_pkexec(content: str, target: str, logger: Logger) -> None:
         run_command(RunMode.STREAM, ["pkexec", "chmod", "755", target])
 
         import getpass
+
         user = getpass.getuser()
         run_command(RunMode.STREAM, ["pkexec", "chown", f"{user}:{user}", target])
     finally:

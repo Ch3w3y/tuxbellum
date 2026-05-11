@@ -4,7 +4,7 @@ import gi
 
 gi.require_version("Gtk", "4.0")
 gi.require_version("GLib", "2.0")
-from gi.repository import Gtk, GLib, Gio  # noqa: E402
+from gi.repository import GLib, Gtk  # noqa: E402
 
 from tuxbellum.i18n.locale import setup_gettext
 
@@ -74,6 +74,7 @@ class InstallProgressDialog(Gtk.Dialog):
             buf.insert(end, text + "\n")
             mark = buf.get_insert()
             self.log_view.scroll_to_mark(mark, 0.0, False, 0.0, 0.0)
+
         GLib.idle_add(_append)
 
     def set_complete(self, success: bool, error_msg: str = "") -> None:

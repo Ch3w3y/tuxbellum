@@ -1,20 +1,19 @@
 """Proton package management — download, extract, patch user_settings.py."""
 
 import os
-import re
 import shutil
 import tarfile
 import tempfile
-from pathlib import Path
 
-from tuxbellum.config.versions import DEFAULT_VERSIONS
 from tuxbellum.config.paths import path_mgr
-from tuxbellum.core.system import run_command, RunMode, look_path
+from tuxbellum.config.versions import DEFAULT_VERSIONS
 from tuxbellum.core.logging import Logger
+from tuxbellum.core.system import RunMode, run_command
 
 
 def get_proton_url(proton_ver: str, proton_base_url: str) -> str:
-    """Build the download URL for a Proton .tar.xz release.
+    """
+    Build the download URL for a Proton .tar.xz release.
 
     Strips ``proton-`` prefix and ``-x86_64`` suffix for the directory component.
     """
@@ -43,7 +42,8 @@ def get_proton_user_settings_path(proton_dir: str) -> str:
 
 
 def patch_proton_settings(settings_file: str, is_amd: bool, is_fsr41: bool) -> None:
-    """Patch Proton user_settings.py with GPU-specific options.
+    """
+    Patch Proton user_settings.py with GPU-specific options.
 
     Raises RuntimeError on failure.
     """
@@ -167,6 +167,7 @@ def ensure_proton(
             # Check for cached proton in packages/
             cached_pattern = os.path.join(".", "packages", "proton-*")
             import glob as _glob
+
             matches = _glob.glob(cached_pattern)
             for match in matches:
                 if match.endswith(proton_ver) and os.path.isfile(
@@ -205,9 +206,7 @@ def ensure_proton(
     try:
         patch_proton_settings(settings_file, is_amd, is_fsr41)
     except Exception:
-        logger.error(
-            "Failed to patch Proton user settings, removing and would re-download"
-        )
+        logger.error("Failed to patch Proton user settings, removing and would re-download")
         shutil.rmtree(actual_dir, ignore_errors=True)
         raise
 

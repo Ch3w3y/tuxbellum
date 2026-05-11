@@ -1,13 +1,14 @@
 """Settings dialog for the Bellum Linux Installer."""
 
 import webbrowser
+
 import gi
 
 gi.require_version("Gtk", "4.0")
 from gi.repository import Gtk  # noqa: E402
 
 from tuxbellum.config.manager import ConfigManager
-from tuxbellum.i18n.locale import setup_gettext, get_system_locale
+from tuxbellum.i18n.locale import get_system_locale, setup_gettext
 
 _ = setup_gettext()
 
@@ -69,9 +70,7 @@ class SettingsDialog(Gtk.Dialog):
         grid.attach(self.chk_donate, 0, 7, 1, 1)
 
         # Support buttons
-        support_box = Gtk.Box(
-            orientation=Gtk.Orientation.HORIZONTAL, spacing=10
-        )
+        support_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
         support_box.set_margin_top(10)
         support_box.set_halign(Gtk.Align.CENTER)
 
@@ -100,16 +99,12 @@ class SettingsDialog(Gtk.Dialog):
         btn_box.set_halign(Gtk.Align.CENTER)
 
         btn_cancel = Gtk.Button(label=_("Cancel"))
-        btn_cancel.connect(
-            "clicked", lambda b: self.response(Gtk.ResponseType.CANCEL)
-        )
+        btn_cancel.connect("clicked", lambda b: self.response(Gtk.ResponseType.CANCEL))
         btn_cancel.set_size_request(140, -1)
         btn_box.append(btn_cancel)
 
         btn_ok = Gtk.Button(label=_("Ok"))
-        btn_ok.connect(
-            "clicked", lambda b: self.response(Gtk.ResponseType.OK)
-        )
+        btn_ok.connect("clicked", lambda b: self.response(Gtk.ResponseType.OK))
         btn_ok.set_size_request(140, -1)
         btn_box.append(btn_ok)
 
@@ -152,9 +147,7 @@ class SettingsDialog(Gtk.Dialog):
             ("hdr", self.chk_hdr),
             ("nvapi", self.chk_nvapi),
         ]:
-            self.cfg.set(
-                key, "True" if widget.get_active() else "False"
-            )
+            self.cfg.set(key, "True" if widget.get_active() else "False")
         self.cfg.set(
             "show_donate",
             "True" if self.chk_donate.get_active() else "False",

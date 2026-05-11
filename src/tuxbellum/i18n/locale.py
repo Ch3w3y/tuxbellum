@@ -1,7 +1,8 @@
-import locale
 import gettext
+import locale
 import os
 from pathlib import Path
+
 from tuxbellum.config.paths import path_mgr
 
 

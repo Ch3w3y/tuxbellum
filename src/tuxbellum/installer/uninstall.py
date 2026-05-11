@@ -4,9 +4,8 @@ import os
 from dataclasses import dataclass
 
 from tuxbellum.config.versions import DEFAULT_VERSIONS
-from tuxbellum.config.paths import path_mgr
-from tuxbellum.core.system import run_command, RunMode, ask_bool, is_dir
-from tuxbellum.core.logging import Logger, colorize, Color
+from tuxbellum.core.logging import Color, Logger, colorize
+from tuxbellum.core.system import RunMode, ask_bool, is_dir, run_command
 from tuxbellum.installer.proton import get_proton_install_path
 
 
@@ -23,9 +22,7 @@ def run_uninstallation(config: UninstallConfig, logger: Logger) -> None:
     print()
 
     if not config.wineprefix:
-        raise RuntimeError(
-            "WINEPREFIX is required. Use --wineprefix <path> or set WINEPREFIX env."
-        )
+        raise RuntimeError("WINEPREFIX is required. Use --wineprefix <path> or set WINEPREFIX env.")
 
     wineprefix_exists = is_dir(config.wineprefix)
     if not wineprefix_exists:
@@ -107,12 +104,14 @@ def _remove_proton(wineprefix: str, logger: Logger) -> None:
     if is_dir(proton_path):
         logger.info(f"Removing Proton directory: {proton_path}")
         import shutil
+
         shutil.rmtree(proton_path, ignore_errors=True)
         logger.info("[OK] Removed Bellum Proton directory")
 
     parent = os.path.dirname(proton_path)
     if _is_empty_dir(parent):
         import shutil
+
         shutil.rmtree(parent, ignore_errors=True)
         grandparent = os.path.dirname(parent)
         if _is_empty_dir(grandparent):
@@ -121,6 +120,7 @@ def _remove_proton(wineprefix: str, logger: Logger) -> None:
 
 def _remove_wineprefix(wineprefix: str, logger: Logger) -> None:
     import shutil
+
     shutil.rmtree(wineprefix, ignore_errors=True)
     logger.info(colorize(f"[OK] Removed WINEPREFIX: {wineprefix}", Color.BOLD_YELLOW))
 

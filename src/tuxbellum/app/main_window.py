@@ -47,14 +47,10 @@ class MainWindow(Gtk.ApplicationWindow):
         vbox.set_halign(Gtk.Align.CENTER)
         self.set_child(vbox)
 
-        logo_path = os.path.join(
-            os.path.dirname(__file__), "../../../data/icons/bellum.png"
-        )
+        logo_path = os.path.join(os.path.dirname(__file__), "../../../data/icons/bellum.png")
         logo_path = os.path.abspath(logo_path)
         if os.path.exists(logo_path):
-            pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(
-                logo_path, 200, 200, True
-            )
+            pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(logo_path, 200, 200, True)
             logo = Gtk.Image.new_from_pixbuf(pixbuf)
         else:
             logo = Gtk.Image.new_from_icon_name("image-missing")
@@ -96,20 +92,22 @@ class MainWindow(Gtk.ApplicationWindow):
             json.dump(self.games, f, indent=2)
 
     def _add_game(self, data: dict[str, Any]):
-        self.games = [{
-            "gameid": "bellum",
-            "title": "Bellum",
-            "install_dir": data.get("install_dir", ""),
-            "wineprefix": data.get("wineprefix", ""),
-            "fsr41": data.get("fsr41", False),
-            "gamescope": data.get("gamescope", False),
-            "gamemode": data.get("gamemode", False),
-            "hdr": data.get("hdr", False),
-            "nvapi": data.get("nvapi", False),
-            "shortcut_desktop": data.get("shortcut_desktop", False),
-            "shortcut_appmenu": data.get("shortcut_appmenu", False),
-            "shortcut_steam": data.get("shortcut_steam", False),
-        }]
+        self.games = [
+            {
+                "gameid": "bellum",
+                "title": "Bellum",
+                "install_dir": data.get("install_dir", ""),
+                "wineprefix": data.get("wineprefix", ""),
+                "fsr41": data.get("fsr41", False),
+                "gamescope": data.get("gamescope", False),
+                "gamemode": data.get("gamemode", False),
+                "hdr": data.get("hdr", False),
+                "nvapi": data.get("nvapi", False),
+                "shortcut_desktop": data.get("shortcut_desktop", False),
+                "shortcut_appmenu": data.get("shortcut_appmenu", False),
+                "shortcut_steam": data.get("shortcut_steam", False),
+            }
+        ]
         self._save_games()
         if hasattr(self, "btn_launch"):
             self.btn_launch.set_sensitive(True)
@@ -127,9 +125,12 @@ class MainWindow(Gtk.ApplicationWindow):
         cmd = ["/usr/local/bin/Bellum"]
 
         if game.get("gamescope"):
-            gamescope_args = ["gamescope", "-f",
-                              "--fps-limit-when-unfocused=0",
-                              "--force-grab-cursor"]
+            gamescope_args = [
+                "gamescope",
+                "-f",
+                "--fps-limit-when-unfocused=0",
+                "--force-grab-cursor",
+            ]
             if game.get("hdr"):
                 gamescope_args.extend(["--hdr-enabled", "--hdr-itm-enable"])
             gamescope_args.append("--")
@@ -146,6 +147,7 @@ class MainWindow(Gtk.ApplicationWindow):
             env["DXVK_ENABLE_NVAPI"] = "1"
 
         import subprocess
+
         try:
             subprocess.Popen(cmd, env=env, start_new_session=True)
         except Exception as e:
@@ -176,10 +178,12 @@ class MainWindow(Gtk.ApplicationWindow):
                         "for the game.\n\nAre you sure you want to proceed?"
                     ),
                 )
+
                 def _on_response(d, resp):
                     d.destroy()
                     if resp == Gtk.ResponseType.YES:
                         self._start_installation(data)
+
                 dialog_confirm.connect("response", _on_response)
                 dialog_confirm.present()
                 dialog.destroy()
@@ -231,6 +235,7 @@ class MainWindow(Gtk.ApplicationWindow):
                 progress.set_status(_tr("Running prechecks..."), 0.10)
                 progress.append_log("Running prechecks...")
                 from tuxbellum.installer.precheck import run_prechecks
+
                 result = run_prechecks(
                     wineprefix,
                     "",
@@ -252,6 +257,7 @@ class MainWindow(Gtk.ApplicationWindow):
                 progress.set_status(_tr("Installing Bellum..."), 0.15)
 
                 import time
+
                 _install_done = [False]
 
                 def _monitor_log():
@@ -290,6 +296,7 @@ class MainWindow(Gtk.ApplicationWindow):
 
             except Exception as outer_exc:
                 import traceback
+
                 progress.append_log(traceback.format_exc())
                 progress.set_complete(False, str(outer_exc))
 

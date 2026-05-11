@@ -57,9 +57,7 @@ def validate_wineprefix(
     elif os.environ.get("WINEPREFIX"):
         wineprefix = os.environ["WINEPREFIX"]
         source = "environment variable"
-        logger.info(
-            colorize(f"WINEPREFIX is already set to: {wineprefix}", Color.BOLD_YELLOW)
-        )
+        logger.info(colorize(f"WINEPREFIX is already set to: {wineprefix}", Color.BOLD_YELLOW))
         if ask_bool("Do you want to use this path? (Y/n): "):
             use_existing = True
         else:
@@ -99,8 +97,7 @@ def validate_wineprefix(
         if entries:
             logger.info(f"WINEPREFIX directory already exists at {wineprefix}")
             logger.warn(
-                "If you want to reinstall, please uninstall"
-                " the existing installation first."
+                "If you want to reinstall, please uninstall the existing installation first."
             )
             raise RuntimeError(f"WINEPREFIX directory '{wineprefix}' already exists")
 
@@ -123,6 +120,7 @@ def validate_wineprefix_with_gui(logger: Logger) -> str:
     logger.info("Select the directory where you want to install Bellum...")
     logger.info("This will create a new WINEPREFIX named 'Bellum' in the selected location.")
     import time
+
     time.sleep(2)
 
     result = pick_directory()
@@ -211,9 +209,7 @@ def check_wine_version(logger: Logger, force: bool = False) -> None:
 
     if not installed_parts or installed_parts[0] < 11:
         if not force:
-            logger.error(
-                f"Wine version too old. Installed: wine-{installed}, Required: >= 11.0"
-            )
+            logger.error(f"Wine version too old. Installed: wine-{installed}, Required: >= 11.0")
             raise RuntimeError(f"wine version too old: installed {installed}, required >= 11.0")
         logger.warn(f"Wine version too old. Installed: wine-{installed}, Required: >= 11.0")
         logger.warn("Proceeding due to --force-wine-version flag (not recommended)")
@@ -251,6 +247,7 @@ def check_winetricks(workdir: str, logger: Logger) -> None:
     tmp_base = os.path.join(workdir, "packages", ".tmp")
     os.makedirs(tmp_base, exist_ok=True)
     import tempfile
+
     tmp_dir = tempfile.mkdtemp(prefix="winetricks.", dir=tmp_base)
 
     run_command(RunMode.SILENT, ["tar", "-xzf", archive, "-C", tmp_dir])
@@ -265,15 +262,14 @@ def check_winetricks(workdir: str, logger: Logger) -> None:
         raise RuntimeError("winetricks installation failed")
 
     logger.info("Running winetricks self-update...")
-    result = run_command(
-        RunMode.STREAM, ["sudo", "winetricks", "--self-update"], log_path=""
-    )
+    result = run_command(RunMode.STREAM, ["sudo", "winetricks", "--self-update"], log_path="")
     if result != 0:
         raise RuntimeError("winetricks self-update failed")
     logger.info("[OK] winetricks installed and updated successfully")
 
     logger.info("Cleaning up extracted winetricks directory...")
     import shutil
+
     shutil.rmtree(os.path.join(workdir, "packages", ".tmp"), ignore_errors=True)
 
 

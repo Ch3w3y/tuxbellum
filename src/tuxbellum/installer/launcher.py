@@ -4,8 +4,8 @@ import os
 from dataclasses import dataclass
 
 from tuxbellum.config.versions import LAUNCHER_INSTALLER_URL
-from tuxbellum.core.system import run_command, RunMode
 from tuxbellum.core.logging import Logger
+from tuxbellum.core.system import RunMode, run_command
 
 
 @dataclass

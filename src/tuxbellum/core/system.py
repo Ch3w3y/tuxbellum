@@ -4,8 +4,8 @@ import enum
 import os
 import subprocess
 import threading
-from pathlib import Path
 from collections.abc import Callable
+from pathlib import Path
 
 
 class RunMode(enum.Enum):
@@ -69,16 +69,12 @@ def run_command(
             log_file.close()
 
 
-def run_command_with_output(
-    args: list[str], timeout: int = 300
-) -> tuple[str, int | None]:
+def run_command_with_output(args: list[str], timeout: int = 300) -> tuple[str, int | None]:
     """Execute and capture output. Returns (stdout, exit_code)."""
     if not args:
         return "", 0
     try:
-        result = subprocess.run(
-            args, capture_output=True, text=True, timeout=timeout
-        )
+        result = subprocess.run(args, capture_output=True, text=True, timeout=timeout)
         return result.stdout.strip(), result.returncode
     except FileNotFoundError:
         return f"Command not found: {args[0]}", -1
@@ -89,9 +85,7 @@ def run_command_with_output(
 def look_path(name: str) -> str:
     """Check PATH. Returns resolved path or empty string."""
     try:
-        path = subprocess.check_output(
-            ["which", name], stderr=subprocess.DEVNULL, text=True
-        )
+        path = subprocess.check_output(["which", name], stderr=subprocess.DEVNULL, text=True)
         return path.strip()
     except subprocess.CalledProcessError:
         return ""

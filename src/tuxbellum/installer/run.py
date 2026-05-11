@@ -39,7 +39,8 @@ def run_installation(config: InstallConfig, logger: Logger) -> None:
         os.environ["STEAM_COMPAT_DATA_PATH"] = config.wineprefix
         os.environ["STEAM_COMPAT_CLIENT_INSTALL_PATH"] = os.path.join(
             os.environ.get("HOME", str(Path.home())),
-            ".steam", "steam",
+            ".steam",
+            "steam",
         )
         os.environ["GAMEID"] = "1"
 
@@ -112,9 +113,7 @@ def _run_pipeline(config: InstallConfig, launcher_exe: str, logger: Logger) -> N
     icon_path = os.path.join(config.workdir, "packages", "launcher_1_256x256x32.png")
     copy_icon(icon_path)
     generate_desktop_files(config.wineprefix, icon_path, config.gpu_type, logger)
-    generate_launcher_wrapper(
-        config.wineprefix, config.proton_path, config.gpu_type, logger
-    )
+    generate_launcher_wrapper(config.wineprefix, config.proton_path, config.gpu_type, logger)
     logger.info("[OK] Game launcher installed: /usr/local/bin/Bellum")
 
     generate_launch_vars_file(config.wineprefix, config.gpu_type, config.is_fsr41)
@@ -122,9 +121,17 @@ def _run_pipeline(config: InstallConfig, launcher_exe: str, logger: Logger) -> N
     _check_run(
         RunMode.SILENT,
         [
-            "wine", "reg", "add",
+            "wine",
+            "reg",
+            "add",
             r"HKCU\Software\Wine\DirectInput",
-            "/v", "RawInput", "/t", "REG_DWORD", "/d", "1", "/f",
+            "/v",
+            "RawInput",
+            "/t",
+            "REG_DWORD",
+            "/d",
+            "1",
+            "/f",
         ],
     )
 

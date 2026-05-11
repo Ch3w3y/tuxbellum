@@ -3,8 +3,8 @@
 import os
 import shutil
 
-from tuxbellum.core.system import run_command, RunMode, look_path
 from tuxbellum.core.logging import Logger
+from tuxbellum.core.system import RunMode, look_path, run_command
 
 
 def copy_icon(icon_path: str) -> None:
@@ -13,7 +13,13 @@ def copy_icon(icon_path: str) -> None:
         raise RuntimeError("icon path is empty")
     dest = os.path.join(
         os.environ.get("HOME", os.path.expanduser("~")),
-        ".local", "share", "icons", "hicolor", "256x256", "apps", "bellum.png",
+        ".local",
+        "share",
+        "icons",
+        "hicolor",
+        "256x256",
+        "apps",
+        "bellum.png",
     )
     os.makedirs(os.path.dirname(dest), exist_ok=True)
     shutil.copy2(icon_path, dest)
