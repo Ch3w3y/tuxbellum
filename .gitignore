@@ -1,0 +1,60 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Build artifacts
+*.egg-info/
+dist/
+build/
+builddir/
+*.whl
+
+# Packages — binary assets downloaded at build/install time, not source
+packages/*.tar.gz
+packages/*.dll
+packages/*.exe
+packages/fsr4/*.dll
+!packages/meson.build
+!packages/launcher_1_256x256x32.png
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+logs/
+.logs/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+.coverage
+htmlcov/
+coverage.xml
+.pytest_cache/
+
+# Temp
+*.tmp
+tmp/
+
+# Meson build
+subprojects/
+
+# AppImage build artifacts
+/AppDir/
+/TuxBellum-*.AppImage
+
+# Installer cache
+installer-cache/

@@ -1,0 +1,770 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-08-06 21:59-0300\n"
+"PO-Revision-Date: 2025-08-10 07:53+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.6\n"
+
+#: /usr/bin/bellum-launcher:360 /usr/bin/bellum-launcher:848
+msgid "Play"
+msgstr "Indítás"
+
+#: /usr/bin/bellum-launcher:364
+msgid "Edit"
+msgstr "Szerkesztés"
+
+#: /usr/bin/bellum-launcher:368
+msgid "Delete"
+msgstr "Törlés"
+
+#: /usr/bin/bellum-launcher:372
+msgid "Duplicate"
+msgstr "Duplikálás"
+
+#: /usr/bin/bellum-launcher:376
+msgid "Open prefix location"
+msgstr "Prefix helyének megnyitása"
+
+#: /usr/bin/bellum-launcher:380
+msgid "Show logs"
+msgstr "Logok mutatása"
+
+#: /usr/bin/bellum-launcher:545 /usr/bin/bellum-launcher:651
+msgid "Force close all running games"
+msgstr "Minden futó játék erőltetett bezárása"
+
+#: /usr/bin/bellum-launcher:573 /usr/bin/bellum-launcher:690
+msgid "Search..."
+msgstr "Keresés..."
+
+#: /usr/bin/bellum-launcher:783
+msgid "Shut down"
+msgstr "Leállítás"
+
+#: /usr/bin/bellum-launcher:784
+msgid "Reboot"
+msgstr "Újraindítás"
+
+#: /usr/bin/bellum-launcher:785
+msgid "Close"
+msgstr "Bezárás"
+
+#: /usr/bin/bellum-launcher:846
+msgid "Stop"
+msgstr "Leállítás"
+
+#: /usr/bin/bellum-launcher:883
+#, python-format
+msgid "%s Logs"
+msgstr "%s Logok"
+
+#: /usr/bin/bellum-launcher:923
+msgid "Copy to clipboard"
+msgstr "Másolás vágólapra"
+
+#: /usr/bin/bellum-launcher:927
+msgid "Open file location"
+msgstr "Fájl helyének megnyitása"
+
+#: /usr/bin/bellum-launcher:994 /usr/bin/bellum-launcher:2056
+#, python-format
+msgid "%s already exists."
+msgstr "%s már létezik."
+
+#: /usr/bin/bellum-launcher:1165
+#, python-format
+msgid "%s is already running."
+msgstr "%s már fut."
+
+#: /usr/bin/bellum-launcher:1168 /usr/bin/bellum-launcher:2007
+#: /usr/bin/bellum-launcher:3061 /usr/bin/bellum-launcher:3953
+#: /usr/bin/bellum-launcher:4264 /usr/bin/bellum-launcher:4307
+#: /usr/bin/bellum-launcher:4701 /usr/bin/bellum-launcher:5023
+#: /usr/bin/bellum-launcher:5166 /usr/bin/bellum-launcher:5781
+#: /usr/bin/bellum-launcher:6318 /usr/bin/bellum-launcher:6610
+#: /usr/bin/bellum-launcher:7008
+msgid "Ok"
+msgstr "Oké"
+
+#: /usr/bin/bellum-launcher:1238
+msgid "Open bellum Launcher"
+msgstr "bellum Launcher megnyitása"
+
+#: /usr/bin/bellum-launcher:1243
+msgid "Quit"
+msgstr "Kilépés"
+
+#: /usr/bin/bellum-launcher:1804
+#, python-format
+msgid "Edit %s"
+msgstr "Szerkesztés %s"
+
+#: /usr/bin/bellum-launcher:1856 /usr/bin/bellum-launcher:4917
+msgid ""
+"Add or remove a shortcut from Steam. Steam needs to be restarted. NO STEAM "
+"USERS FOUND."
+msgstr ""
+"Parancsikon hozzáadása vagy eltávolítása a Steam-ből. A Steam-et újra kell "
+"indítani. NEM TALÁLHATÓ STEAM FELHASZNÁLÓ."
+
+#: /usr/bin/bellum-launcher:1866 /usr/bin/bellum-launcher:1868
+#: /usr/bin/bellum-launcher:1870
+#, python-format
+msgid "%s is running. Please close it first."
+msgstr "%s már fut. Előbb be kell zárni."
+
+#: /usr/bin/bellum-launcher:2127
+msgid "No internet connection."
+msgstr "Nincs internetkapcsolat."
+
+#: /usr/bin/bellum-launcher:2220 /usr/bin/bellum-launcher:2352
+#, python-format
+msgid "Installing %s..."
+msgstr "%s telepítése..."
+
+#: /usr/bin/bellum-launcher:2231
+msgid "Finish installation"
+msgstr "Telepítés befejezése"
+
+#: /usr/bin/bellum-launcher:2238
+msgid "Downloading Battle.net..."
+msgstr "Battle.net letöltése..."
+
+#: /usr/bin/bellum-launcher:2243
+msgid "Downloading EA App..."
+msgstr "EA App letöltése..."
+
+#: /usr/bin/bellum-launcher:2248
+msgid "Downloading Epic Games..."
+msgstr "Epic Games letöltése..."
+
+#: /usr/bin/bellum-launcher:2253
+msgid "Downloading Ubisoft Connect..."
+msgstr "Ubisoft Connect letöltése..."
+
+#: /usr/bin/bellum-launcher:2346
+msgid "Download complete"
+msgstr "Letöltése befejezve"
+
+#: /usr/bin/bellum-launcher:2349
+#, python-format
+msgid "Error during download: %s"
+msgstr "Hiba a letöltés közben: %s"
+
+#: /usr/bin/bellum-launcher:2354 /usr/bin/bellum-launcher:2357
+msgid "Please close the login window and wait..."
+msgstr "Kérlek zárd be a bejelentkező ablakot és várj..."
+
+#: /usr/bin/bellum-launcher:2771
+msgid "Settings"
+msgstr "Beállítások"
+
+#: /usr/bin/bellum-launcher:2894
+msgid "Language"
+msgstr "Nyelv"
+
+#: /usr/bin/bellum-launcher:2899
+msgid "Interface Mode"
+msgstr "Felület típusa"
+
+#: /usr/bin/bellum-launcher:2908
+msgid "Start maximized"
+msgstr "Maximalizált indítás"
+
+#: /usr/bin/bellum-launcher:2913
+msgid "Start in fullscreen"
+msgstr "Teljes képernyős indítás"
+
+#: /usr/bin/bellum-launcher:2916
+msgid "Alt+Enter toggles fullscreen"
+msgstr "Alt+Enter-re teljes képernyőre váltás"
+
+#: /usr/bin/bellum-launcher:2918
+msgid "Show labels"
+msgstr "Logok mutatása"
+
+#: /usr/bin/bellum-launcher:2921
+msgid "Smaller banners"
+msgstr "Kisebb bannerek"
+
+#: /usr/bin/bellum-launcher:2925
+msgid "Default Prefixes Location"
+msgstr "Alapértelmezett prefixek helye"
+
+#: /usr/bin/bellum-launcher:2929 /usr/bin/bellum-launcher:4585
+msgid "/path/to/the/prefix"
+msgstr "/alkalmazás/elérési/útvonala"
+
+#: /usr/bin/bellum-launcher:2939
+msgid "Lossless Scaling Location"
+msgstr "Lossless Scaling telepítési helye"
+
+#: /usr/bin/bellum-launcher:2943
+msgid "/path/to/Lossless.dll"
+msgstr "elérési/útvonal/Lossless.dll"
+
+#: /usr/bin/bellum-launcher:2952
+msgid "Default Prefix Tools"
+msgstr "Alapértelmezett prefix eszközök"
+
+#: /usr/bin/bellum-launcher:2959
+msgid "Default Proton"
+msgstr "Alapértelmezett Proton"
+
+#: /usr/bin/bellum-launcher:2963
+msgid "Proton Manager"
+msgstr "Proton Kezelő"
+
+#: /usr/bin/bellum-launcher:2966
+msgid "Miscellaneous"
+msgstr "Egyéb"
+
+#: /usr/bin/bellum-launcher:2973
+msgid "Use discrete GPU"
+msgstr "Különálló GPU használata"
+
+#: /usr/bin/bellum-launcher:2977
+msgid "Close when running a game/app"
+msgstr "Bezárás játék/alkalmazás futtatásakor"
+
+#: /usr/bin/bellum-launcher:2981
+msgid "System tray icon"
+msgstr "Rendszertálca ikon"
+
+#: /usr/bin/bellum-launcher:2986
+msgid "Start on boot"
+msgstr "Bekapcsoláskor indul"
+
+#: /usr/bin/bellum-launcher:2990
+msgid "Monochrome icon"
+msgstr "Monokróm ikon"
+
+#: /usr/bin/bellum-launcher:2995
+msgid "Disable splash window"
+msgstr "Felugró ablak letiltása"
+
+#: /usr/bin/bellum-launcher:2999
+msgid "Enable logging"
+msgstr "Logolás engedélyezése"
+
+#: /usr/bin/bellum-launcher:3002
+msgid "Use Wayland driver (experimental)"
+msgstr "Wayland driver használata (kísérleti)"
+
+#: /usr/bin/bellum-launcher:3004 /usr/bin/bellum-launcher:3009
+msgid "Only works with GE-Proton10 or Proton-EM-10."
+msgstr "Csak GE-Proton10 vagy Proton-EM-10-el működik."
+
+#: /usr/bin/bellum-launcher:3007
+msgid "Enable HDR (experimental)"
+msgstr "HDR engedélyezése (kísérleti)"
+
+#: /usr/bin/bellum-launcher:3011
+msgid "Enable WOW64 (experimental)"
+msgstr "WOW64 engedélyezése (kísérleti)"
+
+#: /usr/bin/bellum-launcher:3013
+msgid ""
+"Only works with GE-Proton10-9 or superior and Proton-EM-10-24 or superior."
+msgstr ""
+"Csak GE-Proton10-9 és újabb, vagy Proton-EM-10-24 és újabb verzióval "
+"működik."
+
+#: /usr/bin/bellum-launcher:3026 /usr/bin/bellum-launcher:4668
+msgid "Run"
+msgstr "Futtatás"
+
+#: /usr/bin/bellum-launcher:3029 /usr/bin/bellum-launcher:4671
+msgid "Run a file inside the prefix"
+msgstr "Fájl futtatása a prefixen belül"
+
+#: /usr/bin/bellum-launcher:3034 /usr/bin/bellum-launcher:4650
+#: /usr/bin/bellum-launcher:6305
+msgid ""
+"Shows an overlay for monitoring FPS, temperatures, CPU/GPU load and more."
+msgstr ""
+"Megjeleníti az FPS, hőmérséklet, CPU/GPU terhelés és egyebek megfigyelésére "
+"szolgáló felületet."
+
+#: /usr/bin/bellum-launcher:3036 /usr/bin/bellum-launcher:4652
+#: /usr/bin/bellum-launcher:6307
+msgid "Tweaks your system to improve performance."
+msgstr "Javítja a rendszert a teljesítmény növelése érdekében."
+
+#: /usr/bin/bellum-launcher:3037 /usr/bin/bellum-launcher:4653
+#: /usr/bin/bellum-launcher:6308
+msgid "Disable Hidraw"
+msgstr "Hidraw letiltása"
+
+#: /usr/bin/bellum-launcher:3039 /usr/bin/bellum-launcher:4655
+#: /usr/bin/bellum-launcher:6310
+msgid ""
+"May fix controller issues with some games. Only works with GE-Proton10 or "
+"Proton-EM-10."
+msgstr ""
+"Megoldhat kontroller hibákat bizonyos játékoknál. Csak GE-Proton10 vagy "
+"Proton-EM-10-el működik."
+
+#: /usr/bin/bellum-launcher:3041
+msgid "Support the Project"
+msgstr "Támogasd a projektet"
+
+#: /usr/bin/bellum-launcher:3056 /usr/bin/bellum-launcher:3724
+#: /usr/bin/bellum-launcher:3831 /usr/bin/bellum-launcher:3879
+#: /usr/bin/bellum-launcher:4059 /usr/bin/bellum-launcher:4099
+#: /usr/bin/bellum-launcher:4260 /usr/bin/bellum-launcher:4696
+#: /usr/bin/bellum-launcher:5018 /usr/bin/bellum-launcher:5123
+#: /usr/bin/bellum-launcher:5291 /usr/bin/bellum-launcher:5573
+#: /usr/bin/bellum-launcher:5737 /usr/bin/bellum-launcher:6060
+#: /usr/bin/bellum-launcher:6154 /usr/bin/bellum-launcher:6313
+#: /usr/bin/bellum-launcher:6605 /usr/bin/bellum-launcher:6679
+#: /usr/bin/bellum-launcher:6964
+msgid "Cancel"
+msgstr "Mégse"
+
+#: /usr/bin/bellum-launcher:3065
+msgid "Backup/Restore Settings"
+msgstr ""
+"Biztonsági mentés\n"
+"/Visszaállítás beállítások"
+
+#: /usr/bin/bellum-launcher:3072
+msgid "Backup"
+msgstr "Biztonsági mentés"
+
+#: /usr/bin/bellum-launcher:3076
+msgid "Restore"
+msgstr "Visszaállítás"
+
+#: /usr/bin/bellum-launcher:3079
+msgid "Global Environment Variables"
+msgstr "Globális Környezeti Változók"
+
+#: /usr/bin/bellum-launcher:3327 /usr/bin/bellum-launcher:4905
+#: /usr/bin/bellum-launcher:6466
+msgid ""
+"Shows an overlay for monitoring FPS, temperatures, CPU/GPU load and more. "
+"NOT INSTALLED."
+msgstr ""
+"Megjeleníti az FPS, hőmérséklet, CPU/GPU terhelés és egyebek megfigyelésére "
+"szolgáló felületet. NINCS TELEPÍTVE."
+
+#: /usr/bin/bellum-launcher:3333 /usr/bin/bellum-launcher:4911
+#: /usr/bin/bellum-launcher:6472
+msgid "Tweaks your system to improve performance. NOT INSTALLED."
+msgstr ""
+"Javítja a rendszert a teljesítmény növelése érdekében. NINCS TELEPÍTVE."
+
+#: /usr/bin/bellum-launcher:3685 /usr/bin/bellum-launcher:5534
+msgid "Select a file to run inside the prefix"
+msgstr "Válaszd ki a prefix-en belül futtatandó fájlt"
+
+#: /usr/bin/bellum-launcher:3693 /usr/bin/bellum-launcher:3705
+#: /usr/bin/bellum-launcher:5260 /usr/bin/bellum-launcher:5272
+#: /usr/bin/bellum-launcher:5542 /usr/bin/bellum-launcher:5554
+#: /usr/bin/bellum-launcher:6029 /usr/bin/bellum-launcher:6041
+#: /usr/bin/bellum-launcher:6648 /usr/bin/bellum-launcher:6660
+msgid "Windows files"
+msgstr "Windows fájlok"
+
+#: /usr/bin/bellum-launcher:3701 /usr/bin/bellum-launcher:3706
+#: /usr/bin/bellum-launcher:5268 /usr/bin/bellum-launcher:5273
+#: /usr/bin/bellum-launcher:5550 /usr/bin/bellum-launcher:5555
+#: /usr/bin/bellum-launcher:6037 /usr/bin/bellum-launcher:6042
+#: /usr/bin/bellum-launcher:6656 /usr/bin/bellum-launcher:6661
+msgid "All files"
+msgstr "Minden fájl"
+
+#: /usr/bin/bellum-launcher:3720 /usr/bin/bellum-launcher:3875
+#: /usr/bin/bellum-launcher:4054 /usr/bin/bellum-launcher:4094
+#: /usr/bin/bellum-launcher:5119 /usr/bin/bellum-launcher:5287
+#: /usr/bin/bellum-launcher:5569 /usr/bin/bellum-launcher:5733
+#: /usr/bin/bellum-launcher:6056 /usr/bin/bellum-launcher:6149
+#: /usr/bin/bellum-launcher:6675 /usr/bin/bellum-launcher:6960
+msgid "Open"
+msgstr "Megnyitás"
+
+#: /usr/bin/bellum-launcher:3795
+msgid "Prefixes and runners will not be backed up!"
+msgstr ""
+"Prefix-ekről és futtatókörnyezetekről nem fog biztonsági mentés készülni!"
+
+#: /usr/bin/bellum-launcher:3820
+msgid "Save the backup file as..."
+msgstr "Biztonsági másolat mentése másként..."
+
+#: /usr/bin/bellum-launcher:3827
+msgid "Save"
+msgstr "Mentés"
+
+#: /usr/bin/bellum-launcher:3862
+msgid "Select a backup file to restore"
+msgstr "Válaszd ki a visszaállítandó biztonsági másolatot"
+
+#: /usr/bin/bellum-launcher:3906 /usr/bin/bellum-launcher:3916
+msgid "This is not a valid bellum Launcher backup file."
+msgstr "Ez nem egy érvényes bellum Launcher biztonsági másolat."
+
+#: /usr/bin/bellum-launcher:3919
+msgid "Are you sure you want to overwrite the settings?"
+msgstr "Biztosan felül akarod írni a beállításokat?"
+
+#: /usr/bin/bellum-launcher:3995 /usr/bin/bellum-launcher:4351
+msgid "No"
+msgstr "Nem"
+
+#: /usr/bin/bellum-launcher:3999 /usr/bin/bellum-launcher:4355
+msgid "Yes"
+msgstr "Igen"
+
+#: /usr/bin/bellum-launcher:4041 /usr/bin/bellum-launcher:6136
+msgid "Select a prefix location"
+msgstr "Válaszd ki a prefix helyét"
+
+#: /usr/bin/bellum-launcher:4076
+msgid "Select the Lossless.dll file"
+msgstr "Válaszd ki a Lossless.dll-t"
+
+#: /usr/bin/bellum-launcher:4251
+#, python-format
+msgid "Duplicate %s"
+msgstr "Duplikálás %s"
+
+#: /usr/bin/bellum-launcher:4255 /usr/bin/bellum-launcher:4555
+#: /usr/bin/bellum-launcher:6260
+msgid "Title"
+msgstr "Cím"
+
+#: /usr/bin/bellum-launcher:4258 /usr/bin/bellum-launcher:4561
+#: /usr/bin/bellum-launcher:6264
+msgid "Game Title"
+msgstr "Játék címe"
+
+#: /usr/bin/bellum-launcher:4342
+#, python-format
+msgid "Delete %s"
+msgstr "Törlés %s"
+
+#: /usr/bin/bellum-launcher:4348
+#, python-format
+msgid "Are you sure you want to delete %s?"
+msgstr "Biztosan törölni akarod a %s-t?"
+
+#: /usr/bin/bellum-launcher:4359
+msgid "Also remove the prefix"
+msgstr "Prefix törlése"
+
+#: /usr/bin/bellum-launcher:4400
+msgid "New Game/App"
+msgstr "Új játék/alkalmazás"
+
+#: /usr/bin/bellum-launcher:4566
+msgid "Path"
+msgstr "Útvonal"
+
+#: /usr/bin/bellum-launcher:4572
+msgid "/path/to/the/exe"
+msgstr "/exe/elérési/útvonala"
+
+#: /usr/bin/bellum-launcher:4581
+msgid "Prefix"
+msgstr "Prefix"
+
+#: /usr/bin/bellum-launcher:4594
+msgid "Proton"
+msgstr "Proton"
+
+#: /usr/bin/bellum-launcher:4612 /usr/bin/bellum-launcher:6276
+msgid "Launch Arguments"
+msgstr "Indítási opciók"
+
+#: /usr/bin/bellum-launcher:4615 /usr/bin/bellum-launcher:6279
+msgid "e.g.: PROTON_USE_WINED3D=1 gamescope -W 2560 -H 1440"
+msgstr "pl.: PROTON_USE_WINED3D=1 gamescope -W 2560 -H 1440"
+
+#: /usr/bin/bellum-launcher:4620 /usr/bin/bellum-launcher:6281
+msgid "Game Arguments"
+msgstr "Játék opciók"
+
+#: /usr/bin/bellum-launcher:4623 /usr/bin/bellum-launcher:6284
+msgid "e.g.: -d3d11 -fullscreen"
+msgstr "pl.: -d3d11 -fullscreen"
+
+#: /usr/bin/bellum-launcher:4628 /usr/bin/bellum-launcher:4944
+#: /usr/bin/bellum-launcher:6286 /usr/bin/bellum-launcher:6531
+msgid "Lossless Scaling Frame Generation"
+msgstr "Lossless Scaling Frame Generation"
+
+#: /usr/bin/bellum-launcher:4632 /usr/bin/bellum-launcher:6289
+msgid "Additional Application"
+msgstr "Kiegészítő alkalmazás"
+
+#: /usr/bin/bellum-launcher:4634
+msgid ""
+"Additional application to run with the game, like Cheat Engine, Trainers, "
+"Mods..."
+msgstr ""
+"A játékkal együtt futtatható kiegészítő alkalmazások, mint például Cheat "
+"Engine, Trainer, Modok..."
+
+#: /usr/bin/bellum-launcher:4637 /usr/bin/bellum-launcher:6292
+msgid "/path/to/the/app"
+msgstr "/alkalmazás/elérési/útvonala"
+
+#: /usr/bin/bellum-launcher:4674
+msgid "Shortcut"
+msgstr "Parancsikon"
+
+#: /usr/bin/bellum-launcher:4679
+msgid "Desktop"
+msgstr "Asztal"
+
+#: /usr/bin/bellum-launcher:4681
+msgid "Add or remove a shortcut from the Desktop."
+msgstr "Hozzáadhat vagy eltávolíthat parancsikonokat az asztalról."
+
+#: /usr/bin/bellum-launcher:4682
+msgid "App Menu"
+msgstr "Alkalmazás menü"
+
+#: /usr/bin/bellum-launcher:4684
+msgid "Add or remove a shortcut from the Application Menu."
+msgstr "Hozzáadhat vagy eltávolíthat parancsikonokat az Alkalmazás Menüből."
+
+#: /usr/bin/bellum-launcher:4685
+msgid "Steam"
+msgstr "Steam"
+
+#: /usr/bin/bellum-launcher:4687
+msgid "Add or remove a shortcut from Steam. Steam needs to be restarted."
+msgstr ""
+"Hozzáadhat vagy eltávolíthat parancsikonokat a Steamhez. A Steam "
+"újraindítása szükséges."
+
+#: /usr/bin/bellum-launcher:4693 /usr/bin/bellum-launcher:5716
+#: /usr/bin/bellum-launcher:6300 /usr/bin/bellum-launcher:6943
+msgid "Select an icon for the shortcut"
+msgstr "Kép kiválasztása a parancsikonhoz"
+
+#: /usr/bin/bellum-launcher:4744
+msgid "Refresh"
+msgstr "Frissítés"
+
+#: /usr/bin/bellum-launcher:4748
+msgid "Load from file"
+msgstr "Betöltés fájlból"
+
+#: /usr/bin/bellum-launcher:4756
+msgid "Game/App"
+msgstr "Játék/Alkalmazás"
+
+#: /usr/bin/bellum-launcher:4772
+msgid "Tools"
+msgstr "Eszközök"
+
+#: /usr/bin/bellum-launcher:4926 /usr/bin/bellum-launcher:6480
+msgid ""
+"Lossless.dll NOT FOUND. If it's installed, go to bellum Launcher's settings "
+"and set the location."
+msgstr ""
+"Lossless.dll NEM TALÁLHATÓ. Ha telepítve van, lépj be a beállításokba és "
+"add meg a telepítés helyét."
+
+#: /usr/bin/bellum-launcher:4929 /usr/bin/bellum-launcher:6483
+msgid "Lossless Scaling Vulkan Layer NOT INSTALLED."
+msgstr "Lossless Scaling Vulkan Layer NINCS TELEPÍTVE."
+
+#: /usr/bin/bellum-launcher:4972 /usr/bin/bellum-launcher:6559
+msgid "Multiplier"
+msgstr "Szorzó"
+
+#: /usr/bin/bellum-launcher:4977 /usr/bin/bellum-launcher:6564
+msgid "Multiply the FPS."
+msgstr "FPS többszörözése."
+
+#: /usr/bin/bellum-launcher:4979 /usr/bin/bellum-launcher:6566
+msgid "Flow Scale"
+msgstr "Áramlási skála"
+
+#: /usr/bin/bellum-launcher:4986 /usr/bin/bellum-launcher:6573
+msgid "Lower the internal motion estimation resolution."
+msgstr "Csökkentsd a belső mozgásbecslés felbontását."
+
+#: /usr/bin/bellum-launcher:4988 /usr/bin/bellum-launcher:6575
+msgid "Performance Mode"
+msgstr "Teljesítmény mód"
+
+#: /usr/bin/bellum-launcher:4989 /usr/bin/bellum-launcher:6576
+msgid "Massively improve performance at the cost of quality."
+msgstr "A teljesítményt jelentős javítása a minőség rovására."
+
+#: /usr/bin/bellum-launcher:4992 /usr/bin/bellum-launcher:6579
+msgid "HDR Mode"
+msgstr "HDR mód"
+
+#: /usr/bin/bellum-launcher:4993 /usr/bin/bellum-launcher:6580
+msgid "Enable special HDR-only behavior."
+msgstr "Speciális \"csak HDR\" viselkedés engedélyezése."
+
+#: /usr/bin/bellum-launcher:5091 /usr/bin/bellum-launcher:5705
+#: /usr/bin/bellum-launcher:6932
+msgid "Invalid Image"
+msgstr "Nem érvényes kép"
+
+#: /usr/bin/bellum-launcher:5102
+msgid "Select an image for the banner"
+msgstr "Válassz egy képet a bannerhez"
+
+#: /usr/bin/bellum-launcher:5110 /usr/bin/bellum-launcher:5115
+#: /usr/bin/bellum-launcher:5724 /usr/bin/bellum-launcher:5729
+#: /usr/bin/bellum-launcher:6951 /usr/bin/bellum-launcher:6956
+msgid "Image files"
+msgstr "Kép fájlok"
+
+#: /usr/bin/bellum-launcher:5159 /usr/bin/bellum-launcher:5774
+#: /usr/bin/bellum-launcher:7001
+msgid "The selected file is not a valid image."
+msgstr "A választott kép nem érvényes."
+
+#: /usr/bin/bellum-launcher:5163 /usr/bin/bellum-launcher:5778
+#: /usr/bin/bellum-launcher:7005
+msgid "Please choose another one."
+msgstr "Kérlek válassz egy másikat."
+
+#: /usr/bin/bellum-launcher:5252 /usr/bin/bellum-launcher:6640
+msgid "Select an additional application"
+msgstr "További alkalmazás kiválasztása"
+
+#: /usr/bin/bellum-launcher:5462
+msgid "Windows Game"
+msgstr "Windows játék"
+
+#: /usr/bin/bellum-launcher:5463
+msgid "Linux Game"
+msgstr "Linux játék"
+
+#: /usr/bin/bellum-launcher:6020
+msgid "Select the game's .exe"
+msgstr "Válaszd ki a játék .exe fájlját"
+
+#~ msgid "xdg-user-dir not found or failed; falling back to ~/Desktop"
+#~ msgstr "xdg-user-dir hibás vagy nem található; visszatérés a ~/Desktop-ra"
+
+#~ msgid "Log out"
+#~ msgstr "Kijelentkezés"
+
+#, python-brace-format
+#~ msgid "Error reading the JSON file: {error}"
+#~ msgstr "Hiba a JSON fájl olvasása közben: {error}"
+
+#, python-brace-format
+#~ msgid "Edit {title}"
+#~ msgstr "Szerkesztés {title}"
+
+#, python-brace-format
+#~ msgid "Error resizing banner: {error}"
+#~ msgstr "Hiba a banner újraméretezése közben: {error}"
+
+#, python-brace-format
+#~ msgid "{title} installed."
+#~ msgstr "{title} telepítve."
+
+#~ msgid "Please close the login window and press:"
+#~ msgstr "Zárd be a bejelentkező ablakot és nyomd meg:"
+
+#, python-brace-format
+#~ msgid "Extracting... {percent}%"
+#~ msgstr "Kicsomagolás... {percent}%"
+
+#~ msgid "Extraction complete"
+#~ msgstr "Kicsomagolás befejezve"
+
+#, python-brace-format
+#~ msgid "Error during extraction: {error}"
+#~ msgstr "Hiba a kicsomagolás közben: {error}"
+
+#~ msgid "Gamepad navigation (experimental)"
+#~ msgstr "Kontroller navigáció (kísérleti)"
+
+#~ msgid "Default Runner"
+#~ msgstr "Alapértelmezett futtatókörnyezet"
+
+#~ msgid "Gamescope Settings"
+#~ msgstr "Gamescope beállítások"
+
+#~ msgid "* Restart to apply Gamescope Settings."
+#~ msgstr "* Indítsd újra a Gamescope beállítások alkalmazásához."
+
+#~ msgid "Screen Resolution"
+#~ msgstr "Képernyő felbontás"
+
+#~ msgid "Game Resolution"
+#~ msgstr "Játék felbontás"
+
+#~ msgid "Refresh Rate"
+#~ msgstr "Képernyő frissítés"
+
+#~ msgid "Prefer Output"
+#~ msgstr "Preferált kimenet"
+
+#~ msgid "Adaptive Sync"
+#~ msgstr "Adaptive Sync"
+
+#, python-brace-format
+#~ msgid "Error accessing the directory: {error}"
+#~ msgstr "Hiba a könyvtár elérésekor: {error}"
+
+#, python-brace-format
+#~ msgid "Duplicate {title}"
+#~ msgstr "Duplikált {title}"
+
+#, python-brace-format
+#~ msgid "Delete {title}"
+#~ msgstr "Törlés {title}"
+
+#~ msgid "Runner"
+#~ msgstr "Futtatókörnyezet"
+
+#~ msgid "Steam Shortcut"
+#~ msgstr "Steam parancsikon"
+
+#, python-brace-format
+#~ msgid "Error fetching the banner: {error}"
+#~ msgstr "Hiba a banner lekérésekor : {error}"
+
+#~ msgid "The file does not contain icons."
+#~ msgstr "A fájl nem tartalmaz ikonokat."
+
+#, python-brace-format
+#~ msgid "Error extracting icon: {error}"
+#~ msgstr "Hiba az ikon kicsomagolása közben: {error}"
+
+#, python-brace-format
+#~ msgid "An error occurred: {error}"
+#~ msgstr "Hiba történt: {error}"
+
+#, python-brace-format
+#~ msgid "Unable to open {file}"
+#~ msgstr "Nem lehet megnyitni {file}"
+
+#~ msgid "Session mode activated"
+#~ msgstr "Munkamenet mód aktiválva"
+
+#~ msgid "Invalid arguments"
+#~ msgstr "Érvénytelen paraméterek"
+
+#~ msgid "bellum Launcher is already running."
+#~ msgstr "A bellum Launcher már fut."

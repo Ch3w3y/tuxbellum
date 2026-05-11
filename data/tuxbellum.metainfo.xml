@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.ch3w3y.tuxbellum</id>
+  <name>TuxBellum</name>
+  <summary>Install, configure, and launch Bellum via Wine/Proton on Linux</summary>
+  <developer id="io.github.ch3w3y">
+    <name>Ch3w3y</name>
+  </developer>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>Apache-2.0</project_license>
+  <url type="homepage">https://github.com/Ch3w3y/tuxbellum</url>
+  <url type="bugtracker">https://github.com/Ch3w3y/tuxbellum/issues</url>
+  <categories>
+    <category>Game</category>
+    <category>Utility</category>
+  </categories>
+  <launchable type="desktop-id">tuxbellum.desktop</launchable>
+  <screenshots>
+    <screenshot type="default">
+      <caption>Bellum Installation Screen</caption>
+    </screenshot>
+  </screenshots>
+  <releases>
+    <release version="3.0.0" date="2026-05-11">
+      <description>
+        <p>Major refactoring: GTK4 monolith replacing the GTK3+Go architecture. Rebranded as TuxBellum.</p>
+        <ul>
+          <li>Ported all UI from GTK3 to GTK4</li>
+          <li>Integrated installer logic directly in Python (no more Go binary)</li>
+          <li>Real-time install progress with log streaming</li>
+          <li>Improved error handling and reporting</li>
+          <li>Rebranded from Bellum Linux Installer to TuxBellum</li>
+        </ul>
+      </description>
+    </release>
+  </releases>
+</component>

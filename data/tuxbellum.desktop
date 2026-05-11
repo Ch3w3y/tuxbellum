@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=TuxBellum
+Comment=Install, configure, and launch Bellum via Wine/Proton on Linux
+Exec=tuxbellum
+Type=Application
+Icon=tuxbellum
+Categories=Game;
+Keywords=bellum;tuxbellum;game;wine;proton;launcher;

@@ -1,0 +1,670 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-05-24 16:39-0300\n"
+"PO-Revision-Date: 2025-05-26 18:28-0300\n"
+"Last-Translator: bonnietogamer\n"
+"Language-Team: \n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.6\n"
+
+#: /usr/bin/bellum-launcher:132
+msgid "xdg-user-dir not found or failed; falling back to ~/Desktop"
+msgstr "xdg-user-dir hittades inte eller misslyckades; Återgår till ~/Desktop"
+
+#: /usr/bin/bellum-launcher:210 /usr/bin/bellum-launcher:734
+msgid "Play"
+msgstr "Spela"
+
+#: /usr/bin/bellum-launcher:214
+msgid "Edit"
+msgstr "Redigera"
+
+#: /usr/bin/bellum-launcher:218
+msgid "Delete"
+msgstr "Radera"
+
+#: /usr/bin/bellum-launcher:222
+msgid "Duplicate"
+msgstr "Duplicera"
+
+#: /usr/bin/bellum-launcher:226
+msgid "Open prefix location"
+msgstr "Öppna prefixplats"
+
+#: /usr/bin/bellum-launcher:230
+msgid "Show logs"
+msgstr "Visa loggar"
+
+#: /usr/bin/bellum-launcher:396 /usr/bin/bellum-launcher:516
+msgid "Force close all running games"
+msgstr "Tvinga avsluta alla körande spel"
+
+#: /usr/bin/bellum-launcher:431 /usr/bin/bellum-launcher:569
+msgid "Search..."
+msgstr "Sök..."
+
+#: /usr/bin/bellum-launcher:665
+msgid "Shut down"
+msgstr "Stäng av"
+
+#: /usr/bin/bellum-launcher:666
+msgid "Reboot"
+msgstr "Starta om"
+
+#: /usr/bin/bellum-launcher:667
+msgid "Log out"
+msgstr "Logga ut"
+
+#: /usr/bin/bellum-launcher:668
+msgid "Close"
+msgstr "Stäng"
+
+#: /usr/bin/bellum-launcher:732
+msgid "Stop"
+msgstr "Avsluta"
+
+#: /usr/bin/bellum-launcher:769
+msgid "{} Logs"
+msgstr "{} Loggar"
+
+#: /usr/bin/bellum-launcher:811
+msgid "Copy to clipboard"
+msgstr "Kopiera till urklipp"
+
+#: /usr/bin/bellum-launcher:815
+msgid "Open file location"
+msgstr "Öppna filens plats"
+
+#: /usr/bin/bellum-launcher:882 /usr/bin/bellum-launcher:2038
+#, python-brace-format
+msgid "{title} already exists."
+msgstr "{title} finns redan."
+
+#: /usr/bin/bellum-launcher:920 /usr/bin/bellum-launcher:1220
+#: /usr/bin/bellum-launcher:2137
+#, python-brace-format
+msgid "Error reading the JSON file: {error}"
+msgstr "Problem att läsa JSON filen: {error}"
+
+#: /usr/bin/bellum-launcher:1044
+#, python-brace-format
+msgid "{title} is already running."
+msgstr "{title} körs redan."
+
+#: /usr/bin/bellum-launcher:1047 /usr/bin/bellum-launcher:1989
+#: /usr/bin/bellum-launcher:3085 /usr/bin/bellum-launcher:4115
+#: /usr/bin/bellum-launcher:4364 /usr/bin/bellum-launcher:4409
+#: /usr/bin/bellum-launcher:4785 /usr/bin/bellum-launcher:5126
+#: /usr/bin/bellum-launcher:5765 /usr/bin/bellum-launcher:6304
+#: /usr/bin/bellum-launcher:6909
+msgid "Ok"
+msgstr "Ok"
+
+#: /usr/bin/bellum-launcher:1128
+msgid "Open bellum Launcher"
+msgstr "Öppna bellum Launcher"
+
+#: /usr/bin/bellum-launcher:1133
+msgid "Quit"
+msgstr "Sluta"
+
+#: /usr/bin/bellum-launcher:1786
+#, python-brace-format
+msgid "Edit {title}"
+msgstr "Redigera {title}"
+
+#: /usr/bin/bellum-launcher:1832 /usr/bin/bellum-launcher:4993
+msgid ""
+"Add or remove a shortcut from Steam. Steam needs to be restarted. NO STEAM "
+"USERS FOUND."
+msgstr ""
+"Lägg till eller ta bort en genväg i Steam. Steam behöver startas om. INGA "
+"STEAM-ANVÄNDARE HITTAS."
+
+#: /usr/bin/bellum-launcher:1842 /usr/bin/bellum-launcher:1844
+#: /usr/bin/bellum-launcher:1846
+#, python-brace-format
+msgid "{title} is running. Please close it first."
+msgstr "{title} körs. Vänligen stäng det först."
+
+#: /usr/bin/bellum-launcher:2062 /usr/bin/bellum-launcher:2448
+#, python-brace-format
+msgid "Error resizing banner: {error}"
+msgstr "Fel vid ändring av banner: {error}"
+
+#: /usr/bin/bellum-launcher:2103
+msgid "No internet connection."
+msgstr "Ingen internet anslutning."
+
+#: /usr/bin/bellum-launcher:2197 /usr/bin/bellum-launcher:2333
+#, python-brace-format
+msgid "Installing {title}..."
+msgstr "Installerar {title}..."
+
+#: /usr/bin/bellum-launcher:2208
+msgid "Finish installation"
+msgstr "Avsluta installation"
+
+#: /usr/bin/bellum-launcher:2215
+msgid "Downloading Battle.net..."
+msgstr "Laddar ner Battle.net..."
+
+#: /usr/bin/bellum-launcher:2221
+msgid "Downloading EA App..."
+msgstr "Laddar ner EA App..."
+
+#: /usr/bin/bellum-launcher:2227
+msgid "Downloading Epic Games..."
+msgstr "Laddar ner Epic Games..."
+
+#: /usr/bin/bellum-launcher:2233
+msgid "Downloading Ubisoft Connect..."
+msgstr "Laddar ner Ubisoft Connect..."
+
+#: /usr/bin/bellum-launcher:2269
+#, python-brace-format
+msgid "{title} installed."
+msgstr "{title} installerad."
+
+#: /usr/bin/bellum-launcher:2327
+msgid "Download complete"
+msgstr "Nerladdning klar"
+
+#: /usr/bin/bellum-launcher:2330
+#, python-brace-format
+msgid "Error during download: {error}"
+msgstr "Fel under nerladdning: {error}"
+
+#: /usr/bin/bellum-launcher:2335
+msgid "Please close the login window and press:"
+msgstr "Vänligen stäng inloggnings fönstret och tryck:"
+
+#: /usr/bin/bellum-launcher:2339 /usr/bin/bellum-launcher:2392
+msgid "Please close the login window and wait..."
+msgstr "Vänligen stäng inloggnings fönstret och vänta..."
+
+#: /usr/bin/bellum-launcher:2379
+#, python-brace-format
+msgid "Extracting... {percent}%"
+msgstr "Extraherar... {percent}%"
+
+#: /usr/bin/bellum-launcher:2381
+msgid "Extraction complete"
+msgstr "Extraktion klar"
+
+#: /usr/bin/bellum-launcher:2385
+#, python-brace-format
+msgid "Error during extraction: {error}"
+msgstr "Fel under extraktion: {error}"
+
+#: /usr/bin/bellum-launcher:2892
+msgid "Settings"
+msgstr "Inställningar"
+
+#: /usr/bin/bellum-launcher:2941
+msgid "Language"
+msgstr "Språk"
+
+#: /usr/bin/bellum-launcher:2946
+msgid "Interface Mode"
+msgstr "Gränssnitt läge"
+
+#: /usr/bin/bellum-launcher:2955
+msgid "Start maximized"
+msgstr "Starta maximerad"
+
+#: /usr/bin/bellum-launcher:2960
+msgid "Start in fullscreen"
+msgstr "Starta i helskärm"
+
+#: /usr/bin/bellum-launcher:2963
+msgid "Alt+Enter toggles fullscreen"
+msgstr "Alt+Enter växlar helskärm"
+
+#: /usr/bin/bellum-launcher:2966
+msgid "Gamepad navigation (experimental)"
+msgstr "Gamepad navigation (experimentellt)"
+
+#: /usr/bin/bellum-launcher:2970
+msgid "Default Prefixes Location"
+msgstr "Standardplats För Prefix"
+
+#: /usr/bin/bellum-launcher:2974 /usr/bin/bellum-launcher:4681
+msgid "/path/to/the/prefix"
+msgstr "/väg/till/prefix"
+
+#: /usr/bin/bellum-launcher:2984
+msgid "Default Prefix Tools"
+msgstr "Standard Prefix Verktyg"
+
+#: /usr/bin/bellum-launcher:2991
+msgid "Default Runner"
+msgstr "Standard Runner"
+
+#: /usr/bin/bellum-launcher:2995
+msgid "GE-Proton Manager"
+msgstr "GE-Proton Hanterare"
+
+#: /usr/bin/bellum-launcher:2998
+msgid "Miscellaneous"
+msgstr "Blandat"
+
+#: /usr/bin/bellum-launcher:3005
+msgid "Use discrete GPU"
+msgstr "Använd diskret GPU"
+
+#: /usr/bin/bellum-launcher:3009
+msgid "Close when running a game/app"
+msgstr "Stäng när ett spel eller en applikation körs"
+
+#: /usr/bin/bellum-launcher:3013
+msgid "System tray icon"
+msgstr "Ikon i systemfältet"
+
+#: /usr/bin/bellum-launcher:3018
+msgid "Start on boot"
+msgstr "Starta vid uppstart"
+
+#: /usr/bin/bellum-launcher:3023
+msgid "Disable splash window"
+msgstr "Avaktivera splash-fönstret"
+
+#: /usr/bin/bellum-launcher:3027
+msgid "Enable logging"
+msgstr "Aktivera loggning"
+
+#: /usr/bin/bellum-launcher:3030
+msgid "Use Wayland driver (experimental)"
+msgstr "Använd Wayland-drivrutin (experimentellt)"
+
+#: /usr/bin/bellum-launcher:3032 /usr/bin/bellum-launcher:3037
+msgid "Only works with GE-Proton10-1 or superior."
+msgstr "Fungerar endast med GE-Proton10-1 eller högre."
+
+#: /usr/bin/bellum-launcher:3035
+msgid "Enable HDR (experimental)"
+msgstr "Aktivera HDR (experimentellt)"
+
+#: /usr/bin/bellum-launcher:3050 /usr/bin/bellum-launcher:4760
+msgid "Run"
+msgstr "Kör"
+
+#: /usr/bin/bellum-launcher:3053 /usr/bin/bellum-launcher:4763
+msgid "Run a file inside the prefix"
+msgstr "Kör en fil inom prefixet"
+
+#: /usr/bin/bellum-launcher:3058 /usr/bin/bellum-launcher:4742
+#: /usr/bin/bellum-launcher:6291
+msgid ""
+"Shows an overlay for monitoring FPS, temperatures, CPU/GPU load and more."
+msgstr ""
+"Visar en overlay för övervakning av FPS, tempratur, CPU/GPU-belastning med "
+"mera."
+
+#: /usr/bin/bellum-launcher:3060 /usr/bin/bellum-launcher:4744
+#: /usr/bin/bellum-launcher:6293
+msgid "Tweaks your system to improve performance."
+msgstr "Modifierar ditt system för att öka prestanda."
+
+#: /usr/bin/bellum-launcher:3061 /usr/bin/bellum-launcher:4745
+#: /usr/bin/bellum-launcher:6294
+msgid "Disable Hidraw"
+msgstr "Avaktivera Hidraw"
+
+#: /usr/bin/bellum-launcher:3063 /usr/bin/bellum-launcher:4747
+#: /usr/bin/bellum-launcher:6296
+msgid ""
+"May fix controller issues with some games. Only works with GE-Proton10-3 or "
+"superior."
+msgstr ""
+"Kan fixa kontroller problem med vissa spel. Fungerar endast med GE-"
+"Proton10-3 eller högre."
+
+#: /usr/bin/bellum-launcher:3065
+msgid "Support the Project"
+msgstr "Stöd projektet"
+
+#: /usr/bin/bellum-launcher:3080 /usr/bin/bellum-launcher:3707
+#: /usr/bin/bellum-launcher:3993 /usr/bin/bellum-launcher:4043
+#: /usr/bin/bellum-launcher:4225 /usr/bin/bellum-launcher:4360
+#: /usr/bin/bellum-launcher:4780 /usr/bin/bellum-launcher:5081
+#: /usr/bin/bellum-launcher:5253 /usr/bin/bellum-launcher:5543
+#: /usr/bin/bellum-launcher:5719 /usr/bin/bellum-launcher:6053
+#: /usr/bin/bellum-launcher:6149 /usr/bin/bellum-launcher:6299
+#: /usr/bin/bellum-launcher:6536 /usr/bin/bellum-launcher:6863
+msgid "Cancel"
+msgstr "Avbryt"
+
+#: /usr/bin/bellum-launcher:3089
+msgid "Backup/Restore Settings"
+msgstr "Säkerhetskopiera/Återställ inställningar"
+
+#: /usr/bin/bellum-launcher:3096
+msgid "Backup"
+msgstr "Säkerhetskopiera"
+
+#: /usr/bin/bellum-launcher:3100
+msgid "Restore"
+msgstr "Återställ"
+
+#: /usr/bin/bellum-launcher:3207
+msgid "Gamescope Settings"
+msgstr "Gamescope Inställningar"
+
+#: /usr/bin/bellum-launcher:3210
+msgid "* Restart to apply Gamescope Settings."
+msgstr "* Starta om för att tillämpa Gamescope-inställningarna."
+
+#: /usr/bin/bellum-launcher:3214
+msgid "Screen Resolution"
+msgstr "Skärm Upplösning"
+
+#: /usr/bin/bellum-launcher:3228
+msgid "Game Resolution"
+msgstr "Spel Upplösning"
+
+#: /usr/bin/bellum-launcher:3242
+msgid "Refresh Rate"
+msgstr "Uppdateringsfrekvens"
+
+#: /usr/bin/bellum-launcher:3247
+msgid "Prefer Output"
+msgstr "Föredra Utgång"
+
+#: /usr/bin/bellum-launcher:3252
+msgid "Adaptive Sync"
+msgstr "Adaptiv Synkronisering"
+
+#: /usr/bin/bellum-launcher:3419 /usr/bin/bellum-launcher:4981
+#: /usr/bin/bellum-launcher:6441
+msgid ""
+"Shows an overlay for monitoring FPS, temperatures, CPU/GPU load and more. "
+"NOT INSTALLED."
+msgstr ""
+"Visar en overlay för övervakning av FPS, tempratur, CPU/GPU-belastning med "
+"mera. INTE INSTALLERAD."
+
+#: /usr/bin/bellum-launcher:3425 /usr/bin/bellum-launcher:4987
+#: /usr/bin/bellum-launcher:6447
+msgid "Tweaks your system to improve performance. NOT INSTALLED."
+msgstr "Modifierar ditt system för att öka prestanda. INTE INSTALLERAD."
+
+#: /usr/bin/bellum-launcher:3604 /usr/bin/bellum-launcher:5461
+#, python-brace-format
+msgid "Error accessing the directory: {error}"
+msgstr "Fel vid åtkomst till katalogen: {error}"
+
+#: /usr/bin/bellum-launcher:3666 /usr/bin/bellum-launcher:5502
+msgid "Select a file to run inside the prefix"
+msgstr "Välj en fil att köra i prefixet"
+
+#: /usr/bin/bellum-launcher:3676 /usr/bin/bellum-launcher:3688
+#: /usr/bin/bellum-launcher:5222 /usr/bin/bellum-launcher:5234
+#: /usr/bin/bellum-launcher:5512 /usr/bin/bellum-launcher:5524
+#: /usr/bin/bellum-launcher:6022 /usr/bin/bellum-launcher:6034
+#: /usr/bin/bellum-launcher:6505 /usr/bin/bellum-launcher:6517
+msgid "Windows files"
+msgstr "Windows filer"
+
+#: /usr/bin/bellum-launcher:3684 /usr/bin/bellum-launcher:3689
+#: /usr/bin/bellum-launcher:5230 /usr/bin/bellum-launcher:5235
+#: /usr/bin/bellum-launcher:5520 /usr/bin/bellum-launcher:5525
+#: /usr/bin/bellum-launcher:6030 /usr/bin/bellum-launcher:6035
+#: /usr/bin/bellum-launcher:6513 /usr/bin/bellum-launcher:6518
+msgid "All files"
+msgstr "Alla filer"
+
+#: /usr/bin/bellum-launcher:3703 /usr/bin/bellum-launcher:4039
+#: /usr/bin/bellum-launcher:4220 /usr/bin/bellum-launcher:5077
+#: /usr/bin/bellum-launcher:5249 /usr/bin/bellum-launcher:5539
+#: /usr/bin/bellum-launcher:5715 /usr/bin/bellum-launcher:6049
+#: /usr/bin/bellum-launcher:6144 /usr/bin/bellum-launcher:6532
+#: /usr/bin/bellum-launcher:6859
+msgid "Open"
+msgstr "Öppna"
+
+#: /usr/bin/bellum-launcher:3955
+msgid "Prefixes and runners will not be backed up!"
+msgstr "Prefixer och Runners kommer inte att bli säkerhetskopieras!"
+
+#: /usr/bin/bellum-launcher:3980
+msgid "Save the backup file as..."
+msgstr "Spara säkerhetskopian som..."
+
+#: /usr/bin/bellum-launcher:3989
+msgid "Save"
+msgstr "Spara"
+
+#: /usr/bin/bellum-launcher:4024
+msgid "Select a backup file to restore"
+msgstr "Välj en säkerhetskopia att återställa från"
+
+#: /usr/bin/bellum-launcher:4076
+msgid "This is not a valid bellum Launcher backup file."
+msgstr "Detta är inte en giltig säkerhetskopia för bellum Launcher."
+
+#: /usr/bin/bellum-launcher:4079
+msgid "Are you sure you want to overwrite the settings?"
+msgstr "Är du säker på att du vill skriva över dessa inställningar?"
+
+#: /usr/bin/bellum-launcher:4159 /usr/bin/bellum-launcher:4455
+msgid "No"
+msgstr "Nej"
+
+#: /usr/bin/bellum-launcher:4163 /usr/bin/bellum-launcher:4459
+msgid "Yes"
+msgstr "Ja"
+
+#: /usr/bin/bellum-launcher:4205 /usr/bin/bellum-launcher:6129
+msgid "Select a prefix location"
+msgstr "Välj en prefix plats"
+
+#: /usr/bin/bellum-launcher:4349
+#, python-brace-format
+msgid "Duplicate {title}"
+msgstr "Duplicera {title}"
+
+#: /usr/bin/bellum-launcher:4355 /usr/bin/bellum-launcher:4651
+#: /usr/bin/bellum-launcher:6249
+msgid "Title"
+msgstr "Titel"
+
+#: /usr/bin/bellum-launcher:4358 /usr/bin/bellum-launcher:4657
+#: /usr/bin/bellum-launcher:6253
+msgid "Game Title"
+msgstr "Spel Titel"
+
+#: /usr/bin/bellum-launcher:4444
+#, python-brace-format
+msgid "Delete {title}"
+msgstr "Radera {title}"
+
+#: /usr/bin/bellum-launcher:4452
+#, python-brace-format
+msgid "Are you sure you want to delete {title}?"
+msgstr "Är du säker att du vill radera {title}?"
+
+#: /usr/bin/bellum-launcher:4463
+msgid "Also remove the prefix"
+msgstr "Ta också bort prefix"
+
+#: /usr/bin/bellum-launcher:4504
+msgid "New Game/App"
+msgstr "Nytt Spell/Applikation"
+
+#: /usr/bin/bellum-launcher:4662
+msgid "Path"
+msgstr "Filväg"
+
+#: /usr/bin/bellum-launcher:4668
+msgid "/path/to/the/exe"
+msgstr "/väg/till/exen"
+
+#: /usr/bin/bellum-launcher:4677
+msgid "Prefix"
+msgstr "Prefix"
+
+#: /usr/bin/bellum-launcher:4690
+msgid "Runner"
+msgstr "Runner"
+
+#: /usr/bin/bellum-launcher:4708 /usr/bin/bellum-launcher:6265
+msgid "Launch Arguments"
+msgstr "Start Argument"
+
+#: /usr/bin/bellum-launcher:4711 /usr/bin/bellum-launcher:6268
+msgid "e.g.: PROTON_USE_WINED3D=1 gamescope -W 2560 -H 1440"
+msgstr "exempel: PROTON_USE_WINED3D=1 gamescope -W 2560 -H 1440"
+
+#: /usr/bin/bellum-launcher:4716 /usr/bin/bellum-launcher:6270
+msgid "Game Arguments"
+msgstr "Spel Argument"
+
+#: /usr/bin/bellum-launcher:4719 /usr/bin/bellum-launcher:6273
+msgid "e.g.: -d3d11 -fullscreen"
+msgstr "exempel.: -d3d11 -fullscreen"
+
+#: /usr/bin/bellum-launcher:4724 /usr/bin/bellum-launcher:6275
+msgid "Additional Application"
+msgstr "Ytterligare applikation"
+
+#: /usr/bin/bellum-launcher:4726
+msgid ""
+"Additional application to run with the game, like Cheat Engine, Trainers, "
+"Mods..."
+msgstr ""
+"Ytterligare applikation att köra tillsammans med spel. Som t.ex Cheat "
+"Engine, Trainers, Mods..."
+
+#: /usr/bin/bellum-launcher:4729 /usr/bin/bellum-launcher:6278
+msgid "/path/to/the/app"
+msgstr "/väg/till/applikationen"
+
+#: /usr/bin/bellum-launcher:4766
+msgid "Shortcut"
+msgstr "Genväg"
+
+#: /usr/bin/bellum-launcher:4768
+msgid "Add or remove a shortcut from the Desktop and the Application Launcher."
+msgstr ""
+"Lägg till eller ta bort en genväg från skrivbordet och applikationsstartaren."
+
+#: /usr/bin/bellum-launcher:4769
+msgid "Steam Shortcut"
+msgstr "Steam Genväg"
+
+#: /usr/bin/bellum-launcher:4771
+msgid "Add or remove a shortcut from Steam. Steam needs to be restarted."
+msgstr "Lägg till eller ta bort en genväg i Steam. Steam behöver startas om."
+
+#: /usr/bin/bellum-launcher:4777 /usr/bin/bellum-launcher:5696
+#: /usr/bin/bellum-launcher:6286 /usr/bin/bellum-launcher:6840
+msgid "Select an icon for the shortcut"
+msgstr "Välj en ikon för genvägen"
+
+#: /usr/bin/bellum-launcher:4830
+msgid "Refresh"
+msgstr "Uppdatera"
+
+#: /usr/bin/bellum-launcher:4834
+msgid "Load from file"
+msgstr "Ladda från fil"
+
+#: /usr/bin/bellum-launcher:4842
+msgid "Game/App"
+msgstr "Spel/Applikation"
+
+#: /usr/bin/bellum-launcher:4858
+msgid "Tools"
+msgstr "Verktyg"
+
+#: /usr/bin/bellum-launcher:5047 /usr/bin/bellum-launcher:5685
+#: /usr/bin/bellum-launcher:6829
+msgid "Invalid Image"
+msgstr "Ogiltig Bild"
+
+#: /usr/bin/bellum-launcher:5058
+msgid "Select an image for the banner"
+msgstr "Välj en bild för bannern"
+
+#: /usr/bin/bellum-launcher:5068 /usr/bin/bellum-launcher:5073
+#: /usr/bin/bellum-launcher:5706 /usr/bin/bellum-launcher:5711
+#: /usr/bin/bellum-launcher:6850 /usr/bin/bellum-launcher:6855
+msgid "Image files"
+msgstr "Bild filer"
+
+#: /usr/bin/bellum-launcher:5119 /usr/bin/bellum-launcher:5758
+#: /usr/bin/bellum-launcher:6902
+msgid "The selected file is not a valid image."
+msgstr "Den valda filen är inte giltig bild."
+
+#: /usr/bin/bellum-launcher:5123 /usr/bin/bellum-launcher:5762
+#: /usr/bin/bellum-launcher:6906
+msgid "Please choose another one."
+msgstr "Vänligen välj en annan."
+
+#: /usr/bin/bellum-launcher:5187
+#, python-brace-format
+msgid "Error fetching the banner: {error}"
+msgstr "Fel vid hämtning av bannern: {error}"
+
+#: /usr/bin/bellum-launcher:5212 /usr/bin/bellum-launcher:6495
+msgid "Select an additional application"
+msgstr "Välj en ytterligare applikation"
+
+#: /usr/bin/bellum-launcher:5420
+msgid "Windows Game"
+msgstr "Windows Spel"
+
+#: /usr/bin/bellum-launcher:5421
+msgid "Linux Game"
+msgstr "Linux Spel"
+
+#: /usr/bin/bellum-launcher:5669 /usr/bin/bellum-launcher:6097
+#: /usr/bin/bellum-launcher:6465 /usr/bin/bellum-launcher:6813
+msgid "The file does not contain icons."
+msgstr "Filen innehåller inga ikoner."
+
+#: /usr/bin/bellum-launcher:5672 /usr/bin/bellum-launcher:6100
+#: /usr/bin/bellum-launcher:6468 /usr/bin/bellum-launcher:6816
+#, python-brace-format
+msgid "Error extracting icon: {error}"
+msgstr "Fel vid extraktion av ikon: {error}"
+
+#: /usr/bin/bellum-launcher:5680 /usr/bin/bellum-launcher:6119
+#: /usr/bin/bellum-launcher:6487 /usr/bin/bellum-launcher:6824
+#, python-brace-format
+msgid "An error occurred: {error}"
+msgstr "Ett fel uppstod: {error}"
+
+#: /usr/bin/bellum-launcher:5833 /usr/bin/bellum-launcher:6584
+#, python-brace-format
+msgid "Unable to open {file}"
+msgstr "Kan inte öppna filen {file}"
+
+#: /usr/bin/bellum-launcher:6011
+msgid "Select the game's .exe"
+msgstr "Välj spelets .exe fil"
+
+#: /usr/bin/bellum-launcher:7143
+msgid "Session mode activated"
+msgstr "Sessionläge aktiverat"
+
+#: /usr/bin/bellum-launcher:7154
+msgid "Invalid arguments"
+msgstr "Ogiltiga argument"
+
+#: /usr/bin/bellum-launcher:7167
+msgid "bellum Launcher is already running."
+msgstr "bellum Launcher körs redan."

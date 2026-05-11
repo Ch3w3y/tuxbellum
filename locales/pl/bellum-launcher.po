@@ -1,0 +1,900 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-25 11:42-0300\n"
+"PO-Revision-Date: 2026-03-27 01:44+0100\n"
+"Last-Translator: Łukasz Zając <contact@rbtv.pl>\n"
+"Language-Team: \n"
+"Language: pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.6\n"
+
+#: /usr/bin/bellum-launcher:233 /usr/bin/bellum-launcher:309
+msgid "Play"
+msgstr "Graj"
+
+#: /usr/bin/bellum-launcher:237
+msgid "Edit"
+msgstr "Edytuj"
+
+#: /usr/bin/bellum-launcher:241
+msgid "Delete"
+msgstr "Usuń"
+
+#: /usr/bin/bellum-launcher:245
+msgid "Duplicate"
+msgstr "Zduplikuj"
+
+#: /usr/bin/bellum-launcher:249 /usr/bin/bellum-launcher:793
+msgid "Hide"
+msgstr "Ukryj"
+
+#: /usr/bin/bellum-launcher:253 /usr/bin/bellum-launcher:798
+msgid "Add to favorites"
+msgstr "Dodaj do ulubionych"
+
+#: /usr/bin/bellum-launcher:257
+msgid "Open game location"
+msgstr "Otwórz folder gry"
+
+#: /usr/bin/bellum-launcher:261
+msgid "Open prefix location"
+msgstr "Otwórz prefiks"
+
+#: /usr/bin/bellum-launcher:265
+msgid "Run file inside the prefix"
+msgstr "Uruchom aplikację wewnątrz prefiksu"
+
+#: /usr/bin/bellum-launcher:269
+msgid "Show logs"
+msgstr "Pokaż logi"
+
+#: /usr/bin/bellum-launcher:309
+msgid "Stop"
+msgstr "Zatrzymaj"
+
+#: /usr/bin/bellum-launcher:398
+msgid "Open bellum Launcher"
+msgstr "Otwórz bellum Launcher"
+
+#: /usr/bin/bellum-launcher:402
+msgid "Quit"
+msgstr "Wyjście"
+
+#: /usr/bin/bellum-launcher:481 /usr/bin/bellum-launcher:591
+msgid "Force close all running games"
+msgstr "Wymusza zamknięcie wszystkich uruchomionych gier"
+
+#: /usr/bin/bellum-launcher:509 /usr/bin/bellum-launcher:630
+msgid "Search..."
+msgstr "Szukaj..."
+
+#: /usr/bin/bellum-launcher:718
+msgid "Shut down"
+msgstr "Wyłącz"
+
+#: /usr/bin/bellum-launcher:719
+msgid "Reboot"
+msgstr "Uruchom ponownie"
+
+#: /usr/bin/bellum-launcher:720
+msgid "Close"
+msgstr "Zamknij"
+
+#: /usr/bin/bellum-launcher:791
+msgid "Remove from hidden"
+msgstr "Przywróć"
+
+#: /usr/bin/bellum-launcher:796
+msgid "Remove from favorites"
+msgstr "Usuń z ulubionych"
+
+#: /usr/bin/bellum-launcher:849
+msgid "hour"
+msgstr "godz."
+
+#: /usr/bin/bellum-launcher:850
+msgid "hours"
+msgstr "godz."
+
+#: /usr/bin/bellum-launcher:851
+msgid "minute"
+msgstr "min."
+
+#: /usr/bin/bellum-launcher:852
+msgid "minutes"
+msgstr "min."
+
+#: /usr/bin/bellum-launcher:960 /usr/bin/bellum-launcher:3965
+#: /usr/bin/bellum-launcher:6030
+msgid "Select a file to run inside the prefix"
+msgstr "Wskaż plik, który ma być uruchomiony w prefiksie"
+
+#: /usr/bin/bellum-launcher:963 /usr/bin/bellum-launcher:3968
+#: /usr/bin/bellum-launcher:4094 /usr/bin/bellum-launcher:4213
+#: /usr/bin/bellum-launcher:4236 /usr/bin/bellum-launcher:5456
+#: /usr/bin/bellum-launcher:5650 /usr/bin/bellum-launcher:6033
+#: /usr/bin/bellum-launcher:6163 /usr/bin/bellum-launcher:6398
+#: /usr/bin/bellum-launcher:6471
+msgid "Open"
+msgstr "Otwórz"
+
+#: /usr/bin/bellum-launcher:964 /usr/bin/bellum-launcher:3284
+#: /usr/bin/bellum-launcher:3969 /usr/bin/bellum-launcher:4062
+#: /usr/bin/bellum-launcher:4095 /usr/bin/bellum-launcher:4214
+#: /usr/bin/bellum-launcher:4237 /usr/bin/bellum-launcher:4425
+#: /usr/bin/bellum-launcher:4859 /usr/bin/bellum-launcher:5229
+#: /usr/bin/bellum-launcher:5365 /usr/bin/bellum-launcher:5457
+#: /usr/bin/bellum-launcher:5501 /usr/bin/bellum-launcher:5651
+#: /usr/bin/bellum-launcher:6034 /usr/bin/bellum-launcher:6164
+#: /usr/bin/bellum-launcher:6399 /usr/bin/bellum-launcher:6472
+msgid "Cancel"
+msgstr "Anuluj"
+
+#: /usr/bin/bellum-launcher:968 /usr/bin/bellum-launcher:3973
+#: /usr/bin/bellum-launcher:5655 /usr/bin/bellum-launcher:6038
+#: /usr/bin/bellum-launcher:6406
+msgid "Windows files"
+msgstr "Pliki Windowsowe"
+
+#: /usr/bin/bellum-launcher:976 /usr/bin/bellum-launcher:3981
+#: /usr/bin/bellum-launcher:5663 /usr/bin/bellum-launcher:6046
+#: /usr/bin/bellum-launcher:6414
+msgid "All files"
+msgstr "Wszystkie pliki"
+
+#: /usr/bin/bellum-launcher:1022
+#, python-format
+msgid "%s Logs"
+msgstr "Logi %s"
+
+#: /usr/bin/bellum-launcher:1061
+msgid "Copy to clipboard"
+msgstr "Skopiuj do schowka"
+
+#: /usr/bin/bellum-launcher:1065
+msgid "Open file location"
+msgstr "Otwórz katalog"
+
+#: /usr/bin/bellum-launcher:1151 /usr/bin/bellum-launcher:2136
+#, python-format
+msgid "%s already exists."
+msgstr "%s już istnieje."
+
+#: /usr/bin/bellum-launcher:1356
+#, python-format
+msgid "%s is already running."
+msgstr "Aktualnie jest uruchomiony %s."
+
+#: /usr/bin/bellum-launcher:1359 /usr/bin/bellum-launcher:2079
+#: /usr/bin/bellum-launcher:3289 /usr/bin/bellum-launcher:4156
+#: /usr/bin/bellum-launcher:4429 /usr/bin/bellum-launcher:4864
+#: /usr/bin/bellum-launcher:5234 /usr/bin/bellum-launcher:5370
+#: /usr/bin/bellum-launcher:5497 /usr/bin/bellum-launcher:5569
+#: /usr/bin/bellum-launcher:6197
+msgid "Ok"
+msgstr "Ok"
+
+#: /usr/bin/bellum-launcher:1621
+msgid "Proton may generate huge log files."
+msgstr "Proton może wygenerować duże pliki dziennika"
+
+#: /usr/bin/bellum-launcher:1621
+msgid "Enable logging only when debugging a problem."
+msgstr "Włącz debugowanie tylko do weryfikacji problemu."
+
+#: /usr/bin/bellum-launcher:1857
+#, python-format
+msgid "Edit %s"
+msgstr "Edycja %s"
+
+#: /usr/bin/bellum-launcher:1914 /usr/bin/bellum-launcher:5093
+msgid ""
+"Add or remove a shortcut from Steam. Steam needs to be restarted. NO STEAM "
+"USERS FOUND."
+msgstr ""
+"Dodaje lub usuwa skrót na Steam. Steam musi zostać ponownie uruchomiony. NIE "
+"ZNALEZIONO UŻYTKOWNIKÓW STEAM."
+
+#: /usr/bin/bellum-launcher:1925
+#, python-format
+msgid "%s is running. Please close it first."
+msgstr "Uruchomiony jest %s. Proszę najpierw go zamknąć."
+
+#: /usr/bin/bellum-launcher:1997
+msgid "Failed to remove prefix."
+msgstr "Nie udało się usunąć prefiksu."
+
+#: /usr/bin/bellum-launcher:2257
+msgid "No internet connection."
+msgstr "Brak połączenia z siecią."
+
+#: /usr/bin/bellum-launcher:2381 /usr/bin/bellum-launcher:2537
+#, python-format
+msgid "Installing %s..."
+msgstr "Instalacja %s..."
+
+#: /usr/bin/bellum-launcher:2392
+msgid "Finish installation"
+msgstr "Zakończ instalację"
+
+#: /usr/bin/bellum-launcher:2399 /usr/bin/bellum-launcher:2404
+#: /usr/bin/bellum-launcher:2409 /usr/bin/bellum-launcher:2414
+#: /usr/bin/bellum-launcher:2419 /usr/bin/bellum-launcher:2424
+msgid "Downloading"
+msgstr "Pobieranie..."
+
+#: /usr/bin/bellum-launcher:2486
+#, python-format
+msgid "%s was not installed!"
+msgstr "%s nie został zainstalowany!"
+
+#: /usr/bin/bellum-launcher:2531
+msgid "Download complete"
+msgstr "Pobieranie zakończone"
+
+#: /usr/bin/bellum-launcher:2534
+#, python-format
+msgid "Error during download: %s"
+msgstr "Błąd podczas pobierania: %s"
+
+#: /usr/bin/bellum-launcher:2539 /usr/bin/bellum-launcher:2542
+#: /usr/bin/bellum-launcher:2552
+msgid "Please close the login window and wait."
+msgstr "Zamknij okno logowania i czekaj..."
+
+#: /usr/bin/bellum-launcher:2551
+msgid "Please don't change the installation path."
+msgstr "Proszę nie zmieniać folderu instalacji."
+
+#: /usr/bin/bellum-launcher:2555
+msgid "Please close Wargaming to finish the installation."
+msgstr "Zamknij okno Wargaming by zakończyć instalację."
+
+#: /usr/bin/bellum-launcher:2989
+msgid "Settings"
+msgstr "Ustawienia"
+
+#: /usr/bin/bellum-launcher:3113
+msgid "Language"
+msgstr "Język"
+
+#: /usr/bin/bellum-launcher:3118
+msgid "Interface Mode"
+msgstr "Tryb interfejsu"
+
+#: /usr/bin/bellum-launcher:3122
+msgid "List"
+msgstr "Lista"
+
+#: /usr/bin/bellum-launcher:3123
+msgid "Blocks"
+msgstr "Klocki"
+
+#: /usr/bin/bellum-launcher:3124
+msgid "Banners"
+msgstr "Banery"
+
+#: /usr/bin/bellum-launcher:3127
+msgid "Start maximized"
+msgstr "Rozpocznij zmaksymalizowany"
+
+#: /usr/bin/bellum-launcher:3132
+msgid "Start in fullscreen"
+msgstr "Rozpocznij na pełnym ekranie"
+
+#: /usr/bin/bellum-launcher:3135
+msgid "Alt+Enter toggles fullscreen"
+msgstr "Alt+Enter przełącza pełny ekran"
+
+#: /usr/bin/bellum-launcher:3137
+msgid "Show labels"
+msgstr "Pokaż nazwy"
+
+#: /usr/bin/bellum-launcher:3140
+msgid "Smaller banners"
+msgstr "Mniejsze banery"
+
+#: /usr/bin/bellum-launcher:3144
+msgid "Default Prefixes Location"
+msgstr "Domyślna lokalizacja prefiksu"
+
+#: /usr/bin/bellum-launcher:3148 /usr/bin/bellum-launcher:4758
+msgid "/path/to/the/prefix"
+msgstr "/ścieżka/do/prefiksu"
+
+#: /usr/bin/bellum-launcher:3158
+msgid "Lossless Scaling Location"
+msgstr "Lokalizacja \"Lossless Scaling\""
+
+#: /usr/bin/bellum-launcher:3162
+msgid "/path/to/Lossless.dll"
+msgstr "/ścieżka/do/lossless.dll"
+
+#: /usr/bin/bellum-launcher:3171
+msgid "Default Prefix Tools"
+msgstr "Domyślne narzędzia dla prefiksu"
+
+#: /usr/bin/bellum-launcher:3178
+msgid "Default Proton"
+msgstr "Domyślny Proton"
+
+#: /usr/bin/bellum-launcher:3182
+msgid "Proton Manager"
+msgstr "Menadżer Protona"
+
+#: /usr/bin/bellum-launcher:3185
+msgid "Miscellaneous"
+msgstr "Dodatkowe"
+
+#: /usr/bin/bellum-launcher:3192
+msgid "Use discrete GPU"
+msgstr "Użyj dedykowanej karty GPU"
+
+#: /usr/bin/bellum-launcher:3196
+msgid "Close when running a game/app"
+msgstr "Zamknij podczas uruchamiania gry/aplikacji"
+
+#: /usr/bin/bellum-launcher:3200
+msgid "System tray icon"
+msgstr "Ikona w zasobniku"
+
+#: /usr/bin/bellum-launcher:3205
+msgid "Start on boot"
+msgstr "Uruchom z systemem"
+
+#: /usr/bin/bellum-launcher:3209
+msgid "Monochrome icon"
+msgstr "Czarno-biała ikona"
+
+#: /usr/bin/bellum-launcher:3214
+msgid "Disable splash window"
+msgstr "Wyłącz ekran startowy"
+
+#: /usr/bin/bellum-launcher:3217
+msgid "Disable automatic updates"
+msgstr "Wyłącz automatyczne aktualizacje"
+
+#: /usr/bin/bellum-launcher:3221
+msgid "Enable logging"
+msgstr "Włącz debugowanie"
+
+#: /usr/bin/bellum-launcher:3224
+msgid "Show hidden games"
+msgstr "Pokaż ukryte gry"
+
+#: /usr/bin/bellum-launcher:3226
+msgid "Press Ctrl+H to show/hide games."
+msgstr "Wciśnij CTRL+H by zobaczyć/schować ukryte gry."
+
+#: /usr/bin/bellum-launcher:3228
+msgid "Use Wayland driver (experimental)"
+msgstr "Użyj sterownika Wayland (Eksperymentalnie)"
+
+#: /usr/bin/bellum-launcher:3230 /usr/bin/bellum-launcher:3236
+msgid "Only works with GE-Proton10 or Proton-EM-10."
+msgstr "Działa tylko z GE-Proton10, Proton-EM-10 lub nowszym."
+
+#: /usr/bin/bellum-launcher:3233
+msgid "Enable HDR (experimental)"
+msgstr "Włącz HDR (Eksperymentalnie)"
+
+#: /usr/bin/bellum-launcher:3238
+msgid "Enable WOW64 (experimental)"
+msgstr "Włącz WOW64 (Eksperymentalnie)"
+
+#: /usr/bin/bellum-launcher:3240
+msgid ""
+"Only works with GE-Proton10-9 or superior and Proton-EM-10-24 or superior."
+msgstr "Działa tylko z GE-Proton10-9, Proton-EM-10-24 lub nowszym."
+
+#: /usr/bin/bellum-launcher:3253 /usr/bin/bellum-launcher:4831
+msgid "Run"
+msgstr "Uruchom"
+
+#: /usr/bin/bellum-launcher:3256 /usr/bin/bellum-launcher:4834
+msgid "Run a file inside the prefix"
+msgstr "Uruchom aplikację wewnątrz prefiksu"
+
+#: /usr/bin/bellum-launcher:3261 /usr/bin/bellum-launcher:4812
+msgid ""
+"Shows an overlay for monitoring FPS, temperatures, CPU/GPU load and more."
+msgstr ""
+"Pokazuje nakładkę do monitorowania FPS, temperatur, obciążenia CPU/GPU i "
+"więcej."
+
+#: /usr/bin/bellum-launcher:3263 /usr/bin/bellum-launcher:4814
+msgid "Tweaks your system to improve performance."
+msgstr "Poprawia działanie systemu w celu zwiększenia wydajności."
+
+#: /usr/bin/bellum-launcher:3264 /usr/bin/bellum-launcher:4815
+msgid "Disable Hidraw"
+msgstr "Wyłącz Hidraw"
+
+#: /usr/bin/bellum-launcher:3266 /usr/bin/bellum-launcher:4817
+msgid ""
+"May fix controller issues with some games. Only works with GE-Proton10 or "
+"Proton-EM-10."
+msgstr ""
+"Może naprawić problemy z kontrolerem w niektórych grach. Działa tylko z GE-"
+"Proton10, Proton-EM-10 lub nowszym."
+
+#: /usr/bin/bellum-launcher:3267 /usr/bin/bellum-launcher:4818
+msgid "Prevent Sleep"
+msgstr "Blokuj uśpienie"
+
+#: /usr/bin/bellum-launcher:3269
+msgid "Support the Project"
+msgstr "Wspieraj projekt"
+
+#: /usr/bin/bellum-launcher:3293
+msgid "Backup/Restore Settings"
+msgstr "Zapisz/Przywróć ustawienia"
+
+#: /usr/bin/bellum-launcher:3300
+msgid "Backup"
+msgstr "Eksport"
+
+#: /usr/bin/bellum-launcher:3304
+msgid "Restore"
+msgstr "Import"
+
+#: /usr/bin/bellum-launcher:3311
+msgid "Global Environment Variables"
+msgstr "Domyślne zmienne linuxowe"
+
+#: /usr/bin/bellum-launcher:3585 /usr/bin/bellum-launcher:5081
+msgid ""
+"Shows an overlay for monitoring FPS, temperatures, CPU/GPU load and more. "
+"NOT INSTALLED."
+msgstr ""
+"Pokazuje nakładkę do monitorowania FPS, temperatur, obciążenia CPU/GPU i "
+"więcej. NIEZAINSTALOWANO."
+
+#: /usr/bin/bellum-launcher:3591 /usr/bin/bellum-launcher:5087
+msgid "Tweaks your system to improve performance. NOT INSTALLED."
+msgstr ""
+"Poprawia działanie systemu w celu zwiększenia wydajności.. NIEZAINSTALOWANO."
+
+#: /usr/bin/bellum-launcher:3629
+#, python-format
+msgid "Clear Logs (%s)"
+msgstr "Wyczyść logi (%s)"
+
+#: /usr/bin/bellum-launcher:3632
+msgid "Clear Logs"
+msgstr "Wyczyść logi"
+
+#: /usr/bin/bellum-launcher:3882
+msgid "Do you want to save the changes?"
+msgstr "Czy jesteś pewny zapisać zmiany?"
+
+#: /usr/bin/bellum-launcher:4030
+msgid "Prefixes and runners will not be backed up!"
+msgstr "Prefiksy oraz uruchamiacze nie zostaną wyeksportowane!"
+
+#: /usr/bin/bellum-launcher:4058
+msgid "Save the backup file as..."
+msgstr "Zapisz kopię zapasową jako..."
+
+#: /usr/bin/bellum-launcher:4061
+msgid "Save"
+msgstr "Zapisz"
+
+#: /usr/bin/bellum-launcher:4091
+msgid "Select a backup file to restore"
+msgstr "Wskaż kopie zapasową"
+
+#: /usr/bin/bellum-launcher:4099
+msgid "ZIP files"
+msgstr "Pliki ZIP"
+
+#: /usr/bin/bellum-launcher:4110 /usr/bin/bellum-launcher:4120
+msgid "This is not a valid bellum Launcher backup file."
+msgstr "To nie jest prawidłowa kopia zapasowa bellum Launchera."
+
+#: /usr/bin/bellum-launcher:4123
+msgid "Are you sure you want to overwrite the settings?"
+msgstr "Czy jesteś pewny zastąpić obecne ustawienia?"
+
+#: /usr/bin/bellum-launcher:4160 /usr/bin/bellum-launcher:4487
+msgid "No"
+msgstr "Nie"
+
+#: /usr/bin/bellum-launcher:4164 /usr/bin/bellum-launcher:4491
+msgid "Yes"
+msgstr "Tak"
+
+#: /usr/bin/bellum-launcher:4210 /usr/bin/bellum-launcher:6468
+msgid "Select a prefix location"
+msgstr "Wybierz lokalizację prefiksu"
+
+#: /usr/bin/bellum-launcher:4233
+msgid "Select the Lossless.dll file"
+msgstr "Wskaż plik lossless.dll"
+
+#: /usr/bin/bellum-launcher:4417
+#, python-format
+msgid "Duplicate %s"
+msgstr "Zduplikuj %s"
+
+#: /usr/bin/bellum-launcher:4420 /usr/bin/bellum-launcher:4710
+#: /usr/bin/bellum-launcher:4728
+msgid "Title"
+msgstr "Tytuł"
+
+#: /usr/bin/bellum-launcher:4423 /usr/bin/bellum-launcher:4734
+msgid "Game Title"
+msgstr "Tytuł gry"
+
+#: /usr/bin/bellum-launcher:4464
+#, python-format
+msgid "Delete %s"
+msgstr "Usuń %s"
+
+#: /usr/bin/bellum-launcher:4469
+#, python-format
+msgid "Are you sure you want to delete %s?"
+msgstr "Czy jesteś pewny usunięcia %s?"
+
+#: /usr/bin/bellum-launcher:4479
+#, python-format
+msgid "WARNING: This prefix is used by %d other games."
+msgstr "UWAGA: Ten prefiks jest używany przez %d gry/gier."
+
+#: /usr/bin/bellum-launcher:4481
+msgid "WARNING: This prefix is used by 1 other game."
+msgstr "UWAGA: Ten prefiks jest używany przez 1 inną grę."
+
+#: /usr/bin/bellum-launcher:4495
+msgid "Also remove the prefix:"
+msgstr "Usuń również prefiks:"
+
+#: /usr/bin/bellum-launcher:4539
+msgid "New Game/App"
+msgstr "Nowa gra/aplikacja"
+
+#: /usr/bin/bellum-launcher:4739 /usr/bin/bellum-launcher:5171
+msgid "Path"
+msgstr "Ścieżka"
+
+#: /usr/bin/bellum-launcher:4745
+msgid "/path/to/the/exe"
+msgstr "/ścieżka/do/pliku/exe"
+
+#: /usr/bin/bellum-launcher:4754
+msgid "Prefix"
+msgstr "Prefiks"
+
+#: /usr/bin/bellum-launcher:4767
+msgid "Proton"
+msgstr "Proton"
+
+#: /usr/bin/bellum-launcher:4785
+msgid "Launch Arguments"
+msgstr "Parametry startowe"
+
+#: /usr/bin/bellum-launcher:4788
+msgid "e.g.: PROTON_USE_WINED3D=1 gamescope -W 2560 -H 1440"
+msgstr "np. PROTON_USE_WINED3D=1 gamescope -W 2560 -H 1440"
+
+#: /usr/bin/bellum-launcher:4793
+msgid "Game Arguments"
+msgstr "Parametry gry"
+
+#: /usr/bin/bellum-launcher:4796
+msgid "e.g.: -d3d11 -fullscreen"
+msgstr "np. -d3d11 -fullscreen"
+
+#: /usr/bin/bellum-launcher:4800 /usr/bin/bellum-launcher:5145
+msgid "Additional Application"
+msgstr "Dodatkowa aplikacja"
+
+#: /usr/bin/bellum-launcher:4803
+msgid ""
+"Additional application to run with the game, like Cheat Engine, Trainers, "
+"Mods..."
+msgstr ""
+"Dodatkowa aplikacja, którą chcesz uruchomić razem z grą, np. Cheat Engine, "
+"Trainer, Mod..."
+
+#: /usr/bin/bellum-launcher:4806 /usr/bin/bellum-launcher:5263
+msgid "Lossless Scaling Frame Generation"
+msgstr "Generacja klatek \"Lossless Scaling\""
+
+#: /usr/bin/bellum-launcher:4837
+msgid "Shortcut"
+msgstr "Skrót"
+
+#: /usr/bin/bellum-launcher:4842
+msgid "Desktop"
+msgstr "Pulpit"
+
+#: /usr/bin/bellum-launcher:4844
+msgid "Add or remove a shortcut from the Desktop."
+msgstr "Dodaj/usuń skrót na pulpicie."
+
+#: /usr/bin/bellum-launcher:4845
+msgid "App Menu"
+msgstr "Menu aplikacji"
+
+#: /usr/bin/bellum-launcher:4847
+msgid "Add or remove a shortcut from the Application Menu."
+msgstr "Dodaj/usuń skrót z menu aplikacji."
+
+#: /usr/bin/bellum-launcher:4848
+msgid "Steam"
+msgstr "Steam"
+
+#: /usr/bin/bellum-launcher:4850
+msgid "Add or remove a shortcut from Steam. Steam needs to be restarted."
+msgstr ""
+"Dodaje lub usuwa skrót do gry na Steam. Steam musi zostać ponownie "
+"uruchomiony."
+
+#: /usr/bin/bellum-launcher:4856 /usr/bin/bellum-launcher:6160
+msgid "Select an icon for the shortcut"
+msgstr "Wskaż ikonę, która zostanie dodana do skrótu"
+
+#: /usr/bin/bellum-launcher:4907
+msgid "Refresh"
+msgstr "Odśwież"
+
+#: /usr/bin/bellum-launcher:4911
+msgid "Load from file"
+msgstr "Załaduj z pliku"
+
+#: /usr/bin/bellum-launcher:4915
+msgid "Load from URL"
+msgstr "Załaduj z linku"
+
+#: /usr/bin/bellum-launcher:4923
+msgid "Game/App"
+msgstr "Gra/Aplikacja"
+
+#: /usr/bin/bellum-launcher:4939
+msgid "Tools"
+msgstr "Narzędzia"
+
+#: /usr/bin/bellum-launcher:5101
+msgid ""
+"Lossless.dll NOT FOUND. If it's installed, go to bellum Launcher's settings "
+"and set the location."
+msgstr ""
+"Brak pliku lossless.dll. Jeżeli jest na twoim komputerze, przejdź do "
+"ustawień belluma i wskaż lokalizację."
+
+#: /usr/bin/bellum-launcher:5104
+msgid "Lossless Scaling Vulkan Layer NOT INSTALLED."
+msgstr "Warstwa Vulkan do Lossless Scaling NIE JEST zainstalowana."
+
+#: /usr/bin/bellum-launcher:5167 /usr/bin/bellum-launcher:5287
+msgid "Enable"
+msgstr "Włącz"
+
+#: /usr/bin/bellum-launcher:5176
+msgid "/path/to/the/app"
+msgstr "/ścieżka/do/aplikacji"
+
+#: /usr/bin/bellum-launcher:5186
+msgid "Delay (seconds)"
+msgstr "Opóźnienie (sek)"
+
+#: /usr/bin/bellum-launcher:5203
+msgid "Run the application first"
+msgstr "Najpierw uruchom aplikację"
+
+#: /usr/bin/bellum-launcher:5291
+msgid "Multiplier"
+msgstr "Mnożnik"
+
+#: /usr/bin/bellum-launcher:5296
+msgid "Multiply the FPS."
+msgstr "Mnoży FPSy"
+
+#: /usr/bin/bellum-launcher:5298
+msgid "Flow Scale"
+msgstr "Skala gęstości wektorów"
+
+#: /usr/bin/bellum-launcher:5305
+msgid "Lower the internal motion estimation resolution."
+msgstr "Obniża rozdzielczość szacowania ruchu."
+
+#: /usr/bin/bellum-launcher:5307
+msgid "Performance Mode"
+msgstr "Tryb wydajności"
+
+#: /usr/bin/bellum-launcher:5308
+msgid "Massively improve performance at the cost of quality."
+msgstr "Masowo zwiększa wydajność, kosztem jakości."
+
+#: /usr/bin/bellum-launcher:5311
+msgid "HDR Mode"
+msgstr "Tryb HDR"
+
+#: /usr/bin/bellum-launcher:5312
+msgid "Enable special HDR-only behavior."
+msgstr "Włącz specjalne zachowanie przeznaczone wyłącznie dla HDR."
+
+#: /usr/bin/bellum-launcher:5315
+msgid "Present Mode (Experimental)"
+msgstr "Tryb wyświetlania (Eksperymentalne)"
+
+#: /usr/bin/bellum-launcher:5319
+msgid "Override the present mode."
+msgstr "Nadpisz tryb wyświetlania"
+
+#: /usr/bin/bellum-launcher:5453
+msgid "Select an image for the banner"
+msgstr "Wskaż obraz, który zostanie banerem"
+
+#: /usr/bin/bellum-launcher:5461 /usr/bin/bellum-launcher:6168
+msgid "Image files"
+msgstr "Pliki obrazów"
+
+#: /usr/bin/bellum-launcher:5488
+msgid "Enter the image URL"
+msgstr "Wpisz adres URL obrazka"
+
+#: /usr/bin/bellum-launcher:5563 /usr/bin/bellum-launcher:6190
+msgid "The selected file is not a valid image."
+msgstr "Wskazany plik nie jest poprawnym formatem obrazu."
+
+#: /usr/bin/bellum-launcher:5566 /usr/bin/bellum-launcher:6194
+msgid "Please choose another one."
+msgstr "Wskaż proszę inny."
+
+#: /usr/bin/bellum-launcher:5647
+msgid "Select an additional application"
+msgstr "Wybierz dodatkową aplikację"
+
+#: /usr/bin/bellum-launcher:5940
+msgid "Windows Game"
+msgstr "Gra Windowsowa"
+
+#: /usr/bin/bellum-launcher:5941
+msgid "Linux Game"
+msgstr "Gra Linuxowa"
+
+#: /usr/bin/bellum-launcher:5942
+msgid "Steam Game"
+msgstr "Gra ze Steam"
+
+#: /usr/bin/bellum-launcher:6395
+msgid "Select the game's .exe"
+msgstr "Wybierz .exe gry"
+
+#~ msgid "Downloading Battle.net..."
+#~ msgstr "Pobieranie Battle.net..."
+
+#~ msgid "Downloading Epic Games..."
+#~ msgstr "Pobieranie Epic Games..."
+
+#~ msgid "Downloading Ubisoft Connect..."
+#~ msgstr "Pobieranie Ubisoft Connect..."
+
+#~ msgid "Downloading Rockstar Launcher..."
+#~ msgstr "Pobieranie Launchera Rockstar..."
+
+#, python-format
+#~ msgid "Extracting... %d%%"
+#~ msgstr "Wypakowuję... %d%%"
+
+#~ msgid "Extraction complete"
+#~ msgstr "Wypakowanie zakończone"
+
+#, python-format
+#~ msgid "Error during extraction: %s"
+#~ msgstr "Błąd podczas wypakowania: %s"
+
+#~ msgid "Default Runner"
+#~ msgstr "Domyślny uruchamiacz"
+
+#~ msgid "Enable NTsync (experimental)"
+#~ msgstr "Włącz NTsync (Eksperymentalnie)"
+
+#~ msgid "Steam Shortcut"
+#~ msgstr "Skrót na Steam"
+
+#~ msgid "Invalid Image"
+#~ msgstr "Nieprawidłowy obraz"
+
+#~ msgid "xdg-user-dir not found or failed; falling back to ~/Desktop"
+#~ msgstr ""
+#~ "Nie znaleziono w twoim systemie xdg-user-dir lub wystąpił błąd; powrót do "
+#~ "~/Desktop"
+
+#~ msgid "Log out"
+#~ msgstr "Wyloguj"
+
+#, python-brace-format
+#~ msgid "Error reading the JSON file: {error}"
+#~ msgstr "Błąd odczytu pliku JSON: {error}"
+
+#, python-brace-format
+#~ msgid "Edit {title}"
+#~ msgstr "Edycja {title}"
+
+#, python-brace-format
+#~ msgid "Error resizing banner: {error}"
+#~ msgstr "Błąd podczas skalowania banera: {error}"
+
+#, python-brace-format
+#~ msgid "{title} installed."
+#~ msgstr "Zainstalowano {title}."
+
+#~ msgid "Please close the login window and press:"
+#~ msgstr "Zamknij okno logowania i naciśnij:"
+
+#~ msgid "Gamepad navigation (experimental)"
+#~ msgstr "Steruj interfejs padem (eksperymentalnie)"
+
+#~ msgid "Gamescope Settings"
+#~ msgstr "Ustawienia gamescope"
+
+#~ msgid "* Restart to apply Gamescope Settings."
+#~ msgstr "* Uruchom ponownie, by zastosować ustawienia Gamescope."
+
+#~ msgid "Screen Resolution"
+#~ msgstr "Rozdzielczość ekranu"
+
+#~ msgid "Game Resolution"
+#~ msgstr "Rozdzielczość gry"
+
+#~ msgid "Refresh Rate"
+#~ msgstr "Częstotliwość odświeżania"
+
+#~ msgid "Prefer Output"
+#~ msgstr "Preferowane wyjście"
+
+#~ msgid "Adaptive Sync"
+#~ msgstr "Synchronizacja adaptacyjna"
+
+#, python-brace-format
+#~ msgid "Error accessing the directory: {error}"
+#~ msgstr "Błąd dostępu do katalogu: {error}"
+
+#, python-brace-format
+#~ msgid "Duplicate {title}"
+#~ msgstr "Duplikuj {title}"
+
+#, python-brace-format
+#~ msgid "Delete {title}"
+#~ msgstr "Usuń {title}"
+
+#, python-brace-format
+#~ msgid "Error fetching the banner: {error}"
+#~ msgstr "Błąd podczas pobierania banera: {error}"
+
+#~ msgid "The file does not contain icons."
+#~ msgstr "Ten plik nie posiada ikon."
+
+#, python-brace-format
+#~ msgid "Error extracting icon: {error}"
+#~ msgstr "Błąd eksportu ikony: {error}"
+
+#, python-brace-format
+#~ msgid "An error occurred: {error}"
+#~ msgstr "Wystąpił błąd: {error}"
+
+#, python-brace-format
+#~ msgid "Unable to open {file}"
+#~ msgstr "Nie udało się otworzyć {file}"
+
+#~ msgid "Session mode activated"
+#~ msgstr "Tryb sesji uruchomiony"
+
+#~ msgid "Invalid arguments"
+#~ msgstr "Niepoprawne parametry"
+
+#~ msgid "bellum Launcher is already running."
+#~ msgstr "bellum Launcher jest już uruchomiony."

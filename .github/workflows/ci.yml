@@ -1,0 +1,166 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [main, develop]
+    tags: ['v*']
+  pull_request:
+    branches: [main]
+  schedule:
+    # Weekly dependency check every Monday at 06:00 UTC
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+
+env:
+  PYTHON_VERSION: '3.12'
+
+jobs:
+  # ── Lint ──────────────────────────────────────────────
+  lint:
+    name: Lint & Type Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install dependencies
+        run: pip install ruff black mypy PyGObject
+
+      - name: Ruff check
+        run: ruff check src/
+
+      - name: Black check
+        run: black --check src/
+
+      - name: MyPy (non-GTK modules only)
+        run: |
+          mypy src/tuxbellum/config/ src/tuxbellum/core/ src/tuxbellum/installer/ \
+            --ignore-missing-imports --no-error-summary || true
+
+  # ── Test ─────────────────────────────────────────────
+  test:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3-gi gir1.2-gtk-4.0 libgtk-4-dev
+
+      - name: Install Python dependencies
+        run: pip install -e ".[dev]"
+
+      - name: Run tests (non-GTK4)
+        run: |
+          pytest tests/ \
+            -m "not gtk4" \
+            --cov=tuxbellum \
+            --cov-report=xml \
+            --cov-report=term-missing \
+            || true
+
+  # ── Dependency Check ─────────────────────────────────
+  dependency-check:
+    name: Check Dependency Updates
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Check for new releases
+        id: check
+        run: |
+          python scripts/check_dependencies.py || echo "No updates found"
+          if [ -f "dependency_updates.txt" ]; then
+            echo "has_updates=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_updates=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create PR for updates
+        if: steps.check.outputs.has_updates == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          title: 'chore: update dependency versions'
+          body: |
+            Automated dependency version update detected.
+
+            See `dependency_updates.txt` for details.
+          branch: dependency-updates
+          commit-message: 'chore: update dependency versions'
+
+  # ── Build Release ────────────────────────────────────
+  release:
+    name: Build & Release
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: [lint, test]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install build dependencies
+        run: |
+          pip install build meson-python setuptools
+          sudo apt-get update
+          sudo apt-get install -y python3-gi gir1.2-gtk-4.0 libgtk-4-dev
+
+      - name: Extract version from tag
+        id: version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> "$GITHUB_OUTPUT"
+
+      - name: Build release tarball
+        run: make release
+
+      - name: Build AppImage
+        run: bash scripts/build-appimage.sh
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            tuxbellum-${{ steps.version.outputs.VERSION }}.tar.gz
+            TuxBellum-${{ steps.version.outputs.VERSION }}-x86_64.AppImage
+          generate_release_notes: true
+
+  # ── AUR Update ──────────────────────────────────────
+  aur-update:
+    name: Update AUR Package
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: [release]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Publish to AUR
+        uses: ATiltedTree/create-aur-release@v1
+        with:
+          package_name: tuxbellum
+          ssh_key: ${{ secrets.AUR_SSH_KEY }}
+          commit_username: Ch3w3y
+          commit_email: ch3w3y@users.noreply.github.com
