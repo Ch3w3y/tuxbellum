@@ -109,11 +109,6 @@ def validate_wineprefix(
         logger.info("[OK] WINEPREFIX device is an SSD/NVME (optimal performance)")
     else:
         logger.warn("WINEPREFIX device is NOT an SSD/NVME (may have performance issues)")
-        if not ask_bool(
-            "Astarte Developers strongly recommend using NVMe or SSD for the game. "
-            "Are you sure you want to proceed? (Y/n): "
-        ):
-            raise RuntimeError("installation cancelled by user")
 
     return wineprefix, source, use_existing
 
@@ -200,21 +195,26 @@ def check_wine_binaries(logger: Logger) -> None:
 
 
 def check_wine_version(logger: Logger, force: bool = False) -> None:
-    """Compare installed Wine version against the required version."""
+    """Ensure installed Wine version is >= 11.0."""
     installed = _get_wine_version(logger)
-    required = DEFAULT_VERSIONS.wine_ver.removeprefix("wine-")
     if not installed:
         raise RuntimeError("Wine binary not found in PATH")
-    if installed != required:
+        
+    installed_parts = []
+    for p in installed.split("."):
+        if p.isdigit():
+            installed_parts.append(int(p))
+            
+    if not installed_parts or installed_parts[0] < 11:
         if not force:
             logger.error(
-                f"Wine version mismatch. Installed: wine-{installed}, Required: {required}"
+                f"Wine version too old. Installed: wine-{installed}, Required: >= 11.0"
             )
-            raise RuntimeError(f"wine version mismatch: installed {installed}, required {required}")
-        logger.warn(f"Wine version mismatch. Installed: wine-{installed}, Required: {required}")
-        logger.warn("Proceeding with wine-1.0 due to --force-wine-version flag (not recommended)")
+            raise RuntimeError(f"wine version too old: installed {installed}, required >= 11.0")
+        logger.warn(f"Wine version too old. Installed: wine-{installed}, Required: >= 11.0")
+        logger.warn("Proceeding due to --force-wine-version flag (not recommended)")
     else:
-        logger.info(f"[OK] Wine {required} stable found")
+        logger.info(f"[OK] Wine {installed} (>= 11.0) found")
 
 
 def check_umu_run(logger: Logger) -> None:

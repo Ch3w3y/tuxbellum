@@ -36,22 +36,26 @@ def init_wineprefix(proton_path: str, wineprefix: str, logger: Logger) -> None:
     os.environ["GAMEID"] = "1"
 
     logger.info("Initializing WINEPREFIX with Proton base")
-    run_command(
+    if run_command(
         RunMode.STREAM,
         ["umu-run", DEFAULT_VERSIONS.binaries.msidb],
-    )
-    run_command(
+    ) != 0:
+        raise RuntimeError("Failed to run msidb with umu-run")
+        
+    if run_command(
         RunMode.STREAM,
         [DEFAULT_VERSIONS.binaries.wineboot, "--init"],
-    )
+    ) != 0:
+        raise RuntimeError("Failed to initialize wineprefix with wineboot")
 
 
 def install_winedlls(logger: Logger) -> None:
     """Install every required DLL via winetricks."""
     logger.info("Installing required winedlls")
     for dll in _WINEDLLS:
-        run_command(
+        if run_command(
             RunMode.STREAM,
             ["winetricks", "-q", dll],
-        )
+        ) != 0:
+            raise RuntimeError(f"Failed to install dll via winetricks: {dll}")
         logger.info(f"[OK] {dll}")

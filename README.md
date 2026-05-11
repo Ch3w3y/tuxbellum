@@ -1,121 +1,144 @@
-# TuxBellum
+<p align="center">
+  <img src="docs/images/bellum_logo.png" alt="Bellum" width="400">
+</p>
 
-> Bellum on Linux. No Windows required.
+<p align="center">
+  <b>Bellum on Linux. No Windows required.</b>
+</p>
 
-A GTK4 application that handles everything: GPU detection, Proton setup, Wine prefix configuration, launcher installation, desktop integration — all from one window.
+<p align="center">
+  <img src="docs/images/keyart_hero.png" alt="Bellum Key Art" width="100%">
+</p>
 
 ---
 
 ## About
 
-For those of us who appreciate the freedom Linux provides but still want to play our MilSim sessions. Thanks to the efforts of Joe Paji [joepaji/bellum-linux-installer](https://github.com/joepaji/bellum-linux-installer) Bellum is now a reality on Linux. I wanted to package his work up and deploy it in as many ways as possible to provide Linux gamers with the easiest possible way to install and run Bellum on their distro of choice.
+A GTK4 application to install, configure, and manage [Bellum](https://store.steampowered.com/app/Bellum) via Wine and Proton on Linux.
+
+Built upon the foundational work by Joe Paji ([joepaji/bellum-linux-installer](https://github.com/joepaji/bellum-linux-installer)), TuxBellum provides a native graphical interface to simplify the entire process. It handles GPU detection, Proton patching, WINEPREFIX configuration, and desktop integration.
 
 ---
 
-## What TuxBellum Does
+## Features
 
-- Detects your GPU (NVIDIA, AMD, Intel) and configures everything accordingly
-- Downloads and patches Proton-CachyOS with settings optimized for Bellum
-- Creates and initializes a WINEPREFIX with all required DLLs
-- Downloads the AstarteLauncher and runs it through Proton
-- Configures Gamescope, Gamemode, HDR, NVAPI, and FSR 4.1 upgrade path
-- Installs desktop shortcuts, app menu entries, and the `Bellum` terminal command
+- Hardware detection for NVIDIA, AMD, and Intel GPUs
+- Automated download and patching of Proton-CachyOS
+- WINEPREFIX initialization with all required DLLs (vcrun, d3dcompiler, faudio, dotnet, mfc)
+- Hands-free Astarte Launcher installation via Proton
+- Configurable support for Gamescope, Gamemode, HDR, NVAPI, and FSR 4.1
+- Automatic creation of desktop shortcuts, application menu entries, and a unified `Bellum` launcher script
+- Settings dialog to toggle launch options without reinstalling
+
+<p align="center">
+  <img src="docs/images/keyart_defense.png" alt="Bellum Gameplay" width="100%">
+</p>
 
 ---
 
-## Getting TuxBellum
+## System Requirements
 
-### AppImage (recommended)
+TuxBellum requires specific system-level packages that cannot be installed via `pip`.
 
-Download the latest AppImage from [Releases](https://github.com/Ch3w3y/tuxbellum/releases/latest):
+### UI Dependencies (GTK4 + PyGObject)
+
+| Distro | Command |
+|---|---|
+| Arch / Manjaro / CachyOS | `sudo pacman -S python-gobject gtk4` |
+| Debian / Ubuntu | `sudo apt install python3-gi gir1.2-gtk-4.0 libgtk-4-1` |
+| Fedora | `sudo dnf install python3-gobject gtk4` |
+
+### Runtime Dependencies
+
+| Package | Purpose | Minimum Version |
+|---|---|---|
+| `wine` | Windows compatibility layer | >= 11.0 |
+| `winetricks` | DLL/component installer | any |
+| `umu-launcher` | Proton container launcher | >= 1.3.0 |
+| `mesa-utils` | GPU detection via `glxinfo` | any |
+| `wget` | Proton/launcher downloads | any |
+| `tar` | Archive extraction | any |
+
+### Optional Enhancements
+
+| Package | Purpose |
+|---|---|
+| `gamescope` | Compositor for HDR, resolution scaling |
+| `gamemode` | CPU/GPU performance governor |
+| `mangohud` | In-game performance overlay |
+
+---
+
+## Installation
+
+### Install Script (Recommended)
+
+Detects your distribution, installs system dependencies via `apt`/`pacman`/`dnf`, and installs the Python package for your user.
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/Ch3w3y/tuxbellum/main/install.sh | bash
+```
+
+### AppImage
+
+Download the latest AppImage from [Releases](https://github.com/Ch3w3y/tuxbellum/releases):
 
 ```bash
 chmod +x TuxBellum-*.AppImage
 ./TuxBellum-*.AppImage
 ```
 
-### Install Script (curl)
+### Manual Installation (Pip)
 
-```bash
-curl -fsSL https://raw.githubusercontent.com/Ch3w3y/tuxbellum/main/install.sh | bash
-```
-
-### AUR (Arch Linux)
-
-```bash
-yay -S tuxbellum
-```
-
-### Flatpak (coming soon)
-
-```
-flatpak install flathub io.github.ch3w3y.tuxbellum
-```
-
-### From Source
+Ensure you have installed the system UI and runtime dependencies listed above first.
 
 ```bash
 git clone https://github.com/Ch3w3y/tuxbellum.git
 cd tuxbellum
-pip install -e .
-tuxbellum
+pip install -e . --break-system-packages
 ```
-
----
-
-## Requirements
-
-You'll need these installed on your system:
-
-- **Wine** (11.8 or newer)
-- **Winetricks**
-- **umu-launcher** (1.3.0 or newer)
-- **mesa-utils** (provides glxinfo for GPU detection)
-
-Optionally: Gamescope, Gamemode, MangoHud.
-
-TuxBellum handles everything else — Proton, DLLs, launcher — automatically.
 
 ---
 
 ## Usage
 
-Launch the GUI:
+Launch the application from your desktop environment's application menu (under the Games category) or from a terminal:
 
 ```bash
 tuxbellum
 ```
 
-Or use the CLI:
+After a successful installation, launch the game via the generated desktop shortcut, application menu entry, or the unified wrapper script:
 
 ```bash
-python -m tuxbellum --install --wineprefix /path/to/prefix --fsr41
+Bellum
 ```
 
+### Changing Launch Options
+
+Open **Settings** from the main menu to toggle Gamescope, Gamemode, HDR, NVAPI, and FSR 4.1. Changes are applied immediately to the next launch without requiring a reinstall.
+
+<p align="center">
+  <img src="docs/images/keyart_sunset.png" alt="Bellum Sunset" width="100%">
+</p>
+
 ---
 
-## After Installation
+## Known Issues
 
-Launch Bellum from:
-- The desktop shortcut
-- Your application menu (Games category)
-- Any terminal: `Bellum`
-
----
-
-## NVIDIA 5000 Series
-
-Driver 595 is broken for UE5 on Wine/Proton — shaders will fail to load. Downgrade to driver 590.
+| Issue | Details |
+|---|---|
+| **NVIDIA 5000 Series** | Driver 595 breaks UE5 shader compilation under Proton. Downgrade to driver 590 until an upstream fix is released. |
+| **Gamescope cursor** | On some Wayland compositors the cursor may be invisible. TuxBellum passes `--force-grab-cursor` by default to mitigate this. |
+| **Gamescope unfocused throttle** | Gamescope throttles to 0 FPS when not focused. TuxBellum passes `--fps-limit-when-unfocused=0` to prevent this. |
 
 ---
 
 ## Credits
 
-This project builds directly on the work of **Joe Paji** ([joepaji/bellum-linux-installer](https://github.com/joepaji/bellum-linux-installer)), who created the original Linux installer for Bellum. Joe's project proved it could be done and handled all the hard reverse-engineering of what Bellum needs to run under Wine/Proton. His DXVK patches, winetricks modifications, and FSR integration are bundled here.
+This project refactors and consolidates the original work by **Joe Paji** ([joepaji/bellum-linux-installer](https://github.com/joepaji/bellum-linux-installer)). Joe performed the foundational reverse-engineering required to run Bellum under Wine/Proton, including DXVK patches, winetricks modifications, and FSR integration.
 
-TuxBellum is a refactoring and evolution of that work — consolidating the GTK3+Go architecture into a single GTK4 Python application — but the foundations are his and that of the Faugus launcher project.
-
-If you appreciate having Bellum on Linux, consider supporting Joe:
+If you appreciate having Bellum on Linux, consider supporting Joe's ongoing efforts:
 
 - [Ko-fi](https://ko-fi.com/K3K210EMDU)
 - [PayPal](https://www.paypal.com/donate/?business=57PP9DVD3VWAN&no_recurring=0&currency_code=USD)

@@ -41,8 +41,10 @@ def _build_script(
         "set -u\n\n"
         f'LAUNCH_VARS="{wineprefix}/launch_vars.env"\n'
         f'GAME_DIR="{wineprefix}"\n'
+        f'export WINEPREFIX="{wineprefix}"\n'
         f'LAUNCHER_EXE="{launcher_exe}"\n'
-        f'PROTON_BIN="{proton_bin}"\n\n'
+        f'PROTON_BIN="{proton_bin}"\n'
+        'export PROTONPATH="$(dirname "$PROTON_BIN")"\n\n'
         "load_launch_vars() {\n"
         '    if [ -f "$LAUNCH_VARS" ]; then\n'
         "        set -a\n"
@@ -58,84 +60,29 @@ def _build_script(
         '        echo "ERROR: Launcher executable not found: $LAUNCHER_EXE" >&2\n'
         "        exit 1\n"
         "    fi\n\n"
+        '    if [ ! -x "$PROTON_BIN" ]; then\n'
+        '        echo "ERROR: $PROTON_BIN not found or not executable" >&2\n'
+        "        exit 1\n"
+        "    fi\n"
+        "}\n\n"
+        "run_launcher() {\n"
+        '    cd "$GAME_DIR" || exit 1\n'
+        '    LOG_FILE="$GAME_DIR/launcher.log"\n\n'
+        '    wineboot "--end-session"\n'
+        "    sleep 1\n\n"
+        '    export GAMEID="bellum"\n'
+        '    umu-run "$LAUNCHER_EXE" "$@" > "$LOG_FILE" 2>> "$LOG_FILE"\n\n'
+        '    return "$?"\n'
+        "}\n\n"
+        "main() {\n"
+        "    load_launch_vars\n"
+        "    validate_paths\n"
+        '    run_launcher "$@"\n'
+        "    exit $?\n"
+        "}\n\n"
+        'main "$@"\n'
     )
-
-    if gpu_type == "AMD":
-        return (
-            common_header
-            + "    if ! command -v wine &>/dev/null; then\n"
-            + '        echo "ERROR: wine not found or not executable" >&2\n'
-            + "        exit 1\n"
-            + "    fi\n"
-            + "}\n\n"
-            + "run_launcher() {\n"
-            + '    cd "$GAME_DIR" || exit 1\n'
-            + '    LOG_FILE="$GAME_DIR/launcher.log"\n\n'
-            + '    wineboot "--restart"\n'
-            + "    sleep 1\n\n"
-            + '    wine "$LAUNCHER_EXE" "$@" > "$LOG_FILE" 2>> "$LOG_FILE"\n\n'
-            + '    wineboot "--end-session"\n'
-            + '    return "$?"\n'
-            + "}\n\n"
-            + "main() {\n"
-            + "    load_launch_vars\n"
-            + "    validate_paths\n"
-            + '    run_launcher "$@"\n'
-            + "    exit $?\n"
-            + "}\n\n"
-            + 'main "$@"\n'
-        )
-
-    if gpu_type == "NVIDIA":
-        return (
-            common_header
-            + f'    if [ ! -x "{proton_bin}" ]; then\n'
-            + f'        echo "ERROR: {proton_bin} not found or not executable" >&2\n'
-            + "        exit 1\n"
-            + "    fi\n"
-            + "}\n\n"
-            + "run_launcher() {\n"
-            + '    cd "$GAME_DIR" || exit 1\n'
-            + '    LOG_FILE="$GAME_DIR/launcher.log"\n\n'
-            + '    wineserver "-k"\n'
-            + "    sleep 1\n\n"
-            + f'    {proton_bin} run "$LAUNCHER_EXE" "$@" > "$LOG_FILE" 2>> "$LOG_FILE"\n\n'
-            + '    return "$?"\n'
-            + "}\n\n"
-            + "main() {\n"
-            + "    load_launch_vars\n"
-            + "    validate_paths\n"
-            + '    run_launcher "$@"\n'
-            + "    exit $?\n"
-            + "}\n\n"
-            + 'main "$@"\n'
-        )
-
-    # Fallback — same as AMD
-    return (
-        common_header
-        + "    if ! command -v wine &>/dev/null; then\n"
-        + '        echo "ERROR: wine not found or not executable" >&2\n'
-        + "        exit 1\n"
-        + "    fi\n"
-        + "}\n\n"
-        + "run_launcher() {\n"
-        + '    cd "$GAME_DIR" || exit 1\n'
-        + '    LOG_FILE="$GAME_DIR/launcher.log"\n\n'
-        + '    wineboot "--restart"\n'
-        + "    sleep 1\n\n"
-        + '    wine "$LAUNCHER_EXE" "$@" > "$LOG_FILE" 2>> "$LOG_FILE"\n\n'
-        + '    wineboot "--end-session"\n'
-        + '    return "$?"\n'
-        + "}\n\n"
-        + "main() {\n"
-        + "    load_launch_vars\n"
-        + "    validate_paths\n"
-        + '    run_launcher "$@"\n'
-        + "    exit $?\n"
-        + "}\n\n"
-        + 'main "$@"\n'
-    )
+    return common_header
 
 
 def _write_system_bin(content: str, logger: Logger) -> None:

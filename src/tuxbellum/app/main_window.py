@@ -60,6 +60,12 @@ class MainWindow(Gtk.ApplicationWindow):
             logo = Gtk.Image.new_from_icon_name("image-missing")
         vbox.append(logo)
 
+        self.btn_launch = Gtk.Button(label=_tr("Launch Bellum"))
+        self.btn_launch.set_size_request(280, 48)
+        self.btn_launch.connect("clicked", self._on_launch)
+        self.btn_launch.set_sensitive(bool(self.games))
+        vbox.append(self.btn_launch)
+
         btn_install = Gtk.Button(label=_tr("Install Astarte Launcher"))
         btn_install.set_size_request(280, 48)
         btn_install.connect("clicked", self._on_install)
@@ -105,6 +111,8 @@ class MainWindow(Gtk.ApplicationWindow):
             "shortcut_steam": data.get("shortcut_steam", False),
         }]
         self._save_games()
+        if hasattr(self, "btn_launch"):
+            self.btn_launch.set_sensitive(True)
 
     def _on_install(self, _btn):
         dialog = InstallDialog(transient_for=self)
@@ -112,9 +120,68 @@ class MainWindow(Gtk.ApplicationWindow):
         dialog.present()
         dialog.connect("response", self._on_install_response)
 
+    def _on_launch(self, _btn):
+        if not self.games:
+            return
+        game = self.games[0]
+        cmd = ["/usr/local/bin/Bellum"]
+
+        if game.get("gamescope"):
+            gamescope_args = ["gamescope", "-f",
+                              "--fps-limit-when-unfocused=0",
+                              "--force-grab-cursor"]
+            if game.get("hdr"):
+                gamescope_args.extend(["--hdr-enabled", "--hdr-itm-enable"])
+            gamescope_args.append("--")
+            cmd = gamescope_args + cmd
+
+        if game.get("gamemode"):
+            cmd = ["gamemoderun"] + cmd
+
+        env = os.environ.copy()
+        if game.get("hdr"):
+            env["DXVK_HDR"] = "1"
+        if game.get("nvapi"):
+            env["PROTON_ENABLE_NVAPI"] = "1"
+            env["DXVK_ENABLE_NVAPI"] = "1"
+
+        import subprocess
+        try:
+            subprocess.Popen(cmd, env=env, start_new_session=True)
+        except Exception as e:
+            self._show_error(f"Failed to launch Bellum: {e}")
+
     def _on_install_response(self, dialog: Gtk.Dialog, response_id: int):
         if response_id == Gtk.ResponseType.OK:
-            self._start_installation(dialog.get_install_data())
+            data = dialog.get_install_data()
+            wineprefix = data.get("wineprefix", "")
+
+            # Check NVMe
+            from tuxbellum.installer.precheck import _is_ssd
+            import os
+
+            parent = wineprefix.rstrip("/")
+            while not os.path.isdir(parent) and parent != "/":
+                parent = os.path.dirname(parent)
+
+            if not _is_ssd(parent, None):
+                dialog_confirm = Gtk.MessageDialog(
+                    transient_for=self,
+                    modal=True,
+                    message_type=Gtk.MessageType.WARNING,
+                    buttons=Gtk.ButtonsType.YES_NO,
+                    text=_tr("Astarte Developers strongly recommend using NVMe or SSD for the game.\n\nAre you sure you want to proceed?"),
+                )
+                def _on_response(d, resp):
+                    d.destroy()
+                    if resp == Gtk.ResponseType.YES:
+                        self._start_installation(data)
+                dialog_confirm.connect("response", _on_response)
+                dialog_confirm.present()
+                dialog.destroy()
+                return
+
+            self._start_installation(data)
         dialog.destroy()
 
     def _start_installation(self, data: dict[str, Any]):
@@ -122,6 +189,12 @@ class MainWindow(Gtk.ApplicationWindow):
 
         progress = InstallProgressDialog(transient_for=self)
         progress.set_modal(True)
+
+        def _on_progress_response(dlg, response_id):
+            self.set_sensitive(True)
+            dlg.destroy()
+
+        progress.connect("response", _on_progress_response)
         progress.present()
 
         def _run():
@@ -229,6 +302,13 @@ class MainWindow(Gtk.ApplicationWindow):
         if response_id == Gtk.ResponseType.OK:
             dialog.save_config()
             self.cfg.load()
+
+            # Sync launch flags to the active game entry
+            if self.games:
+                game = self.games[0]
+                for key in ("gamescope", "gamemode", "fsr41", "hdr", "nvapi"):
+                    game[key] = self.cfg.get_bool(key)
+                self._save_games()
         dialog.destroy()
 
     def _on_close(self, *_args):

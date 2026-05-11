@@ -15,7 +15,7 @@ def generate_launch_vars_nvidia(wineprefix: str) -> None:
         "export __GAMESCOPE_INTEGRATION_GAMER_MODE=\"0\"\n"
         "export NVAPI_OVERRIDE_CONFIG=\"\"\n"
         'export NVVM_LIBDIR="${PROTONPATH}/nvvm/lib64"\n'
-        'export LD_LIBRARY_PATH="${PROTONPATH}/lib64:${LD_LIBRARY_PATH}"\n'
+        'export LD_LIBRARY_PATH="${PROTONPATH}/lib64:${LD_LIBRARY_PATH:-}"\n'
     )
     with open(dest, "w") as fh:
         fh.write(content)
@@ -34,7 +34,7 @@ def generate_launch_vars_amd(wineprefix: str, is_fsr41: bool) -> None:
         "export __GAMESCOPE_INTEGRATION_GAMER_MODE=\"0\"\n"
         "export NVAPI_OVERRIDE_CONFIG=\"\"\n"
         'export NVVM_LIBDIR="${PROTONPATH}/nvvm/lib64"\n'
-        'export LD_LIBRARY_PATH="${PROTONPATH}/lib64:${LD_LIBRARY_PATH}"\n'
+        'export LD_LIBRARY_PATH="${PROTONPATH}/lib64:${LD_LIBRARY_PATH:-}"\n'
         f'export FSR4_UPGRADE="{fsr4}"\n'
         f'export FSR4_RDNA3_UPGRADE="{fsr4}"\n'
     )

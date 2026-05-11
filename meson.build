@@ -3,7 +3,7 @@ project('tuxbellum', version: '3.0.0', meson_version: '>=1.2.0', license: 'Apach
 python = import('python').find_installation('python3')
 
 # Install source
-install_subdir('src/tuxbellum', install_dir: python.get_install_dir() / 'tuxbellum')
+install_subdir('src/tuxbellum', install_dir: python.get_install_dir())
 
 # Install packages directory to data dir
 install_subdir('packages', install_dir: get_option('datadir') / 'tuxbellum')
