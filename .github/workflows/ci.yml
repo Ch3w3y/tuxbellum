@@ -13,7 +13,7 @@ on:
 
 env:
   PYTHON_VERSION: '3.12'
-    APPIMAGE_EXTRACT_AND_RUN:1
+    APPIMAGE_EXTRACT_AND_RUN: 1
 
 jobs:
   # ── Lint ──────────────────────────────────────────────
