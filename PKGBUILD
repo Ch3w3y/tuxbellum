@@ -45,10 +45,14 @@ package() {
     # Install metainfo
     install -Dm644 data/tuxbellum.metainfo.xml \
         "${pkgdir}/usr/share/metainfo/tuxbellum.metainfo.xml"
-    # Install bundled packages
+    # Install bundled packages (exclude press kit)
     cp -r packages "${pkgdir}/usr/share/tuxbellum/"
+    rm -rf "${pkgdir}/usr/share/tuxbellum/packages/Public Press Kit"
     # Install locales
     cp -r locales "${pkgdir}/usr/share/tuxbellum/"
     # Install license
     install -Dm644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
 }
+
+# To generate .SRCINFO for AUR submission:
+#   makepkg --printsrcinfo > .SRCINFO

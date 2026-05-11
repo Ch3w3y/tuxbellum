@@ -34,8 +34,9 @@ mkdir -p "$APPDIR/usr/bin" \
 # Install tuxbellum into AppDir
 pip install --prefix="$APPDIR/usr" --no-deps .
 
-# Copy data files
+# Copy data files (exclude press kit)
 cp -r packages/ "$APPDIR/usr/share/tuxbellum/"
+rm -rf "$APPDIR/usr/share/tuxbellum/packages/Public Press Kit"
 cp -r locales/ "$APPDIR/usr/share/tuxbellum/"
 cp data/tuxbellum.desktop "$APPDIR/usr/share/applications/"
 cp data/tuxbellum.metainfo.xml "$APPDIR/usr/share/metainfo/"

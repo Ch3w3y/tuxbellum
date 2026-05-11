@@ -98,6 +98,18 @@ cd tuxbellum
 pip install -e . --break-system-packages
 ```
 
+### AUR (Arch Linux)
+
+```bash
+yay -S tuxbellum
+```
+
+### Flatpak
+
+```bash
+flatpak install flathub io.github.ch3w3y.tuxbellum
+```
+
 ---
 
 ## Usage

@@ -13,16 +13,18 @@ build:
 release: clean
 	@echo "[RELEASE] Creating release tarball $(RELEASE_TARBALL)..."
 	tar -czf $(RELEASE_TARBALL) \
+		--exclude='packages/Public Press Kit' \
 		src/ \
 		packages/ \
 		locales/ \
 		data/ \
+		docs/ \
+		scripts/ \
 		meson.build \
 		pyproject.toml \
 		PKGBUILD \
 		LICENSE \
 		README.md \
-		docs/DEPENDENCIES.md \
 		Makefile
 	@echo "[RELEASE] Done: $(RELEASE_TARBALL)"
 

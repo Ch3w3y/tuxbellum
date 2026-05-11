@@ -49,6 +49,3 @@ modules:
       - /lib/pkgconfig
       - '*.a'
       - '*.la'
-
-finish-args-custom:
-  note: "filesystem=home required for Wine prefix access. device=dri for GPU detection."
