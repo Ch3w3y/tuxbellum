@@ -54,8 +54,8 @@ fi
 
 # ── Install TuxBellum via pip ─────────────────────────
 info "Installing TuxBellum ${LATEST}..."
-pip3 install --user --upgrade "tuxbellum==${LATEST}" 2>/dev/null || \
-  pip3 install --user --upgrade "https://github.com/${GITHUB_REPO}/archive/refs/tags/v${LATEST}.tar.gz"
+pip3 install --break-system-packages --user --upgrade "tuxbellum==${LATEST}" 2>/dev/null || \
+  pip3 install --break-system-packages --user --upgrade "https://github.com/${GITHUB_REPO}/archive/refs/tags/v${LATEST}.tar.gz"
 
 # ── Install desktop entry ─────────────────────────────
 info "Installing desktop entry..."
@@ -66,7 +66,7 @@ Name=TuxBellum
 Comment=Install, configure, and launch Bellum via Wine/Proton on Linux
 Exec=tuxbellum
 Type=Application
-Icon=tuxbellum
+Icon=bellum
 Categories=Game;
 Keywords=bellum;tuxbellum;game;wine;proton;launcher;
 DESKTOP
