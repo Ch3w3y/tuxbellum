@@ -32,7 +32,7 @@ mkdir -p "$APPDIR/usr/bin" \
          "$APPDIR/usr/share/icons/hicolor/256x256/apps"
 
 # Install tuxbellum into AppDir
-pip install --prefix="$APPDIR/usr" --no-deps .
+python3 -m pip install --prefix="$APPDIR/usr" --no-deps . --force-reinstall
 
 # Copy data files (exclude press kit)
 cp -r packages/ "$APPDIR/usr/share/tuxbellum/"
@@ -71,12 +71,18 @@ cd "$PROJECT_DIR"
 export PATH="$WORKDIR:$PATH"
 export DEBUG=1
 
+# Debug: list AppDir contents
+echo "--- AppDir Contents ---"
+ls -R "$APPDIR/usr/bin"
+ls -R "$APPDIR/usr/share/applications"
+
 "$WORKDIR/linuxdeploy" \
   --appdir "$APPDIR" \
   --desktop-file "$APPDIR/usr/share/applications/tuxbellum.desktop" \
   --icon-file "$APPDIR/usr/share/icons/hicolor/256x256/apps/tuxbellum.png" \
   --plugin gtk \
-  --output appimage
+  --output appimage \
+  --verbose
 
 # ── 6. Done ───────────────────────────────────────────
 echo "[6/6] Done!"
