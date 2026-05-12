@@ -135,7 +135,6 @@ class MainWindow(Gtk.ApplicationWindow):
             gamescope_args = [
                 "gamescope",
                 "-f",
-                "--fps-limit-when-unfocused=0",
                 "--force-grab-cursor",
             ]
             if game.get("hdr"):

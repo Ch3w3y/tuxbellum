@@ -121,7 +121,7 @@ Open **Settings** from the main menu to toggle Gamescope, Gamemode, HDR, NVAPI, 
 |---|---|
 | **NVIDIA 5000 Series** | Driver 595 breaks UE5 shader compilation under Proton. Downgrade to driver 590 until an upstream fix is released. |
 | **Gamescope cursor** | On some Wayland compositors the cursor may be invisible. TuxBellum passes `--force-grab-cursor` by default to mitigate this. |
-| **Gamescope unfocused throttle** | Gamescope throttles to 0 FPS when not focused. TuxBellum passes `--fps-limit-when-unfocused=0` to prevent this. |
+| **Gamescope unfocused throttle** | Gamescope throttles to 0 FPS when not focused. Use `--nested-unfocused-refresh` if needed (gamescope 3.16+). |
 
 ---
 
