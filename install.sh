@@ -43,13 +43,28 @@ ARCH_DEPS="python-gobject gtk4"
 
 if command -v apt-get >/dev/null 2>&1; then
   sudo apt-get update -qq
-  sudo apt-get install -y -qq $DEBIAN_DEPS 2>/dev/null || warn "Some system packages could not be installed."
+  sudo apt-get install -y -qq $DEBIAN_DEPS || warn "Some system packages could not be installed."
 elif command -v dnf >/dev/null 2>&1; then
-  sudo dnf install -y -q $FEDORA_DEPS 2>/dev/null || warn "Some system packages could not be installed."
+  sudo dnf install -y -q $FEDORA_DEPS || warn "Some system packages could not be installed."
 elif command -v pacman >/dev/null 2>&1; then
-  sudo pacman -S --needed --noconfirm $ARCH_DEPS 2>/dev/null || warn "Some system packages could not be installed."
+  sudo pacman -S --needed --noconfirm $ARCH_DEPS || warn "Some system packages could not be installed."
 else
   warn "Unsupported distro. Install PyGObject and GTK4 manually."
+fi
+
+if ! python3 -c "import gi; gi.require_version('Gtk', '4.0')" 2>/dev/null; then
+  error "\
+GTK4 runtime not available for this Python interpreter ($(python3 -V)).
+Your system GTK4 packages are likely installed, but your Python cannot find them.
+This happens when using a non-system Python (pyenv, Homebrew, custom build).
+
+Quick fix: use pipx instead:
+  pipx install tuxbellum
+  tuxbellum
+
+Or install tuxbellum via your package manager (if available):
+  Arch:       yay -S tuxbellum
+  Flatpak:    flatpak install io.github.ch3w3y.tuxbellum"
 fi
 
 # ── Install TuxBellum via pip ─────────────────────────
