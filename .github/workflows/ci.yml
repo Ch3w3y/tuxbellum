@@ -36,7 +36,8 @@ jobs:
             libgirepository-2.0-dev \
             pkg-config \
             python3-dev \
-            gir1.2-gtk-4.0
+            gir1.2-gtk-4.0 \
+            libfuse2
 
       - name: Install dependencies
         run: pip install ruff black mypy PyGObject
@@ -73,7 +74,8 @@ jobs:
             pkg-config \
             python3-dev \
             gir1.2-gtk-4.0 \
-            libgtk-4-dev
+            libgtk-4-dev \
+            libfuse2
 
       - name: Install Python dependencies
         run: pip install -e ".[dev]"
@@ -151,7 +153,8 @@ jobs:
             pkg-config \
             python3-dev \
             gir1.2-gtk-4.0 \
-            libgtk-4-dev
+            libgtk-4-dev \
+            libfuse2
 
       - name: Extract version from tag
         id: version

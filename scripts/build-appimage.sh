@@ -69,10 +69,12 @@ chmod +x "$WORKDIR/linuxdeploy" "$WORKDIR/linuxdeploy-plugin-gtk"
 export OUTPUT="${APP_NAME}-${VERSION}-x86_64.AppImage"
 cd "$PROJECT_DIR"
 export PATH="$WORKDIR:$PATH"
-
+export DEBUG=1
 
 "$WORKDIR/linuxdeploy" \
   --appdir "$APPDIR" \
+  --desktop-file "$APPDIR/usr/share/applications/tuxbellum.desktop" \
+  --icon-file "$APPDIR/usr/share/icons/hicolor/256x256/apps/tuxbellum.png" \
   --plugin gtk \
   --output appimage
 
