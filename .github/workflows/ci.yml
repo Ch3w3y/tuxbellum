@@ -162,7 +162,7 @@ jobs:
         run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> "$GITHUB_OUTPUT"
 
       - name: Build release tarball
-        run: make release
+        run: make release VERSION=${{ steps.version.outputs.VERSION }}
 
       - name: Build AppImage
         run: bash scripts/build-appimage.sh ${{ steps.version.outputs.VERSION }}
@@ -187,7 +187,8 @@ jobs:
       - name: Update PKGBUILD checksums
         run: |
           VERSION="${GITHUB_REF#refs/tags/v}"
-          TARBALL_URL="https://github.com/Ch3w3y/tuxbellum/archive/refs/tags/v${VERSION}.tar.gz"
+          # Use the release asset tarball (same file the PKGBUILD source points to)
+          TARBALL_URL="https://github.com/Ch3w3y/tuxbellum/releases/download/v${VERSION}/tuxbellum-${VERSION}.tar.gz"
           SHA256=$(curl -sL "$TARBALL_URL" | sha256sum | cut -d' ' -f1)
           sed -i "s/^pkgver=.*/pkgver=${VERSION}/" PKGBUILD
           sed -i "s/^sha256sums=.*/sha256sums=('${SHA256}')/" PKGBUILD
