@@ -27,6 +27,14 @@ DEPS = {
         "url": "https://api.github.com/repos/HansKristian-Work/vkd3d-proton/releases/latest",
         "pattern": r"v?([\d.]+)",
     },
+    "winetricks": {
+        "url": "https://api.github.com/repos/Winetricks/winetricks/releases/latest",
+        "pattern": r"v?([\d.]+)",
+    },
+    "wine": {
+        "url": "https://api.github.com/repos/wine-mirror/wine/releases/latest",
+        "pattern": r"wine-([\d.]+)",
+    },
 }
 
 VERSIONS_FILE = Path("src/tuxbellum/config/versions.py")

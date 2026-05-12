@@ -29,6 +29,13 @@ class SplashWindow(Gtk.Window):
 
         # Icon
         icon_path = path_mgr.get_icon("bellum.png")
+        if not (icon_path and os.path.exists(icon_path)):
+            dev_path = os.path.join(
+                os.path.dirname(__file__), "..", "..", "..", "data", "icons", "bellum.png"
+            )
+            dev_path = os.path.abspath(dev_path)
+            if os.path.exists(dev_path):
+                icon_path = dev_path
         if icon_path and os.path.exists(icon_path):
             try:
                 pixbuf = GdkPixbuf.Pixbuf.new_from_file(icon_path)

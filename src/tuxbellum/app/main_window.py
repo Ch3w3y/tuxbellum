@@ -47,13 +47,20 @@ class MainWindow(Gtk.ApplicationWindow):
         vbox.set_halign(Gtk.Align.CENTER)
         self.set_child(vbox)
 
-        logo_path = os.path.join(os.path.dirname(__file__), "../../../data/icons/bellum.png")
-        logo_path = os.path.abspath(logo_path)
-        if os.path.exists(logo_path):
-            pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(logo_path, 200, 200, True)
+        logo_path = path_mgr.get_icon("bellum.png")
+        if not logo_path or not os.path.exists(logo_path):
+            dev_path = os.path.join(
+                os.path.dirname(__file__), "..", "..", "..", "data", "icons", "bellum.png"
+            )
+            dev_path = os.path.abspath(dev_path)
+            if os.path.exists(dev_path):
+                logo_path = dev_path
+        if logo_path and os.path.exists(logo_path):
+            pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(logo_path, 400, 400, True)
             logo = Gtk.Image.new_from_pixbuf(pixbuf)
         else:
             logo = Gtk.Image.new_from_icon_name("image-missing")
+            logo.set_pixel_size(128)
         vbox.append(logo)
 
         self.btn_launch = Gtk.Button(label=_tr("Launch Bellum"))
