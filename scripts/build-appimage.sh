@@ -64,7 +64,7 @@ chmod +x "$WORKDIR/appimagetool"
 
 # Symlink desktop file and icon to AppDir root (required by appimagetool)
 cp "$APPDIR/usr/share/applications/tuxbellum.desktop" "$APPDIR/tuxbellum.desktop"
-cp "$APPDIR/usr/share/icons/hicolor/256x256/apps/tuxbellum.png" "$APPDIR/tuxbellum.png"
+cp "$APPDIR/usr/share/icons/hicolor/256x256/apps/tuxbellum.png" "$APPDIR/bellum.png"
 
 # Debug: show AppDir root
 echo "--- AppDir root ---"
