@@ -12,20 +12,13 @@ build:
 
 release: clean
 	@echo "[RELEASE] Creating release tarball $(RELEASE_TARBALL)..."
-	tar -czf $(RELEASE_TARBALL) \
-		--exclude='packages/Public Press Kit' \
-		src/ \
-		packages/ \
-		locales/ \
-		data/ \
-		docs/ \
-		scripts/ \
-		meson.build \
-		pyproject.toml \
-		PKGBUILD \
-		LICENSE \
-		README.md \
-		Makefile
+	mkdir -p .release/tuxbellum-$(VERSION)
+	cp -r src/ packages/ locales/ data/ docs/ scripts/ \
+		meson.build pyproject.toml PKGBUILD LICENSE README.md Makefile \
+		.release/tuxbellum-$(VERSION)/
+	rm -rf .release/tuxbellum-$(VERSION)/packages/Public\ Press\ Kit
+	tar -czf $(RELEASE_TARBALL) -C .release tuxbellum-$(VERSION)
+	rm -rf .release
 	@echo "[RELEASE] Done: $(RELEASE_TARBALL)"
 
 clean:
