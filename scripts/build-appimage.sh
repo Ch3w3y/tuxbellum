@@ -55,34 +55,24 @@ exec "$HERE/usr/bin/tuxbellum" "$@"
 APPRUN
 chmod +x "$APPDIR/AppRun"
 
-# ── 5. Download appimage-builder ──────────────────────
+# ── 5. Download appimagetool and build AppImage ───────
 echo "[5/6] Building AppImage..."
-# Use linuxdeploy for GTK app bundling
-LINUXDEPLOY_URL="https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage"
-LINUXDEPLOY_GTK_URL="https://github.com/linuxdeploy/linuxdeploy-plugin-gtk/releases/download/continuous/linuxdeploy-plugin-gtk-x86_64.AppImage"
+APPIMAGETOOL_URL="https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-x86_64.AppImage"
+wget --tries=3 --progress=dot:mega "$APPIMAGETOOL_URL" -O "$WORKDIR/appimagetool"
+chmod +x "$WORKDIR/appimagetool"
 
-wget -q "$LINUXDEPLOY_URL" -O "$WORKDIR/linuxdeploy"
-wget -q "$LINUXDEPLOY_GTK_URL" -O "$WORKDIR/linuxdeploy-plugin-gtk"
-chmod +x "$WORKDIR/linuxdeploy" "$WORKDIR/linuxdeploy-plugin-gtk"
+# Symlink desktop file and icon to AppDir root (required by appimagetool)
+cp "$APPDIR/usr/share/applications/tuxbellum.desktop" "$APPDIR/tuxbellum.desktop"
+cp "$APPDIR/usr/share/icons/hicolor/256x256/apps/tuxbellum.png" "$APPDIR/tuxbellum.png"
+
+# Debug: show AppDir root
+echo "--- AppDir root ---"
+ls "$APPDIR"
 
 # Build the AppImage
 export OUTPUT="${APP_NAME}-${VERSION}-x86_64.AppImage"
 cd "$PROJECT_DIR"
-export PATH="$WORKDIR:$PATH"
-export DEBUG=1
-
-# Debug: list AppDir contents
-echo "--- AppDir Contents ---"
-ls -R "$APPDIR/usr/bin"
-ls -R "$APPDIR/usr/share/applications"
-
-"$WORKDIR/linuxdeploy" \
-  --appdir "$APPDIR" \
-  --desktop-file "$APPDIR/usr/share/applications/tuxbellum.desktop" \
-  --icon-file "$APPDIR/usr/share/icons/hicolor/256x256/apps/tuxbellum.png" \
-  --plugin gtk \
-  --output appimage \
-  --verbose
+ARCH=x86_64 "$WORKDIR/appimagetool" "$APPDIR" "$OUTPUT"
 
 # ── 6. Done ───────────────────────────────────────────
 echo "[6/6] Done!"
