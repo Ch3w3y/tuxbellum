@@ -56,9 +56,8 @@ cp data/tuxbellum.desktop "$APPDIR/usr/share/applications/"
 cp data/tuxbellum.metainfo.xml "$APPDIR/usr/share/metainfo/"
 cp data/icons/bellum.png "$APPDIR/usr/share/icons/hicolor/256x256/apps/tuxbellum.png"
 
-# ── 4. Bundle GTK4 runtime libraries ──────────────────
-echo "[4/7] Bundling GTK4 runtime libraries..."
-
+# ── 4. Bundle GTK4 typelib files (version-agnostic) ────
+echo "[4/7] Bundling GTK4 typelib files..."
 # Find girepository directory
 GIREPO_DIR=""
 for candidate in /usr/lib/girepository-1.0 \
@@ -76,89 +75,10 @@ if [ -z "$GIREPO_DIR" ]; then
 fi
 echo "  girepository: $GIREPO_DIR"
 
-# Copy all typelib files
 mkdir -p "$APPDIR/usr/lib/girepository-1.0"
 cp -a "$GIREPO_DIR"/*.typelib "$APPDIR/usr/lib/girepository-1.0/"
-echo "  Copied typelib files"
-
-# Find libgtk-4
-GTK4_LIB=""
-for candidate in /usr/lib/libgtk-4.so.1 \
-                 /usr/lib/x86_64-linux-gnu/libgtk-4.so.1 \
-                 /usr/lib64/libgtk-4.so.1; do
-    if [ -f "$candidate" ]; then
-        GTK4_LIB="$candidate"
-        break
-    fi
-done
-
-if [ -z "$GTK4_LIB" ]; then
-    echo "ERROR: libgtk-4.so.1 not found" >&2
-    exit 1
-fi
-echo "  libgtk-4: $GTK4_LIB"
-
-# Create bundled lib directory
-LIB_DIR="$APPDIR/usr/lib"
-mkdir -p "$LIB_DIR"
-
-# Denylist: system libs that must NOT be bundled (provided by glibc/libstdc++)
-DENYLIST="libc\.so|libm\.so|libpthread|libdl\.so|librt\.so|ld-linux|libstdc\+\+\.so|libgcc_s\.so"
-
-# Resolve GTK4 dependencies and copy them
-echo "  Resolving GTK4 dependencies..."
-ldd "$GTK4_LIB" 2>/dev/null | awk '{print $3}' | grep '^/' | \
-    grep -vE "($DENYLIST)" | sort -u | while read -r dep; do
-    if [ -f "$dep" ]; then
-        # Copy symlink (has SONAME-compatible name)
-        cp -a "$dep" "$LIB_DIR/" 2>/dev/null || true
-        # If it's a symlink, also copy real target
-        if [ -L "$dep" ]; then
-            TARGET=$(readlink -f "$dep")
-            cp -a "$TARGET" "$LIB_DIR/" 2>/dev/null || true
-        fi
-    fi
-done
-
-# Bundle libgirepository (needed by PyGObject at runtime)
-echo "  Bundling libgirepository..."
-for candidate in /usr/lib/libgirepository-1.0.so.1 \
-                 /usr/lib/x86_64-linux-gnu/libgirepository-1.0.so.1 \
-                 /usr/lib64/libgirepository-1.0.so.1; do
-    if [ -f "$candidate" ]; then
-        cp -a "$candidate" "$LIB_DIR/"
-        TARGET=$(readlink -f "$candidate")
-        if [ "$TARGET" != "$candidate" ]; then
-            cp -a "$TARGET" "$LIB_DIR/"
-        fi
-        break
-    fi
-done
-
-# Bundle PyGObject gi module into same packages directory as tuxbellum
-# (both Python files AND native .so — resolves import gi from within the bundle)
-echo "  Bundling PyGObject gi module..."
-GI_SRC=""
-for candidate in /usr/lib/python3/dist-packages/gi \
-                 /usr/lib/python3.*/site-packages/gi \
-                 /usr/lib/python3.*/dist-packages/gi; do
-    # shellcheck disable=SC2086
-    if ls $candidate/_gi*.so 2>/dev/null | head -1 >/dev/null; then
-        GI_SRC="$candidate"
-        break
-    fi
-done
-
-if [ -n "$GI_SRC" ]; then
-    GI_DST="$(dirname "$PKG_DIR")/gi"
-    mkdir -p "$GI_DST"
-    cp -a "$GI_SRC"/* "$GI_DST/"
-    echo "  Bundled gi module from $GI_SRC → $GI_DST"
-else
-    echo "  WARNING: No PyGObject gi module found on build host — bundle may be incomplete"
-fi
-
-echo "  GTK4 runtime bundled ($(ls "$LIB_DIR"/*.so* 2>/dev/null | wc -l) library files)"
+echo "  Bundled $(ls "$APPDIR/usr/lib/girepository-1.0/"*.typelib 2>/dev/null | wc -l) typelib files"
+echo "  Note: native .so NOT bundled — host must have GTK4 installed"
 
 # ── 5. Create AppRun ──────────────────────────────────
 echo "[5/7] Creating AppRun..."
@@ -171,8 +91,6 @@ export PYTHONPATH="\$HERE${REL_PKG_DIR}:\${PYTHONPATH:-}"
 export PATH="\$HERE/usr/bin:\${PATH:-}"
 export GDK_BACKEND=x11
 export GI_TYPELIB_PATH="\$HERE/usr/lib/girepository-1.0"
-export LD_LIBRARY_PATH="\$HERE/usr/lib:\${LD_LIBRARY_PATH:-}"
-
 exec python3 "\$HERE/usr/bin/tuxbellum" "\$@"
 APPRUN
 chmod +x "$APPDIR/AppRun"

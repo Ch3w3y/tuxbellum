@@ -80,7 +80,7 @@ chmod +x TuxBellum-*.AppImage
 ./TuxBellum-*.AppImage
 ```
 
-No system GTK4 packages required — everything is bundled in the AppImage. You only need the [Runtime Dependencies](#runtime-dependencies) listed above (`wine`, `winetricks`, `umu-launcher`, `mesa-utils`, `wget`, `tar`).
+The AppImage bundles GTK4 typelib definitions. Your system needs GTK4 runtime libraries installed (almost all distros ship these by default). You also need the [Runtime Dependencies](#runtime-dependencies) listed above (`wine`, `winetricks`, `umu-launcher`, `mesa-utils`, `wget`, `tar`).
 
 ### AUR (Arch Linux)
 
