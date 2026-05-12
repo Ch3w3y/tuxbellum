@@ -71,15 +71,7 @@ TuxBellum requires specific system-level packages that cannot be installed via `
 
 ## Installation
 
-### Install Script (Recommended)
-
-Detects your distribution, installs system dependencies via `apt`/`pacman`/`dnf`, and installs the Python package for your user.
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/Ch3w3y/tuxbellum/main/install.sh | bash
-```
-
-### AppImage
+### AppImage (Recommended)
 
 Download the latest AppImage from [Releases](https://github.com/Ch3w3y/tuxbellum/releases):
 
@@ -88,15 +80,7 @@ chmod +x TuxBellum-*.AppImage
 ./TuxBellum-*.AppImage
 ```
 
-### Manual Installation (Pip)
-
-Ensure you have installed the system UI and runtime dependencies listed above first.
-
-```bash
-git clone https://github.com/Ch3w3y/tuxbellum.git
-cd tuxbellum
-pip install -e . --break-system-packages
-```
+No system GTK4 packages required — everything is bundled in the AppImage. You only need the [Runtime Dependencies](#runtime-dependencies) listed above (`wine`, `winetricks`, `umu-launcher`, `mesa-utils`, `wget`, `tar`).
 
 ### AUR (Arch Linux)
 
