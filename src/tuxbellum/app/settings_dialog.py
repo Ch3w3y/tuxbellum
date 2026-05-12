@@ -45,15 +45,15 @@ class SettingsDialog(Gtk.Dialog):
         self._populate_languages()
         grid.attach(self.cmb_lang, 0, 1, 1, 1)
 
-        self.chk_gamescope = Gtk.CheckButton(label=_("Default Gamescope"))
+        self.chk_gamescope = Gtk.CheckButton(label=_("Enable Gamescope"))
         self.chk_gamescope.set_active(self.cfg.get_bool("gamescope"))
         grid.attach(self.chk_gamescope, 0, 2, 1, 1)
 
-        self.chk_gamemode = Gtk.CheckButton(label=_("Default Gamemode"))
+        self.chk_gamemode = Gtk.CheckButton(label=_("Enable Gamemode"))
         self.chk_gamemode.set_active(self.cfg.get_bool("gamemode"))
         grid.attach(self.chk_gamemode, 0, 3, 1, 1)
 
-        self.chk_fsr41 = Gtk.CheckButton(label=_("Default FSR 4.1"))
+        self.chk_fsr41 = Gtk.CheckButton(label=_("Enable FSR 4.1"))
         self.chk_fsr41.set_active(self.cfg.get_bool("fsr41"))
         grid.attach(self.chk_fsr41, 0, 4, 1, 1)
 
