@@ -51,7 +51,8 @@ HERE=$(dirname "$SELF")
 export PYTHONPATH="$HERE/usr/lib/python3/dist-packages:${PYTHONPATH:-}"
 export PATH="$HERE/usr/bin:${PATH:-}"
 export GDK_BACKEND=x11
-exec "$HERE/usr/bin/tuxbellum" "$@"
+# Use system python3 to avoid hardcoded CI-runner shebang
+exec python3 "$HERE/usr/bin/tuxbellum" "$@"
 APPRUN
 chmod +x "$APPDIR/AppRun"
 

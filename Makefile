@@ -1,5 +1,5 @@
 # Makefile for TuxBellum GTK4
-VERSION := 3.0.0
+VERSION ?= 3.0.0
 RELEASE_TARBALL := tuxbellum-$(VERSION).tar.gz
 
 .PHONY: all build release clean help install
