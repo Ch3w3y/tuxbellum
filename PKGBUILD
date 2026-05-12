@@ -24,6 +24,7 @@ optdepends=(
 )
 makedepends=(
     'meson'
+    'meson-python'
     'python-build'
     'python-installer'
     'python-setuptools'
