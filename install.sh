@@ -69,8 +69,13 @@ fi
 
 # ── Install TuxBellum via pip ─────────────────────────
 info "Installing TuxBellum ${LATEST}..."
-pip3 install --break-system-packages --user --upgrade "tuxbellum==${LATEST}" 2>/dev/null || \
-  pip3 install --break-system-packages --user --upgrade "https://github.com/${GITHUB_REPO}/archive/refs/tags/v${LATEST}.tar.gz"
+if command -v pipx >/dev/null 2>&1; then
+    pipx install "tuxbellum==${LATEST}"
+else
+    pip3 install --break-system-packages --user --upgrade "tuxbellum==${LATEST}" 2>/dev/null || \
+      pip3 install --break-system-packages --user --upgrade \
+        "https://github.com/${GITHUB_REPO}/archive/refs/tags/v${LATEST}.tar.gz"
+fi
 
 # ── Install desktop entry ─────────────────────────────
 info "Installing desktop entry..."

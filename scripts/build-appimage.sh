@@ -46,13 +46,31 @@ cp data/icons/bellum.png "$APPDIR/usr/share/icons/hicolor/256x256/apps/tuxbellum
 echo "[4/6] Creating AppRun..."
 cat > "$APPDIR/AppRun" << 'APPRUN'
 #!/usr/bin/env bash
+set -e
 SELF=$(readlink -f "$0")
 HERE=$(dirname "$SELF")
 export PYTHONPATH="$HERE/usr/lib/python3/dist-packages:${PYTHONPATH:-}"
 export PATH="$HERE/usr/bin:${PATH:-}"
 export GDK_BACKEND=x11
-# Use system python3 to avoid hardcoded CI-runner shebang
-exec python3 "$HERE/usr/bin/tuxbellum" "$@"
+
+find_gtk_python() {
+    for candidate in "$HERE/usr/bin/python3" /usr/bin/python3 /usr/local/bin/python3 python3; do
+        if "$candidate" -c "import gi; gi.require_version('Gtk', '4.0')" 2>/dev/null; then
+            echo "$candidate"
+            return 0
+        fi
+    done
+    return 1
+}
+
+PYTHON=$(find_gtk_python)
+if [ -z "$PYTHON" ]; then
+    echo "ERROR: No GTK4-capable Python found." >&2
+    echo "Install python-gobject and gtk4 via your package manager." >&2
+    exit 1
+fi
+
+exec "$PYTHON" "$HERE/usr/bin/tuxbellum" "$@"
 APPRUN
 chmod +x "$APPDIR/AppRun"
 
