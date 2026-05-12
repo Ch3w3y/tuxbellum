@@ -4,7 +4,7 @@ build-backend = "mesonpy"
 
 [project]
 name = "tuxbellum"
-version = "3.0.3"
+version = "3.0.4"
 description = "TuxBellum — GTK4 GUI for installing and managing Bellum on Linux with Wine/Proton"
 readme = "README.md"
 license = { text = "Apache-2.0" }

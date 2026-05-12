@@ -34,6 +34,20 @@ mkdir -p "$APPDIR/usr/bin" \
 # Install tuxbellum into AppDir
 python3 -m pip install --prefix="$APPDIR/usr" --no-deps . --force-reinstall
 
+# Discover where pip installed the package
+# (dist-packages on Debian/Ubuntu, site-packages on other distros)
+PKG_DIR=$(find "$APPDIR/usr/lib" -maxdepth 4 -path "*/tuxbellum" -type d 2>/dev/null | head -1)
+if [ -n "$PKG_DIR" ]; then
+    PKG_DIR=$(dirname "$PKG_DIR")  # Parent = the packages directory
+else
+    echo "ERROR: Could not find tuxbellum install location" >&2
+    exit 1
+fi
+echo "  Package directory: $PKG_DIR"
+
+# Compute path relative to APPDIR for AppRun
+REL_PKG_DIR="${PKG_DIR#"$APPDIR"}"
+
 # Copy data files (exclude press kit)
 cp -r packages/ "$APPDIR/usr/share/tuxbellum/"
 rm -rf "$APPDIR/usr/share/tuxbellum/packages/Public Press Kit"
@@ -121,43 +135,45 @@ for candidate in /usr/lib/libgirepository-1.0.so.1 \
     fi
 done
 
-# Copy PyGObject .so files if found on the host
-echo "  Copying PyGObject .so files..."
-PYGOBJECT_DIR=""
+# Bundle PyGObject gi module into same packages directory as tuxbellum
+# (both Python files AND native .so — resolves import gi from within the bundle)
+echo "  Bundling PyGObject gi module..."
+GI_SRC=""
 for candidate in /usr/lib/python3/dist-packages/gi \
                  /usr/lib/python3.*/site-packages/gi \
                  /usr/lib/python3.*/dist-packages/gi; do
     # shellcheck disable=SC2086
     if ls $candidate/_gi*.so 2>/dev/null | head -1 >/dev/null; then
-        PYGOBJECT_DIR="$candidate"
+        GI_SRC="$candidate"
         break
     fi
 done
 
-if [ -n "$PYGOBJECT_DIR" ]; then
-    mkdir -p "$APPDIR/usr/lib/python3/gi"
-    cp -a "$PYGOBJECT_DIR"/_gi*.so "$APPDIR/usr/lib/python3/gi/"
-    echo "  Copied from $PYGOBJECT_DIR"
+if [ -n "$GI_SRC" ]; then
+    GI_DST="$(dirname "$PKG_DIR")/gi"
+    mkdir -p "$GI_DST"
+    cp -a "$GI_SRC"/* "$GI_DST/"
+    echo "  Bundled gi module from $GI_SRC → $GI_DST"
 else
-    echo "  WARNING: No PyGObject .so files found — host PyGObject will be used"
+    echo "  WARNING: No PyGObject gi module found on build host — bundle may be incomplete"
 fi
 
 echo "  GTK4 runtime bundled ($(ls "$LIB_DIR"/*.so* 2>/dev/null | wc -l) library files)"
 
 # ── 5. Create AppRun ──────────────────────────────────
 echo "[5/7] Creating AppRun..."
-cat > "$APPDIR/AppRun" << 'APPRUN'
+cat > "$APPDIR/AppRun" << APPRUN
 #!/usr/bin/env bash
 set -e
-SELF=$(readlink -f "$0")
-HERE=$(dirname "$SELF")
-export PYTHONPATH="$HERE/usr/lib/python3/dist-packages:${PYTHONPATH:-}"
-export PATH="$HERE/usr/bin:${PATH:-}"
+SELF=\$(readlink -f "\$0")
+HERE=\$(dirname "\$SELF")
+export PYTHONPATH="\$HERE${REL_PKG_DIR}:\${PYTHONPATH:-}"
+export PATH="\$HERE/usr/bin:\${PATH:-}"
 export GDK_BACKEND=x11
-export GI_TYPELIB_PATH="$HERE/usr/lib/girepository-1.0"
-export LD_LIBRARY_PATH="$HERE/usr/lib:${LD_LIBRARY_PATH:-}"
+export GI_TYPELIB_PATH="\$HERE/usr/lib/girepository-1.0"
+export LD_LIBRARY_PATH="\$HERE/usr/lib:\${LD_LIBRARY_PATH:-}"
 
-exec python3 "$HERE/usr/bin/tuxbellum" "$@"
+exec python3 "\$HERE/usr/bin/tuxbellum" "\$@"
 APPRUN
 chmod +x "$APPDIR/AppRun"
 
