@@ -68,6 +68,8 @@ chmod +x "$WORKDIR/linuxdeploy" "$WORKDIR/linuxdeploy-plugin-gtk"
 # Build the AppImage
 export OUTPUT="${APP_NAME}-${VERSION}-x86_64.AppImage"
 cd "$PROJECT_DIR"
+export PATH="$WORKDIR:$PATH"
+
 
 "$WORKDIR/linuxdeploy" \
   --appdir "$APPDIR" \
