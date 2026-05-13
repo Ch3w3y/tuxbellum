@@ -32,7 +32,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/Ch3w3y/tuxbellum.git
-        tag: v3.0.8
+        tag: v3.0.9
       # Bundled packages
       - type: file
         path: packages/dxvk-2.7.1-3-521-low-latency.tar.gz
