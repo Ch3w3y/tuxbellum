@@ -4,21 +4,20 @@ import os
 import shutil
 import tempfile
 
+from tuxbellum.config.paths import path_mgr
 from tuxbellum.config.versions import DEFAULT_VERSIONS
 from tuxbellum.core.logging import Logger
-from tuxbellum.core.system import RunMode, run_command
+from tuxbellum.core.system import RunMode, look_path, run_command
 
 
-def install_dxvk(gpu_type: str, workdir: str, logger: Logger) -> None:
+def install_dxvk(gpu_type: str, resource_root: str, logger: Logger) -> None:
     """Install DXVK into the current WINEPREFIX.  No-op for non-AMD GPUs."""
     gpu_lower = gpu_type.lower()
     if "amd" not in gpu_lower and "radeon" not in gpu_lower:
         logger.info(f"Skipping DXVK installation for non-AMD GPU: {gpu_type}")
         return
 
-    archive = os.path.join(workdir, "packages", f"dxvk-{DEFAULT_VERSIONS.dxvk_ver}.tar.gz")
-    if not os.path.isfile(archive):
-        raise RuntimeError(f"DXVK archive not found: {archive}")
+    archive = _resolve_dxvk_archive(resource_root, logger)
 
     logger.info("Installing DXVK...")
     tmp = tempfile.mkdtemp(prefix="dxvk.")
@@ -66,3 +65,33 @@ def install_dxvk(gpu_type: str, workdir: str, logger: Logger) -> None:
         shutil.rmtree(tmp, ignore_errors=True)
 
     logger.info("[OK] DXVK installed")
+
+
+def _resolve_dxvk_archive(resource_root: str, logger: Logger) -> str:
+    bundled = os.path.join(resource_root, "packages", f"dxvk-{DEFAULT_VERSIONS.dxvk_ver}.tar.gz")
+    if os.path.isfile(bundled):
+        return bundled
+
+    if not look_path("wget"):
+        raise RuntimeError(f"DXVK archive not found and wget is unavailable: {bundled}")
+
+    version = _official_dxvk_version(DEFAULT_VERSIONS.dxvk_ver)
+    cache_dir = path_mgr.user_cache("tuxbellum", "dxvk")
+    os.makedirs(cache_dir, exist_ok=True)
+    archive = os.path.join(cache_dir, f"dxvk-{version}.tar.gz")
+    if os.path.isfile(archive):
+        logger.warn(f"Bundled DXVK archive missing, using cached upstream DXVK {version}")
+        return archive
+
+    url = f"https://github.com/doitsujin/dxvk/releases/download/v{version}/dxvk-{version}.tar.gz"
+    logger.warn(
+        f"Bundled DXVK archive missing, downloading upstream DXVK {version} instead"
+    )
+    if run_command(RunMode.SILENT, ["wget", "-O", archive, url]) != 0 or not os.path.isfile(archive):
+        raise RuntimeError(f"DXVK download failed: {url}")
+    return archive
+
+
+def _official_dxvk_version(version: str) -> str:
+    parts = version.split("-")
+    return parts[0] if parts else version

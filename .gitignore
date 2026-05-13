@@ -17,6 +17,12 @@ packages/*.exe
 packages/fsr4/*.dll
 !packages/meson.build
 !packages/launcher_1_256x256x32.png
+!packages/dxvk-2.7.1-3-521-low-latency.tar.gz
+!packages/winetricks-20250102-modified.tar.gz
+!packages/fsr4/
+!packages/fsr4/D3D12Core.dll
+!packages/fsr4/amd_fidelityfx_framegeneration_dx12.dll
+!packages/fsr4/amdxcffx64.dll
 
 # Virtual environments
 .venv/
