@@ -26,7 +26,7 @@ makedepends=(
     'meson'
     'python-build'
     'python-installer'
-    'python-meson-python'
+    'meson-python'
     'python-setuptools'
 )
 source=("${pkgname}-${pkgver}.tar.gz::https://github.com/Ch3w3y/tuxbellum/releases/download/v${pkgver}/${pkgname}-${pkgver}.tar.gz")
