@@ -138,6 +138,7 @@ def patch_proton_settings(settings_file: str, is_amd: bool, is_fsr41: bool) -> N
 def ensure_proton(
     proton_dir: str,
     proton_ver: str,
+    package_root: str,
     is_amd: bool,
     is_fsr41: bool,
     logger: Logger,
@@ -165,7 +166,7 @@ def ensure_proton(
 
         if not dir_exists:
             # Check for cached proton in packages/
-            cached_pattern = os.path.join(".", "packages", "proton-*")
+            cached_pattern = os.path.join(package_root, "proton-*")
             import glob as _glob
 
             matches = _glob.glob(cached_pattern)

@@ -1,21 +1,27 @@
-"""Tests for tuxbellum.config.versions — version constants."""
+"""Tests for tuxbellum.config.versions."""
+
+from dataclasses import FrozenInstanceError
+
+import pytest
+
 from tuxbellum.config.versions import DEFAULT_VERSIONS
 
 
 def test_default_versions_is_frozen():
-    DEFAULT_VERSIONS.proton = "changed"
+    with pytest.raises(FrozenInstanceError):
+        DEFAULT_VERSIONS.proton_ver = "changed"
 
 
 def test_default_versions_has_proton():
-    assert DEFAULT_VERSIONS.proton
-    assert "cachyos" in DEFAULT_VERSIONS.proton or "proton" in DEFAULT_VERSIONS.proton
+    assert DEFAULT_VERSIONS.proton_ver
+    assert "proton" in DEFAULT_VERSIONS.proton_ver
 
 
 def test_default_versions_has_wine():
-    assert DEFAULT_VERSIONS.wine
-    assert "wine" in DEFAULT_VERSIONS.wine
+    assert DEFAULT_VERSIONS.wine_ver
+    assert "wine" in DEFAULT_VERSIONS.wine_ver
 
 
 def test_default_versions_has_dxvk():
-    assert DEFAULT_VERSIONS.dxvk
-    assert "dxvk" in DEFAULT_VERSIONS.dxvk
+    assert DEFAULT_VERSIONS.dxvk_ver
+    assert DEFAULT_VERSIONS.dxvk_ver[0].isdigit()

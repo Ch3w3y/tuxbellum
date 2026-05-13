@@ -6,6 +6,27 @@ IS_FLATPAK = "FLATPAK_ID" in os.environ or os.path.exists("/.flatpak-info")
 
 class PathManager:
     @staticmethod
+    def app_data_root() -> str:
+        appdir = os.getenv("APPDIR")
+        if appdir:
+            candidate = Path(appdir) / "usr" / "share" / "tuxbellum"
+            if candidate.exists():
+                return str(candidate)
+
+        for candidate in [
+            PathManager.system_data("tuxbellum"),
+            Path(__file__).resolve().parents[3],
+        ]:
+            if (Path(candidate) / "packages").exists():
+                return str(candidate)
+
+        return str(Path(__file__).resolve().parents[3])
+
+    @staticmethod
+    def bundled_path(*paths: str) -> str:
+        return str(Path(PathManager.app_data_root()).joinpath(*paths))
+
+    @staticmethod
     def user_home(*paths: str) -> str:
         if IS_FLATPAK:
             home = Path(os.getenv("HOST_HOME", Path.home()))

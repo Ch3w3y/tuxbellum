@@ -23,7 +23,8 @@ class InstallConfig:
     gpu_type: str = ""
     is_amd_gpu: bool = False
     launcher_installer: str = ""
-    workdir: str = ""
+    resource_root: str = ""
+    cache_dir: str = ""
     is_fsr41: bool = False
 
 
@@ -49,7 +50,7 @@ def run_installation(config: InstallConfig, logger: Logger) -> None:
 
         launcher_exe = config.launcher_installer
         if not launcher_exe:
-            state = download_launcher_installer(config.workdir, logger)
+            state = download_launcher_installer(config.cache_dir, logger)
             launcher_exe = state.installer_path
             try:
                 _run_pipeline(config, launcher_exe, logger)
@@ -99,7 +100,7 @@ def _run_pipeline(config: InstallConfig, launcher_exe: str, logger: Logger) -> N
     _check_run(RunMode.SILENT, ["winetricks", "win11"])
     print()
 
-    install_dxvk(config.gpu_type, config.workdir, logger)
+    install_dxvk(config.gpu_type, config.resource_root, logger)
 
     logger.info("Configuring WINEPREFIX with things Bellum likes")
     _check_run(
@@ -110,7 +111,7 @@ def _run_pipeline(config: InstallConfig, launcher_exe: str, logger: Logger) -> N
     if config.is_amd_gpu:
         _check_run(RunMode.SILENT, ["winetricks", "remove_mono"])
 
-    icon_path = os.path.join(config.workdir, "packages", "launcher_1_256x256x32.png")
+    icon_path = os.path.join(config.resource_root, "packages", "launcher_1_256x256x32.png")
     copy_icon(icon_path)
     generate_desktop_files(config.wineprefix, icon_path, config.gpu_type, logger)
     generate_launcher_wrapper(config.wineprefix, config.proton_path, config.gpu_type, logger)
@@ -138,6 +139,6 @@ def _run_pipeline(config: InstallConfig, launcher_exe: str, logger: Logger) -> N
     update_dlls(logger)
 
     if config.is_amd_gpu and config.is_fsr41:
-        upgrade_fsr(config.wineprefix, config.workdir, config.gpu_type, logger)
+        upgrade_fsr(config.wineprefix, config.resource_root, config.gpu_type, logger)
 
     _check_run(RunMode.SILENT, ["wineboot", "--end-session"])

@@ -290,7 +290,7 @@ def check_proton(
     proton_ver = DEFAULT_VERSIONS.proton_ver
     get_proton_url(proton_ver, DEFAULT_VERSIONS.proton_base_url)
     proton_dir = get_proton_install_path(proton_ver)
-    ensure_proton(proton_dir, proton_ver, is_amd, is_fsr41, logger)
+    ensure_proton(proton_dir, proton_ver, package_root, is_amd, is_fsr41, logger)
     return proton_ver, proton_dir
 
 
@@ -310,6 +310,7 @@ def run_prechecks(
     launcher_installer_path: str,
     force_wine_version: bool,
     fsr41: bool,
+    resource_root: str,
     logger: Logger,
 ) -> PrecheckResult:
     """Orchestrate all prechecks and return a populated *PrecheckResult*."""
@@ -333,9 +334,9 @@ def run_prechecks(
     else:
         logger.info("[OK] wget found for launcher installer download")
 
-    check_winetricks(".", logger)
+    check_winetricks(resource_root, logger)
 
-    package_root = os.path.abspath("./packages")
+    package_root = os.path.join(resource_root, "packages")
     proton_ver, proton_path = check_proton(package_root, gpu_type, fsr41, logger)
 
     logger.info("[OK] All prechecks passed!")

@@ -1,4 +1,5 @@
-"""Tests for tuxbellum.config.paths — XDG path management."""
+"""Tests for tuxbellum.config.paths."""
+
 import os
 from pathlib import Path
 from unittest.mock import patch
@@ -6,22 +7,30 @@ from unittest.mock import patch
 from tuxbellum.config.paths import PathManager
 
 
-def test_path_manager_creates_dirs(tmp_path):
-    with patch.dict(os.environ, {"HOME": str(tmp_path), "XDG_DATA_HOME": ""}):
-        pm = PathManager()
-        assert pm.data_dir.exists()
+def test_app_data_root_prefers_appdir(tmp_path):
+    appdir = tmp_path / "AppDir"
+    bundled = appdir / "usr" / "share" / "tuxbellum"
+    bundled.mkdir(parents=True)
+    (bundled / "packages").mkdir()
+
+    with patch.dict(os.environ, {"APPDIR": str(appdir)}, clear=False):
+        assert PathManager.app_data_root() == str(bundled)
 
 
-def test_path_manager_wineprefix_default(tmp_path):
-    with patch.dict(os.environ, {"HOME": str(tmp_path), "XDG_DATA_HOME": ""}):
-        pm = PathManager()
-        assert "wineprefix" in str(pm.wineprefix).lower() or pm.wineprefix.suffix == ""
+def test_user_paths_respect_xdg(tmp_path):
+    env = {
+        "HOME": str(tmp_path),
+        "XDG_DATA_HOME": str(tmp_path / "data"),
+        "XDG_CONFIG_HOME": str(tmp_path / "config"),
+        "XDG_CACHE_HOME": str(tmp_path / "cache"),
+    }
+    with patch.dict(os.environ, env, clear=False):
+        assert PathManager.user_data("icons") == str(tmp_path / "data" / "icons")
+        assert PathManager.user_config("tuxbellum") == str(tmp_path / "config" / "tuxbellum")
+        assert PathManager.user_cache("tuxbellum") == str(tmp_path / "cache" / "tuxbellum")
 
 
-def test_path_manager_flatpak_mode(tmp_path):
-    with patch.dict(
-        os.environ,
-        {"HOME": str(tmp_path), "XDG_DATA_HOME": "", "FLATPAK_ID": "io.github.ch3w3y.tuxbellum"},
-    ):
-        pm = PathManager()
-        assert pm.is_flatpak
+def test_bundled_path_joins_data_root():
+    root = PathManager.app_data_root()
+    assert Path(PathManager.bundled_path("packages")).is_absolute()
+    assert str(Path(root) / "packages") == PathManager.bundled_path("packages")

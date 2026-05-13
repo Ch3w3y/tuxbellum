@@ -19,7 +19,7 @@ from tuxbellum.config.paths import path_mgr  # noqa: E402
 from tuxbellum.i18n.locale import setup_gettext  # noqa: E402
 
 _tr = setup_gettext()
-VERSION = "3.0.0"
+VERSION = "3.0.7"
 
 CONFIG_DIR = path_mgr.user_config("tuxbellum")
 GAMES_JSON = path_mgr.user_config("tuxbellum", "games.json")
@@ -218,13 +218,9 @@ class MainWindow(Gtk.ApplicationWindow):
                 from tuxbellum.installer.run import InstallConfig, run_installation
 
                 wineprefix = data.get("wineprefix", "")
-                workdir = os.path.dirname(os.path.abspath(__file__))
-                while not os.path.exists(os.path.join(workdir, "packages")) and workdir != "/":
-                    workdir = os.path.dirname(workdir)
-                if workdir == "/":
-                    workdir = os.getcwd()
-
-                log_file = os.path.join(workdir, "logs", "installer.log")
+                resource_root = path_mgr.app_data_root()
+                cache_dir = path_mgr.launcher_cache_dir()
+                log_file = os.path.join(path_mgr.logs_dir(), "installer.log")
                 os.makedirs(os.path.dirname(log_file), exist_ok=True)
 
                 logger = Logger(log_file)
@@ -247,6 +243,7 @@ class MainWindow(Gtk.ApplicationWindow):
                     "",
                     False,
                     data.get("fsr41", False),
+                    resource_root,
                     logger,
                 )
 
@@ -256,7 +253,8 @@ class MainWindow(Gtk.ApplicationWindow):
                     gpu_type=result.gpu_type,
                     is_amd_gpu=result.is_amd_gpu,
                     launcher_installer=result.launcher_installer,
-                    workdir=workdir,
+                    resource_root=resource_root,
+                    cache_dir=cache_dir,
                     is_fsr41=data.get("fsr41", False),
                 )
 
