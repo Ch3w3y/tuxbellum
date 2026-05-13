@@ -19,7 +19,7 @@ from tuxbellum.config.paths import path_mgr  # noqa: E402
 from tuxbellum.i18n.locale import setup_gettext  # noqa: E402
 
 _tr = setup_gettext()
-VERSION = "3.0.7"
+VERSION = "3.0.8"
 
 CONFIG_DIR = path_mgr.user_config("tuxbellum")
 GAMES_JSON = path_mgr.user_config("tuxbellum", "games.json")

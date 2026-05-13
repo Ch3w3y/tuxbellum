@@ -21,7 +21,7 @@
     </screenshot>
   </screenshots>
   <releases>
-    <release version="3.0.7" date="2026-05-13">
+    <release version="3.0.8" date="2026-05-13">
       <description>
         <p>Major refactoring: GTK4 monolith replacing the GTK3+Go architecture. Rebranded as TuxBellum.</p>
         <ul>

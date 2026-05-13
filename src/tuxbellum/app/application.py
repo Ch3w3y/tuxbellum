@@ -13,7 +13,7 @@ from tuxbellum.app.main_window import MainWindow
 from tuxbellum.i18n.locale import setup_gettext
 
 _ = setup_gettext()
-VERSION = "3.0.7"
+VERSION = "3.0.8"
 
 
 class BellumApplication(Gtk.Application):
