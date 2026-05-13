@@ -24,10 +24,14 @@ def install_dxvk(gpu_type: str, resource_root: str, logger: Logger) -> None:
 
     try:
         # Extract
-        run_command(
-            RunMode.SILENT,
-            ["tar", "-xzf", archive, "-C", tmp],
-        )
+        if (
+            run_command(
+                RunMode.SILENT,
+                ["tar", "-xzf", archive, "-C", tmp],
+            )
+            != 0
+        ):
+            raise RuntimeError(f"DXVK extraction failed: tar -xzf {archive}")
 
         # Locate dxvk_setup.sh — may be inside a subdirectory
         install_dir = tmp
@@ -48,10 +52,8 @@ def install_dxvk(gpu_type: str, resource_root: str, logger: Logger) -> None:
         if not os.path.isfile(setup):
             raise RuntimeError("DXVK setup script not found after extraction")
 
-        run_command(
-            RunMode.SILENT,
-            [setup, "install"],
-        )
+        if run_command(RunMode.SILENT, [setup, "install"]) != 0:
+            raise RuntimeError(f"DXVK install script failed: {setup} install")
 
         # Copy dxvk.conf
         wineprefix = os.environ.get("WINEPREFIX", "")
