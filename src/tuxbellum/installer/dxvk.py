@@ -87,7 +87,8 @@ def _resolve_dxvk_archive(resource_root: str, logger: Logger) -> str:
     logger.warn(
         f"Bundled DXVK archive missing, downloading upstream DXVK {version} instead"
     )
-    if run_command(RunMode.SILENT, ["wget", "-O", archive, url]) != 0 or not os.path.isfile(archive):
+    download_failed = run_command(RunMode.SILENT, ["wget", "-O", archive, url]) != 0
+    if download_failed or not os.path.isfile(archive):
         raise RuntimeError(f"DXVK download failed: {url}")
     return archive
 
