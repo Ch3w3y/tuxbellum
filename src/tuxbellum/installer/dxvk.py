@@ -68,7 +68,11 @@ def install_dxvk(gpu_type: str, resource_root: str, logger: Logger) -> None:
 
 
 def _resolve_dxvk_archive(resource_root: str, logger: Logger) -> str:
-    bundled = os.path.join(resource_root, "packages", f"dxvk-{DEFAULT_VERSIONS.dxvk_ver}.tar.gz")
+    bundled = os.path.join(
+        resource_root,
+        "packages",
+        f"dxvk-{DEFAULT_VERSIONS.dxvk_ver}.tar.gz",
+    )
     if os.path.isfile(bundled):
         return bundled
 
@@ -83,7 +87,10 @@ def _resolve_dxvk_archive(resource_root: str, logger: Logger) -> str:
         logger.warn(f"Bundled DXVK archive missing, using cached upstream DXVK {version}")
         return archive
 
-    url = f"https://github.com/doitsujin/dxvk/releases/download/v{version}/dxvk-{version}.tar.gz"
+    url = (
+        f"https://github.com/doitsujin/dxvk/releases/download/"
+        f"v{version}/dxvk-{version}.tar.gz"
+    )
     logger.warn(
         f"Bundled DXVK archive missing, downloading upstream DXVK {version} instead"
     )
