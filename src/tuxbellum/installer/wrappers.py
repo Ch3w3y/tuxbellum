@@ -59,25 +59,25 @@ def _build_script(
     is_nvidia = gpu_type.upper() == "NVIDIA"
 
     if is_nvidia:
-        # NVIDIA: proton run path (Joepaji generator.go NVIDIA branch)
+        # NVIDIA: Proton's bundled wine directly (no pressure-vessel container)
         body = (
             "validate_paths() {\n"
             '    if [ ! -f "$LAUNCHER_EXE" ]; then\n'
             '        echo "ERROR: Launcher executable not found: $LAUNCHER_EXE" >&2\n'
             "        exit 1\n"
             "    fi\n\n"
-            '    if [ ! -x "$PROTON_BIN" ]; then\n'
-            '        echo "ERROR: $PROTON_BIN not found or not executable" >&2\n'
+            '    WINE_BIN="$PROTONPATH/files/bin/wine"\n'
+            '    if [ ! -x "$WINE_BIN" ]; then\n'
+            '        echo "ERROR: Proton wine not found at $WINE_BIN" >&2\n'
             "        exit 1\n"
             "    fi\n"
             "}\n\n"
             "run_launcher() {\n"
             '    cd "$GAME_DIR" || exit 1\n'
             '    LOG_FILE="$GAME_DIR/launcher.log"\n\n'
-            '    wineserver "-k"\n'
+            '    "$PROTONPATH/files/bin/wineserver" "-k"\n'
             "    sleep 1\n\n"
-            '    export GAMEID="bellum"\n'
-            '    "$PROTON_BIN" run "$LAUNCHER_EXE" "$@"'
+            '    "$PROTONPATH/files/bin/wine" "$LAUNCHER_EXE" "$@"'
             ' > "$LOG_FILE" 2>> "$LOG_FILE"\n\n'
             '    return "$?"\n'
             "}\n\n"
