@@ -21,6 +21,11 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release version="4.0.6" date="2026-05-14">
+      <description>
+        <p>Fix: Launcher installer uses Proton's bundled wine directly (removes umu-run dependency entirely).</p>
+      </description>
+    </release>
     <release version="4.0.5" date="2026-05-14">
       <description>
         <p>Fix: NVIDIA wrapper uses Proton's bundled wine directly instead of proton run to avoid pressure-vessel blocking Wayland windows.</p>

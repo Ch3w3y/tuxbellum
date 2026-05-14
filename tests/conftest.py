@@ -94,7 +94,7 @@ def temp_config_dir(tmp_path) -> str:
 def sample_manifest(tmp_wineprefix) -> InstallManifest:
     """A fully populated InstallManifest for testing."""
     return InstallManifest.now(
-        tuxbellum_version="4.0.5",
+        tuxbellum_version="4.0.6",
         wineprefix=tmp_wineprefix,
         proton_version="proton-cachyos-10.0",
         proton_path="/tmp/proton",

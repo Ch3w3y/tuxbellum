@@ -214,18 +214,6 @@ def check_wine_version(logger: Logger, force: bool = False) -> None:
         logger.info(f"[OK] Wine {installed} (>= 11.0) found")
 
 
-def check_umu_run(logger: Logger) -> None:
-    """Ensure umu-run is on PATH."""
-    if not look_path("umu-run"):
-        logger.error(
-            "umu-run binary not found in PATH.\n"
-            "Grab latest umu-launcher-1.3.0 for your distro: "
-            "https://github.com/Open-Wine-Components/umu-launcher/releases/tag/1.3.0"
-        )
-        raise RuntimeError("umu-run not found")
-    logger.info(f"[OK] umu-run binary found: {look_path('umu-run')}")
-
-
 def check_winetricks(workdir: str, logger: Logger) -> None:
     """Locate or extract winetricks."""
     if look_path("winetricks"):
@@ -327,7 +315,6 @@ def run_prechecks(
     wineprefix, _, _ = validate_wineprefix(wineprefix_arg, logger)
     check_wine_binaries(logger)
     check_wine_version(logger, force_wine_version)
-    check_umu_run(logger)
 
     if launcher_installer_path:
         if not os.path.isfile(launcher_installer_path):

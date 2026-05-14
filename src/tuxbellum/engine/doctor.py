@@ -28,7 +28,6 @@ def run_diagnostics(wineprefix: str = "") -> dict:
     for name, binary in [
         ("wine", "wine"),
         ("winetricks", "winetricks"),
-        ("umu-run", "umu-run"),
         ("wget", "wget"),
         ("tar", "tar"),
     ]:

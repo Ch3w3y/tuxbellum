@@ -17,7 +17,6 @@ from tuxbellum.installer.launcher import (
 from tuxbellum.installer.precheck import (
     PrecheckResult,
     check_proton,
-    check_umu_run,
     check_wine_binaries,
     check_wine_version,
     check_winetricks,
@@ -60,7 +59,6 @@ __all__ = [
     "validate_wineprefix",
     "check_wine_binaries",
     "check_wine_version",
-    "check_umu_run",
     "check_winetricks",
     "check_proton",
     "detect_gpu_type",

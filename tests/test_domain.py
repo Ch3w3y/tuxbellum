@@ -32,7 +32,7 @@ class TestInstallManifest:
 
     def test_round_trip_json(self):
         m = InstallManifest.now(
-            tuxbellum_version="4.0.5",
+            tuxbellum_version="4.0.6",
             wineprefix="/tmp/pfx",
             proton_version="proton-cachyos-10.0",
             proton_path="/tmp/proton",
@@ -132,7 +132,7 @@ class TestInstallState:
 
         m = InstallManifest.now(
             wineprefix=pfx,
-            tuxbellum_version="4.0.5",
+            tuxbellum_version="4.0.6",
             proton_version="test-proton",
         )
         save_manifest(m, pfx)

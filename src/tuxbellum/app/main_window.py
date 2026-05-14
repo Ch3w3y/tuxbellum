@@ -19,7 +19,7 @@ from tuxbellum.domain.install_state import discover_manifest  # noqa: E402
 from tuxbellum.i18n.locale import setup_gettext  # noqa: E402
 
 _tr = setup_gettext()
-VERSION = "4.0.5"
+VERSION = "4.0.6"
 
 CONFIG_DIR = path_mgr.user_config("tuxbellum")
 os.makedirs(CONFIG_DIR, exist_ok=True)
