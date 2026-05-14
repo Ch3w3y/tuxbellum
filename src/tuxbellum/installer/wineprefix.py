@@ -16,6 +16,7 @@ _WINEDLLS = [
     "dotnet9",
     "dotnetdesktop9",
     "mfc140",
+    "webview2",
 ]
 
 
