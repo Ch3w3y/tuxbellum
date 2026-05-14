@@ -222,7 +222,6 @@ class MainWindow(Gtk.ApplicationWindow):
 
         def _run():
             try:
-                from tuxbellum.core.gpu import detect_gpu
                 from tuxbellum.core.logging import Logger
                 from tuxbellum.installer.run import InstallConfig, run_installation
 
@@ -235,36 +234,14 @@ class MainWindow(Gtk.ApplicationWindow):
                 logger = Logger(log_file)
                 progress.set_log_dest(log_file)
 
-                progress.set_status(_tr("Detecting GPU..."), 0.05)
-                progress.append_log("Detecting GPU...")
-                gpu_type, _ = detect_gpu()
-                if not gpu_type:
-                    gpu_type = "Unknown"
-
-                progress.append_log(f"GPU: {gpu_type}")
-
-                progress.set_status(_tr("Running prechecks..."), 0.10)
-                progress.append_log("Running prechecks...")
-                from tuxbellum.installer.precheck import run_prechecks
-
-                result = run_prechecks(
-                    wineprefix,
-                    "",
-                    False,
-                    data.get("fsr41", False),
-                    resource_root,
-                    logger,
-                )
+                progress.set_status(_tr("Starting installation..."), 0.05)
+                progress.append_log("Starting installation...")
 
                 config = InstallConfig(
-                    wineprefix=result.wineprefix,
-                    proton_path=result.proton_path,
-                    gpu_type=result.gpu_type,
-                    is_amd_gpu=result.is_amd_gpu,
-                    launcher_installer=result.launcher_installer,
+                    wineprefix=wineprefix,
                     resource_root=resource_root,
                     cache_dir=cache_dir,
-                    is_fsr41=data.get("fsr41", False),
+                    is_fsr41=data.get("fsr41", "") in ("true", "True", True),
                 )
 
                 progress.set_status(_tr("Installing Bellum..."), 0.15)

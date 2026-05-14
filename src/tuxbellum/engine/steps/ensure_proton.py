@@ -3,7 +3,7 @@
 from tuxbellum.config.paths import path_mgr
 from tuxbellum.config.versions import DEFAULT_VERSIONS
 from tuxbellum.engine.context import InstallContext
-from tuxbellum.installer.proton import ensure_proton, get_proton_install_path, patch_proton_settings
+from tuxbellum.installer.proton import ensure_proton, get_proton_install_path
 
 
 def step(ctx: InstallContext) -> None:
@@ -26,5 +26,3 @@ def step(ctx: InstallContext) -> None:
 
     ctx.proton_path = get_proton_install_path(proton_ver)
     ctx.proton_version = proton_ver
-
-    patch_proton_settings(ctx.proton_path)
