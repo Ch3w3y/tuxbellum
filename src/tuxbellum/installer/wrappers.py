@@ -92,4 +92,3 @@ def _write_system_bin(content: str, logger: Logger) -> None:
         fh.write(content)
     os.chmod(target, 0o755)
     logger.info(f"[OK] Launcher written: {target}")
-

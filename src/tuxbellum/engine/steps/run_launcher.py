@@ -26,8 +26,7 @@ def step(ctx: InstallContext) -> None:
 
     if ctx.logger:
         ctx.logger.info(
-            "Time to install the launcher! "
-            "Follow the on-screen prompts once the GUI pops up."
+            "Time to install the launcher! " "Follow the on-screen prompts once the GUI pops up."
         )
 
     proton = os.path.join(ctx.proton_path, "proton")

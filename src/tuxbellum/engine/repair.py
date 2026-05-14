@@ -51,9 +51,7 @@ def run_repair(wineprefix: str, logger: Logger) -> dict:
             )
             from tuxbellum.installer.desktop import generate_desktop_files
 
-            generate_desktop_files(
-                manifest.wineprefix, icon_path, manifest.gpu_type, logger
-            )
+            generate_desktop_files(manifest.wineprefix, icon_path, manifest.gpu_type, logger)
             fixed.append("desktop entry regenerated")
         except Exception as e:
             unfixed.append(f"desktop entry: {e}")

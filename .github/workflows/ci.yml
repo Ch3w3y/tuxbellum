@@ -47,7 +47,7 @@ jobs:
         run: ruff check src/
 
       - name: Black check
-        run: black --check src/
+        run: black --check --fast src/
 
       - name: MyPy (non-GTK modules only)
         run: |

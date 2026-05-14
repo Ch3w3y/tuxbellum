@@ -33,11 +33,13 @@ def run_diagnostics(wineprefix: str = "") -> dict:
         ("tar", "tar"),
     ]:
         path = look_path(binary)
-        checks.append({
-            "name": name,
-            "status": "ok" if path else "warning",
-            "detail": path if path else f"{binary} not on PATH",
-        })
+        checks.append(
+            {
+                "name": name,
+                "status": "ok" if path else "warning",
+                "detail": path if path else f"{binary} not on PATH",
+            }
+        )
 
     # GTK runtime
     try:
@@ -58,21 +60,25 @@ def run_diagnostics(wineprefix: str = "") -> dict:
                     cache_size += os.path.getsize(os.path.join(root, f))
                 except OSError:
                     pass
-    checks.append({
-        "name": "cache",
-        "status": "ok",
-        "detail": f"{cache_dir} ({cache_size / (1024 * 1024):.1f} MB)",
-    })
+    checks.append(
+        {
+            "name": "cache",
+            "status": "ok",
+            "detail": f"{cache_dir} ({cache_size / (1024 * 1024):.1f} MB)",
+        }
+    )
 
     # Managed install
     if wineprefix:
         manifest = discover_manifest(wineprefix)
         if manifest:
-            checks.append({
-                "name": "manifest",
-                "status": "ok",
-                "detail": f"v{manifest.tuxbellum_version}, proton={manifest.proton_version}",
-            })
+            checks.append(
+                {
+                    "name": "manifest",
+                    "status": "ok",
+                    "detail": f"v{manifest.tuxbellum_version}, proton={manifest.proton_version}",
+                }
+            )
 
             # Check key paths
             for label, path in [
@@ -81,23 +87,29 @@ def run_diagnostics(wineprefix: str = "") -> dict:
                 ("icon", manifest.icon_path),
             ]:
                 if path:
-                    checks.append({
-                        "name": label,
-                        "status": "ok" if os.path.exists(path) else "warning",
-                        "detail": path if os.path.exists(path) else f"missing: {path}",
-                    })
+                    checks.append(
+                        {
+                            "name": label,
+                            "status": "ok" if os.path.exists(path) else "warning",
+                            "detail": path if os.path.exists(path) else f"missing: {path}",
+                        }
+                    )
         else:
-            checks.append({
-                "name": "manifest",
-                "status": "warning",
-                "detail": f"no manifest found in {wineprefix}",
-            })
+            checks.append(
+                {
+                    "name": "manifest",
+                    "status": "warning",
+                    "detail": f"no manifest found in {wineprefix}",
+                }
+            )
     else:
-        checks.append({
-            "name": "manifest",
-            "status": "ok",
-            "detail": "no wineprefix specified — skipping install check",
-        })
+        checks.append(
+            {
+                "name": "manifest",
+                "status": "ok",
+                "detail": "no wineprefix specified — skipping install check",
+            }
+        )
 
     healthy = all(c["status"] == "ok" for c in checks)
     return {"healthy": healthy, "checks": checks}

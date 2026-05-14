@@ -23,8 +23,7 @@ def step(ctx: InstallContext) -> None:
 
     if ctx.logger:
         ctx.logger.info(
-            "Astarte Launcher install completed successfully! "
-            "Few more steps to go..."
+            "Astarte Launcher install completed successfully! " "Few more steps to go..."
         )
         ctx.logger.warn("I'm not done! Don't launch game or close this script just yet")
 

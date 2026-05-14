@@ -136,13 +136,15 @@ def _cmd_status(args, logger: Logger) -> int:
         "wineprefix": wineprefix,
     }
     if manifest:
-        output.update({
-            "tuxbellum_version": manifest.tuxbellum_version,
-            "proton_version": manifest.proton_version,
-            "gpu_type": manifest.gpu_type,
-            "fsr_enabled": manifest.fsr_enabled,
-            "launcher_path": manifest.launcher_path,
-        })
+        output.update(
+            {
+                "tuxbellum_version": manifest.tuxbellum_version,
+                "proton_version": manifest.proton_version,
+                "gpu_type": manifest.gpu_type,
+                "fsr_enabled": manifest.fsr_enabled,
+                "launcher_path": manifest.launcher_path,
+            }
+        )
 
     print(_format_output(output, args))
     return 0 if manifest else 1

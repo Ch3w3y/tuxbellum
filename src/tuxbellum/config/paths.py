@@ -83,6 +83,7 @@ class PathManager:
         """Return ``~/.local/bin``, ensuring the directory exists."""
         base = Path(PathManager.user_home(), ".local", "bin")
         return str(base)
+
     @staticmethod
     def proton_install_path(proton_ver: str) -> str:
         return PathManager.user_data("bellum", "proton", f"bellum-{proton_ver}")
