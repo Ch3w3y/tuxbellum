@@ -38,11 +38,6 @@ def init_wineprefix(proton_path: str, wineprefix: str, logger: Logger) -> None:
 
     logger.info("Initializing WINEPREFIX with Proton base")
     run_checked(
-        ["umu-run", DEFAULT_VERSIONS.binaries.msidb],
-        label="msidb bootstrap",
-    )
-
-    run_checked(
         [DEFAULT_VERSIONS.binaries.wineboot, "--init"],
         label="wineprefix init",
     )

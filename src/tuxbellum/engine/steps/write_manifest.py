@@ -27,7 +27,7 @@ def step(ctx: InstallContext) -> None:
         dxvk_source = "downloaded"
 
     manifest = InstallManifest.now(
-        tuxbellum_version="4.0.2",
+        tuxbellum_version="4.0.3",
         wineprefix=ctx.wineprefix,
         proton_version=ctx.proton_version,
         proton_path=ctx.proton_path,

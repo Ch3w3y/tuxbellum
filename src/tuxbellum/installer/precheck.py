@@ -181,7 +181,6 @@ def check_wine_binaries(logger: Logger) -> None:
     required = [
         DEFAULT_VERSIONS.binaries.wine,
         DEFAULT_VERSIONS.binaries.wineboot,
-        DEFAULT_VERSIONS.binaries.msidb,
         DEFAULT_VERSIONS.binaries.winecfg,
         DEFAULT_VERSIONS.binaries.wineserver,
     ]

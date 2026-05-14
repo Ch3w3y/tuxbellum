@@ -5,7 +5,6 @@ from dataclasses import dataclass, field
 class Binaries:
     wine: str = "/usr/bin/wine"
     wineboot: str = "/usr/bin/wineboot"
-    msidb: str = "/usr/bin/msidb"
     winecfg: str = "/usr/bin/winecfg"
     wineserver: str = "/usr/bin/wineserver"
 

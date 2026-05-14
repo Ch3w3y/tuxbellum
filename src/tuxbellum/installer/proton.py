@@ -199,8 +199,18 @@ def ensure_proton(
 
     # Verify/patch settings
     settings_file = get_proton_user_settings_path(actual_dir)
+    proton_bin = os.path.join(actual_dir, "proton")
+
     if not settings_file:
         raise RuntimeError("Proton user settings file missing after setup")
+    if not os.path.isfile(proton_bin):
+        shutil.rmtree(actual_dir, ignore_errors=True)
+        raise RuntimeError(
+            f"Proton binary missing at {proton_bin} after installation. "
+            "Removed incomplete install — try again."
+        )
+    if not os.access(proton_bin, os.X_OK):
+        os.chmod(proton_bin, 0o755)
     try:
         patch_proton_settings(settings_file, is_amd, is_fsr41)
     except Exception:
