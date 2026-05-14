@@ -1,7 +1,9 @@
-"""Ensure Proton is available — download and patch if needed."""
+"""Ensure Proton is available — download, extract, and patch if needed."""
 
+from tuxbellum.config.paths import path_mgr
+from tuxbellum.config.versions import DEFAULT_VERSIONS
 from tuxbellum.engine.context import InstallContext
-from tuxbellum.installer.proton import ensure_proton, patch_proton_settings
+from tuxbellum.installer.proton import ensure_proton, get_proton_install_path, patch_proton_settings
 
 
 def step(ctx: InstallContext) -> None:
@@ -9,12 +11,20 @@ def step(ctx: InstallContext) -> None:
     if ctx.logger:
         ctx.logger.info("Ensuring Proton is available...")
 
-    ensure_proton(ctx.proton_version, ctx.logger)
+    proton_ver = ctx.proton_version or DEFAULT_VERSIONS.proton_ver
+    proton_dir = get_proton_install_path(proton_ver)
+    package_root = path_mgr.app_data_root()
 
-    # The ensure_proton function resolves the path internally;
-    # we grab it from the module for context consistency.
-    from tuxbellum.installer.proton import get_proton_install_path
+    ensure_proton(
+        proton_dir,
+        proton_ver,
+        package_root,
+        ctx.is_amd_gpu,
+        ctx.is_fsr41,
+        ctx.logger,
+    )
 
-    ctx.proton_path = get_proton_install_path(ctx.proton_version)
+    ctx.proton_path = get_proton_install_path(proton_ver)
+    ctx.proton_version = proton_ver
 
     patch_proton_settings(ctx.proton_path)
