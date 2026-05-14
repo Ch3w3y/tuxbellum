@@ -21,6 +21,11 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release version="4.0.4" date="2026-05-14">
+      <description>
+        <p>Fix: Generate GPU-specific launcher wrapper — proton run for NVIDIA, wine for AMD (matching Joepaji upstream).</p>
+      </description>
+    </release>
     <release version="4.0.3" date="2026-05-14">
       <description>
         <p>Fix: Verify proton binary after download, remove msidb dependency for cross-distro compatibility.</p>
