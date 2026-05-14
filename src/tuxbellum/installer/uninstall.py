@@ -4,8 +4,10 @@ import os
 from dataclasses import dataclass
 
 from tuxbellum.config.versions import DEFAULT_VERSIONS
+from tuxbellum.core.commands import run_allowed_failure
 from tuxbellum.core.logging import Color, Logger, colorize
-from tuxbellum.core.system import RunMode, ask_bool, is_dir, run_command
+from tuxbellum.core.system import ask_bool, is_dir
+from tuxbellum.domain.install_state import delete_manifest, discover_manifest
 from tuxbellum.installer.proton import get_proton_install_path
 
 
@@ -30,6 +32,9 @@ def run_uninstallation(config: UninstallConfig, logger: Logger) -> None:
             colorize(f"WINEPREFIX directory not found: {config.wineprefix}", Color.BOLD_YELLOW)
         )
 
+    # Discover manifest for smarter cleanup
+    manifest = discover_manifest(config.wineprefix)
+
     logger.info(colorize(f"WINEPREFIX: {config.wineprefix}", Color.BOLD_YELLOW))
     print()
 
@@ -43,9 +48,13 @@ def run_uninstallation(config: UninstallConfig, logger: Logger) -> None:
     logger.info("Proceeding with uninstallation...")
     print()
 
-    _remove_launcher_binaries(logger)
-    _remove_desktop_entries(logger)
-    _remove_icon(logger)
+    if manifest:
+        _remove_from_manifest(manifest, logger)
+    else:
+        _remove_launcher_binaries(logger)
+        _remove_desktop_entries(logger)
+        _remove_icon(logger)
+
     _remove_proton(config.wineprefix, logger)
 
     if wineprefix_exists:
@@ -64,7 +73,9 @@ def run_uninstallation(config: UninstallConfig, logger: Logger) -> None:
 
 def _remove_launcher_binaries(logger: Logger) -> None:
     logger.info("Removing launcher binaries...")
-    bellum_path = "/usr/local/bin/Bellum"
+    from tuxbellum.config.paths import path_mgr
+
+    bellum_path = os.path.join(path_mgr.user_local_bin(), "Bellum")
     if os.path.isfile(bellum_path):
         os.remove(bellum_path)
         logger.info(f"[OK] Removed {bellum_path}")
@@ -84,7 +95,7 @@ def _remove_desktop_entries(logger: Logger) -> None:
             logger.info(f"[OK] Removed {p}")
 
     if is_dir(apps_dir):
-        run_command(RunMode.SILENT, ["update-desktop-database", apps_dir])
+        run_allowed_failure(["update-desktop-database", apps_dir])
 
 
 def _remove_icon(logger: Logger) -> None:
@@ -132,3 +143,25 @@ def _is_empty_dir(path: str) -> bool:
         return len(os.listdir(path)) == 0
     except OSError:
         return False
+
+
+def _remove_from_manifest(manifest, logger: Logger) -> None:
+    """Remove all tracked files from a manifest, then delete the manifest."""
+    logger.info("Removing files tracked by install manifest...")
+    for f in manifest.owned_files:
+        if os.path.isfile(f):
+            os.remove(f)
+            logger.info(f"[OK] Removed {f}")
+        elif os.path.islink(f):
+            os.unlink(f)
+            logger.info(f"[OK] Removed symlink {f}")
+
+    for d in manifest.owned_directories:
+        if is_dir(d):
+            import shutil
+
+            shutil.rmtree(d, ignore_errors=True)
+            logger.info(f"[OK] Removed directory {d}")
+
+    delete_manifest(manifest.wineprefix)
+    logger.info("[OK] Removed install manifest")

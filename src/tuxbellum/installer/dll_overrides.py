@@ -1,8 +1,8 @@
 """DLL overrides — system-wide and per-app registry entries."""
 
 from tuxbellum.config.versions import DEFAULT_VERSIONS
+from tuxbellum.core.commands import run_checked
 from tuxbellum.core.logging import Logger
-from tuxbellum.core.system import RunMode, run_command
 
 
 def update_dlls(logger: Logger) -> None:
@@ -13,8 +13,7 @@ def update_dlls(logger: Logger) -> None:
     logger.info("Setting DLL overrides")
 
     for dll in system_dlls:
-        run_command(
-            RunMode.SILENT,
+        run_checked(
             [
                 wine,
                 "reg",
@@ -26,12 +25,12 @@ def update_dlls(logger: Logger) -> None:
                 "native,builtin",
                 "/f",
             ],
+            label=f"wine reg DllOverrides {dll}",
         )
 
     app_dlls = ["d3d11", "dxgi"]
     for dll in app_dlls:
-        run_command(
-            RunMode.SILENT,
+        run_checked(
             [
                 wine,
                 "reg",
@@ -43,9 +42,9 @@ def update_dlls(logger: Logger) -> None:
                 "builtin",
                 "/f",
             ],
+            label=f"wine reg AstarteLauncher {dll}",
         )
-        run_command(
-            RunMode.SILENT,
+        run_checked(
             [
                 wine,
                 "reg",
@@ -57,4 +56,5 @@ def update_dlls(logger: Logger) -> None:
                 "native",
                 "/f",
             ],
+            label=f"wine reg Bellum {dll}",
         )

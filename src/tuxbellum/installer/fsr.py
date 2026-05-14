@@ -4,8 +4,8 @@ import os
 import shutil
 
 from tuxbellum.config.versions import DEFAULT_VERSIONS
+from tuxbellum.core.commands import run_checked
 from tuxbellum.core.logging import Logger
-from tuxbellum.core.system import RunMode, run_command
 
 
 def copy_fsr41_upgrade_dll(workdir: str, logger: Logger) -> None:
@@ -76,9 +76,9 @@ def upgrade_fsr(
         "x64",
     )
 
-    run_command(
-        RunMode.SILENT,
+    run_checked(
         ["mkdir", "-p", fg_target_dir, d3d_target_dir],
+        label="FSR target dirs",
     )
 
     fg_src = os.path.join(fs_path, fg_dll)
@@ -92,8 +92,7 @@ def upgrade_fsr(
         logger.info(f"[OK] Copied {d3d_dll}")
 
     # Register amdxcffx64 override
-    run_command(
-        RunMode.SILENT,
+    run_checked(
         [
             DEFAULT_VERSIONS.binaries.wine,
             "reg",
@@ -105,5 +104,6 @@ def upgrade_fsr(
             "native",
             "/f",
         ],
+        label="wine reg amdxcffx64",
     )
     logger.info("FSR 4.1.0 Upgrade Complete!")

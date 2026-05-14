@@ -6,17 +6,15 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from tuxbellum.config.versions import DEFAULT_VERSIONS
+from tuxbellum.core.commands import run_capture, run_checked
 from tuxbellum.core.gpu import detect_gpu
 from tuxbellum.core.gui_picker import pick_directory, pick_directory_existing, validate_directory
 from tuxbellum.core.logging import Color, Logger, colorize
 from tuxbellum.core.system import (
-    RunMode,
     ask_bool,
     is_dir,
     is_writable,
     look_path,
-    run_command,
-    run_command_with_output,
 )
 from tuxbellum.installer.proton import ensure_proton, get_proton_install_path, get_proton_url
 
@@ -250,21 +248,28 @@ def check_winetricks(workdir: str, logger: Logger) -> None:
 
     tmp_dir = tempfile.mkdtemp(prefix="winetricks.", dir=tmp_base)
 
-    run_command(RunMode.SILENT, ["tar", "-xzf", archive, "-C", tmp_dir])
+    run_checked(
+        ["tar", "-xzf", archive, "-C", tmp_dir],
+        label="winetricks extraction",
+    )
 
     if not is_dir(tmp_dir):
         raise RuntimeError("winetricks extraction failed")
 
     logger.info("Installing winetricks...")
-    run_command(RunMode.STREAM, ["sudo", "make", "install"], log_path="")
+    run_checked(
+        ["sudo", "make", "install"],
+        label="winetricks make install",
+    )
 
     if not look_path("winetricks"):
         raise RuntimeError("winetricks installation failed")
 
     logger.info("Running winetricks self-update...")
-    result = run_command(RunMode.STREAM, ["sudo", "winetricks", "--self-update"], log_path="")
-    if result != 0:
-        raise RuntimeError("winetricks self-update failed")
+    run_checked(
+        ["sudo", "winetricks", "--self-update"],
+        label="winetricks self-update",
+    )
     logger.info("[OK] winetricks installed and updated successfully")
 
     logger.info("Cleaning up extracted winetricks directory...")
@@ -355,14 +360,14 @@ def run_prechecks(
 
 def _is_ssd(path: str, logger: Logger) -> bool:
     try:
-        output, _ = run_command_with_output(["lsblk", "-no", "rota", os.path.dirname(path)])
-        return output.strip() == "0"
+        result = run_capture(["lsblk", "-no", "rota", os.path.dirname(path)])
+        return result.stdout.strip() == "0"
     except Exception:
         pass
 
     try:
-        output, _ = run_command_with_output(["df", "-P", path])
-        lines = output.split("\n")
+        result = run_capture(["df", "-P", path])
+        lines = result.stdout.split("\n")
         if len(lines) >= 2:
             fields = lines[1].split()
             if fields:
@@ -377,8 +382,8 @@ def _is_ssd(path: str, logger: Logger) -> bool:
 def _get_wine_version(logger: Logger) -> str:
     os.environ["WINEPREFIX"] = os.path.join(str(Path.home()), ".wine")
     try:
-        output, _ = run_command_with_output(["wine", "--version"])
-        m = re.search(r"wine-([0-9.]+)", output)
+        result = run_capture(["wine", "--version"])
+        m = re.search(r"wine-([0-9.]+)", result.stdout)
         if m:
             return m.group(1)
     except Exception:

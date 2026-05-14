@@ -1,10 +1,9 @@
-"""Launcher wrapper scripts — GPU-specific bash wrappers for /usr/local/bin/Bellum."""
+"""Launcher wrapper scripts — GPU-specific bash wrappers for ~/.local/bin/Bellum."""
 
 import os
-import tempfile
 
+from tuxbellum.config.paths import path_mgr
 from tuxbellum.core.logging import Logger
-from tuxbellum.core.system import RunMode, run_command
 
 _TAIL_NAME = "Bellum"
 
@@ -15,7 +14,7 @@ def generate_launcher_wrapper(
     gpu_type: str,
     logger: Logger,
 ) -> None:
-    """Create /usr/local/bin/Bellum with GPU-specific content."""
+    """Create ~/.local/bin/Bellum with GPU-specific content."""
     launcher_exe = os.path.join(
         wineprefix,
         "drive_c/users/steamuser/AppData/Local/"
@@ -85,32 +84,12 @@ def _build_script(
 
 
 def _write_system_bin(content: str, logger: Logger) -> None:
-    target = f"/usr/local/bin/{_TAIL_NAME}"
+    target = os.path.join(path_mgr.user_local_bin(), _TAIL_NAME)
     os.makedirs(os.path.dirname(target), exist_ok=True)
+    os.makedirs(path_mgr.user_local_bin(), exist_ok=True)
 
-    if os.geteuid() != 0:
-        _write_via_pkexec(content, target, logger)
-    else:
-        with open(target, "w") as fh:
-            fh.write(content)
-        os.chmod(target, 0o755)
+    with open(target, "w") as fh:
+        fh.write(content)
+    os.chmod(target, 0o755)
+    logger.info(f"[OK] Launcher written: {target}")
 
-
-def _write_via_pkexec(content: str, target: str, logger: Logger) -> None:
-    fd, tmp = tempfile.mkstemp(prefix="bellum-launcher-", suffix=".sh")
-    try:
-        os.write(fd, content.encode())
-        os.close(fd)
-
-        run_command(RunMode.STREAM, ["pkexec", "cp", tmp, target])
-        run_command(RunMode.STREAM, ["pkexec", "chmod", "755", target])
-
-        import getpass
-
-        user = getpass.getuser()
-        run_command(RunMode.STREAM, ["pkexec", "chown", f"{user}:{user}", target])
-    finally:
-        try:
-            os.unlink(tmp)
-        except OSError:
-            pass

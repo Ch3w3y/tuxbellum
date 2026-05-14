@@ -4,8 +4,8 @@ import os
 from pathlib import Path
 
 from tuxbellum.config.versions import DEFAULT_VERSIONS
+from tuxbellum.core.commands import run_checked
 from tuxbellum.core.logging import Logger
-from tuxbellum.core.system import RunMode, run_command
 
 _WINEDLLS = [
     "vcrun2026",
@@ -36,35 +36,20 @@ def init_wineprefix(proton_path: str, wineprefix: str, logger: Logger) -> None:
     os.environ["GAMEID"] = "1"
 
     logger.info("Initializing WINEPREFIX with Proton base")
-    if (
-        run_command(
-            RunMode.STREAM,
-            ["umu-run", DEFAULT_VERSIONS.binaries.msidb],
-        )
-        != 0
-    ):
-        raise RuntimeError("Failed to run msidb with umu-run")
+    run_checked(
+        ["umu-run", DEFAULT_VERSIONS.binaries.msidb],
+        label="msidb bootstrap",
+    )
 
-    if (
-        run_command(
-            RunMode.STREAM,
-            [DEFAULT_VERSIONS.binaries.wineboot, "--init"],
-        )
-        != 0
-    ):
-        raise RuntimeError("Failed to initialize wineprefix with wineboot")
+    run_checked(
+        [DEFAULT_VERSIONS.binaries.wineboot, "--init"],
+        label="wineprefix init",
+    )
 
 
 def install_winedlls(logger: Logger) -> None:
     """Install every required DLL via winetricks."""
     logger.info("Installing required winedlls")
     for dll in _WINEDLLS:
-        if (
-            run_command(
-                RunMode.STREAM,
-                ["winetricks", "-q", dll],
-            )
-            != 0
-        ):
-            raise RuntimeError(f"Failed to install dll via winetricks: {dll}")
+        run_checked(["winetricks", "-q", dll], label=f"winetricks {dll}")
         logger.info(f"[OK] {dll}")

@@ -4,8 +4,8 @@ import os
 from dataclasses import dataclass
 
 from tuxbellum.config.versions import LAUNCHER_INSTALLER_URL
+from tuxbellum.core.commands import run_checked
 from tuxbellum.core.logging import Logger
-from tuxbellum.core.system import RunMode, run_command
 
 
 @dataclass
@@ -24,9 +24,9 @@ def download_launcher_installer(workdir: str, logger: Logger) -> LauncherInstall
     os.makedirs(download_dir, exist_ok=True)
     logger.info(f"Downloading AstarteLauncher installer: {filename}")
 
-    run_command(
-        RunMode.SILENT,
+    run_checked(
         ["wget", "-O", dest, LAUNCHER_INSTALLER_URL],
+        label="Astarte Launcher download",
     )
 
     if not os.path.isfile(dest):

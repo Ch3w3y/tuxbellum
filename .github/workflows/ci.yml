@@ -54,6 +54,9 @@ jobs:
           mypy src/tuxbellum/config/ src/tuxbellum/core/ src/tuxbellum/installer/ \
             --ignore-missing-imports --no-error-summary || true
 
+      - name: Version consistency check
+        run: python scripts/check_versions.py
+
   # ── Test ─────────────────────────────────────────────
   test:
     name: Unit Tests
@@ -81,14 +84,68 @@ jobs:
       - name: Install Python dependencies
         run: pip install -e ".[dev]"
 
-      - name: Run tests (non-GTK4)
+      - name: Run tests with coverage
         run: |
           pytest tests/ \
             -m "not gtk4" \
             --cov=tuxbellum \
             --cov-report=xml \
             --cov-report=term-missing \
-            || true
+            --cov-fail-under=20
+
+      - name: Check PKGBUILD dependencies
+        run: python scripts/check_aur_deps.py
+
+  # ── Version & Packaging Check ───────────────────────
+  verify-packaging:
+    name: Verify Packaging
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify release tarball contents
+        run: |
+          echo "Checking required directories exist in source..."
+          for dir in src packages locales data docs scripts; do
+            if [ ! -d "$dir" ]; then
+              echo "ERROR: Missing directory: $dir"
+              exit 1
+            fi
+            echo "  OK: $dir/"
+          done
+          echo ""
+          echo "Checking required files exist..."
+          for f in meson.build pyproject.toml PKGBUILD LICENSE README.md Makefile; do
+            if [ ! -f "$f" ]; then
+              echo "ERROR: Missing file: $f"
+              exit 1
+            fi
+            echo "  OK: $f"
+          done
+          echo ""
+          echo "Checking packages/ has expected assets..."
+          if ! ls packages/dxvk-*.tar.gz >/dev/null 2>&1; then
+            echo "ERROR: DXVK tarball missing from packages/"
+            exit 1
+          fi
+          echo "  OK: DXVK tarball present"
+          if ! ls packages/winetricks-*.tar.gz >/dev/null 2>&1; then
+            echo "ERROR: Winetricks tarball missing from packages/"
+            exit 1
+          fi
+          echo "  OK: Winetricks tarball present"
+          if [ ! -d "packages/fsr4" ]; then
+            echo "ERROR: FSR4 directory missing from packages/"
+            exit 1
+          fi
+          echo "  OK: packages/fsr4/"
+          if [ ! -f "data/icons/bellum.png" ]; then
+            echo "ERROR: Application icon missing"
+            exit 1
+          fi
+          echo "  OK: bellum.png"
+          echo ""
+          echo "All packaging checks passed."
 
   # ── Dependency Check ─────────────────────────────────
   dependency-check:
@@ -132,7 +189,7 @@ jobs:
   release:
     name: Build & Release
     if: startsWith(github.ref, 'refs/tags/v')
-    needs: [lint, test]
+    needs: [lint, test, verify-packaging]
     runs-on: ubuntu-latest
     permissions:
       contents: write

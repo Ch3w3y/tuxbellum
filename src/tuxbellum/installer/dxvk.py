@@ -6,8 +6,9 @@ import tempfile
 
 from tuxbellum.config.paths import path_mgr
 from tuxbellum.config.versions import DEFAULT_VERSIONS
+from tuxbellum.core.commands import run_checked
 from tuxbellum.core.logging import Logger
-from tuxbellum.core.system import RunMode, look_path, run_command
+from tuxbellum.core.system import look_path
 
 
 def install_dxvk(gpu_type: str, resource_root: str, logger: Logger) -> None:
@@ -24,14 +25,10 @@ def install_dxvk(gpu_type: str, resource_root: str, logger: Logger) -> None:
 
     try:
         # Extract
-        if (
-            run_command(
-                RunMode.SILENT,
-                ["tar", "-xzf", archive, "-C", tmp],
-            )
-            != 0
-        ):
-            raise RuntimeError(f"DXVK extraction failed: tar -xzf {archive}")
+        run_checked(
+            ["tar", "-xzf", archive, "-C", tmp],
+            label="DXVK extraction",
+        )
 
         # Locate dxvk_setup.sh — may be inside a subdirectory
         install_dir = tmp
@@ -52,8 +49,7 @@ def install_dxvk(gpu_type: str, resource_root: str, logger: Logger) -> None:
         if not os.path.isfile(setup):
             raise RuntimeError("DXVK setup script not found after extraction")
 
-        if run_command(RunMode.SILENT, [setup, "install"]) != 0:
-            raise RuntimeError(f"DXVK install script failed: {setup} install")
+        run_checked([setup, "install"], label="DXVK setup script")
 
         # Copy dxvk.conf
         wineprefix = os.environ.get("WINEPREFIX", "")
@@ -91,8 +87,9 @@ def _resolve_dxvk_archive(resource_root: str, logger: Logger) -> str:
 
     url = f"https://github.com/doitsujin/dxvk/releases/download/v{version}/dxvk-{version}.tar.gz"
     logger.warn(f"Bundled DXVK archive missing, downloading upstream DXVK {version} instead")
-    download_failed = run_command(RunMode.SILENT, ["wget", "-O", archive, url]) != 0
-    if download_failed or not os.path.isfile(archive):
+    try:
+        run_checked(["wget", "-O", archive, url], label="DXVK download")
+    except RuntimeError:
         raise RuntimeError(f"DXVK download failed: {url}")
     return archive
 

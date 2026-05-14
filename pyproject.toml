@@ -4,7 +4,7 @@ build-backend = "mesonpy"
 
 [project]
 name = "tuxbellum"
-version = "3.0.9"
+version = "4.0.0"
 description = "TuxBellum — GTK4 GUI for installing and managing Bellum on Linux with Wine/Proton"
 readme = "README.md"
 license = { text = "Apache-2.0" }
@@ -36,15 +36,16 @@ dev = [
 ]
 
 [project.scripts]
-tuxbellum = "tuxbellum.app.application:main"
+tuxbellum = "tuxbellum.__main__:main"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = ["-v", "--strict-markers", "--tb=short", "--cov=tuxbellum", "--cov-report=term-missing", "--cov-report=xml"]
+addopts = ["-v", "--strict-markers", "--tb=short"]
 markers = [
     "gtk4: Requires GTK4/PyGObject runtime (skipped by default)",
     "network: Requires network access",
     "slow: Slow tests",
+    "integration: Integration tests that touch filesystem or subprocess",
 ]
 
 [tool.coverage.run]

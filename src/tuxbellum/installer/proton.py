@@ -7,8 +7,8 @@ import tempfile
 
 from tuxbellum.config.paths import path_mgr
 from tuxbellum.config.versions import DEFAULT_VERSIONS
+from tuxbellum.core.commands import run_checked
 from tuxbellum.core.logging import Logger
-from tuxbellum.core.system import RunMode, run_command
 
 
 def get_proton_url(proton_ver: str, proton_base_url: str) -> str:
@@ -186,13 +186,10 @@ def ensure_proton(
             tmp = tempfile.mkdtemp(prefix="proton.")
             try:
                 archive_path = os.path.join(tmp, f"{proton_ver}.tar.xz")
-                run_command(
-                    RunMode.SILENT,
+                run_checked(
                     ["wget", "-O", archive_path, proton_url],
-                    logger._log_path if hasattr(logger, "_log_path") else "",
+                    label=f"Proton download ({proton_ver})",
                 )
-                if not os.path.isfile(archive_path):
-                    raise RuntimeError("archive not found after download")
 
                 logger.info(f"Extracting Proton to {actual_dir}...")
                 os.makedirs(actual_dir, exist_ok=True)

@@ -3,8 +3,10 @@
 import os
 import shutil
 
+from tuxbellum.config.paths import path_mgr
+from tuxbellum.core.commands import run_allowed_failure
 from tuxbellum.core.logging import Logger
-from tuxbellum.core.system import RunMode, look_path, run_command
+from tuxbellum.core.system import look_path
 
 
 def copy_icon(icon_path: str) -> None:
@@ -51,7 +53,7 @@ def generate_desktop_files(
         "[Desktop Entry]\n"
         "Name=Bellum\n"
         f"Comment={comment}\n"
-        "Exec=Bellum\n"
+        f"Exec={os.path.join(path_mgr.user_local_bin(), 'Bellum')}\n"
         f"Icon={installed_icon}\n"
         "Type=Application\n"
         "Categories=Game;\n"
@@ -75,14 +77,12 @@ def generate_desktop_files(
             _gio_set(desktop_dest, "metadata::trusted", "true")
 
     if look_path("update-desktop-database"):
-        run_command(
-            RunMode.SILENT,
+        run_allowed_failure(
             ["update-desktop-database", apps_dir],
         )
 
 
 def _gio_set(file: str, key: str, value: str) -> None:
-    run_command(
-        RunMode.SILENT,
+    run_allowed_failure(
         ["gio", "set", file, key, value],
     )

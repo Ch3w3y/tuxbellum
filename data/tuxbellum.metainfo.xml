@@ -21,6 +21,21 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release version="4.0.0" date="2026-05-14">
+      <description>
+        <p>Complete architectural refactor: step-based install engine, install manifest, rootless launcher, CLI, repair/doctor diagnostics.</p>
+        <ul>
+          <li>Step-based install engine with 12 named, testable stages</li>
+          <li>Versioned install manifest replacing games.json</li>
+          <li>Rootless launcher in ~/.local/bin (no pkexec required)</li>
+          <li>CLI frontend: install, status, uninstall, doctor, repair</li>
+          <li>Structured command execution with explicit error reporting</li>
+          <li>CI version consistency and packaging validation</li>
+          <li>State-based GUI: installed / not installed modes</li>
+          <li>Explicit dependency specification and categorization</li>
+        </ul>
+      </description>
+    </release>
     <release version="3.0.9" date="2026-05-13">
       <description>
         <p>Major refactoring: GTK4 monolith replacing the GTK3+Go architecture. Rebranded as TuxBellum.</p>
