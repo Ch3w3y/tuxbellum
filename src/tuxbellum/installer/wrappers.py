@@ -58,18 +58,18 @@ def _build_script(
         '        echo "ERROR: Launcher executable not found: $LAUNCHER_EXE" >&2\n'
         "        exit 1\n"
         "    fi\n\n"
-        '    if [ ! -x "$PROTON_BIN" ]; then\n'
-        '        echo "ERROR: $PROTON_BIN not found or not executable" >&2\n'
+        "    if ! command -v wine &>/dev/null; then\n"
+        '        echo "ERROR: wine not found or not executable" >&2\n'
         "        exit 1\n"
         "    fi\n"
         "}\n\n"
         "run_launcher() {\n"
         '    cd "$GAME_DIR" || exit 1\n'
         '    LOG_FILE="$GAME_DIR/launcher.log"\n\n'
-        '    wineboot "--end-session"\n'
+        '    wineboot "--restart"\n'
         "    sleep 1\n\n"
-        '    export GAMEID="bellum"\n'
-        '    umu-run "$LAUNCHER_EXE" "$@" > "$LOG_FILE" 2>> "$LOG_FILE"\n\n'
+        '    wine "$LAUNCHER_EXE" "$@" > "$LOG_FILE" 2>> "$LOG_FILE"\n\n'
+        '    wineboot "--end-session"\n\n'
         '    return "$?"\n'
         "}\n\n"
         "main() {\n"
