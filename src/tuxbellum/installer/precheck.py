@@ -221,7 +221,7 @@ def check_winetricks(logger: Logger) -> str:
     Extract and return the path to the bundled winetricks-modified script.
 
     Always uses the bundled winetricks-modified so that custom verbs
-    (vcrun2026, dotnet9, dotnetdesktop9, webview2, etc.) are available.
+    (vcrun2026, webview2, dotnet9, dotnetdesktop9, etc.) are available.
     """
     archive = path_mgr.bundled_path(f"winetricks-{DEFAULT_VERSIONS.winetricks_ver}.tar.gz")
     if not os.path.isfile(archive):
@@ -232,27 +232,78 @@ def check_winetricks(logger: Logger) -> str:
     extract_dir = path_mgr.user_cache("tuxbellum", "winetricks", "extracted")
     winetricks_script = os.path.join(extract_dir, "src", "winetricks")
 
-    if os.path.isfile(winetricks_script) and os.access(winetricks_script, os.X_OK):
-        logger.info(f"[OK] winetricks-modified cached at {winetricks_script}")
-        return winetricks_script
-
-    logger.info(f"Extracting bundled winetricks from {archive}")
-    os.makedirs(extract_dir, exist_ok=True)
-
-    run_checked(
-        ["tar", "-xzf", archive, "-C", extract_dir],
-        label="winetricks extraction",
-    )
-
-    winetricks_script = os.path.join(extract_dir, "src", "winetricks")
     if not os.path.isfile(winetricks_script):
-        raise RuntimeError(f"winetricks script not found after extraction: {winetricks_script}")
+        logger.info(f"Extracting bundled winetricks from {archive}")
+        os.makedirs(extract_dir, exist_ok=True)
 
-    # Make executable
-    os.chmod(winetricks_script, 0o755)
+        run_checked(
+            ["tar", "-xzf", archive, "-C", extract_dir],
+            label="winetricks extraction",
+        )
 
-    logger.info(f"[OK] winetricks-modified ready at {winetricks_script}")
+        if not os.path.isfile(winetricks_script):
+            raise RuntimeError(f"winetricks script not found after extraction: {winetricks_script}")
+
+        # Make executable
+        os.chmod(winetricks_script, 0o755)
+    else:
+        logger.info(f"[OK] winetricks-modified cached at {winetricks_script}")
+
+    # Inject custom verbs (vcrun2026, webview2) if not already done
+    _inject_custom_verbs(winetricks_script, extract_dir, logger)
+
     return winetricks_script
+
+
+# ── Custom winetricks verb injection ─────────────────────────────────────────
+
+_TUXBELLUM_VERBS = """
+#--- TuxBellum custom verb: vcrun2026 ---
+w_metadata vcrun2026 dlls \\
+    title="Visual C++ 2026 libraries (latest vcredist)" \\
+    publisher="Microsoft" \\
+    year="2026" \\
+    media="download" \\
+    file1="vc_redist.x86.exe" \\
+    installed_file1="${W_SYSTEM32_DLLS_WIN}/vcruntime140.dll"
+
+load_vcrun2026()
+{
+    w_call vcrun2022
+}
+
+#--- TuxBellum custom verb: webview2 ---
+w_metadata webview2 apps \\
+    title="Microsoft Edge WebView2 Runtime" \\
+    publisher="Microsoft" \\
+    year="2024" \\
+    media="download" \\
+    file1="MicrosoftEdgeWebview2Setup.exe" \\
+    installed_file1="${W_PROGRAMS_X86_WIN}/Microsoft/EdgeWebView/Application/msedgewebview2.exe"
+
+load_webview2()
+{
+    w_download https://go.microsoft.com/fwlink/p/?LinkId=2124703 "" MicrosoftEdgeWebview2Setup.exe
+    w_try_cd "${W_CACHE}"/"${W_PACKAGE}"
+    w_try "${WINE}" MicrosoftEdgeWebview2Setup.exe ${W_OPT_UNATTENDED:+/silent /install}
+}
+"""
+
+
+def _inject_custom_verbs(winetricks_script: str, extract_dir: str, logger: Logger) -> None:
+    """Append TuxBellum custom verbs to the extracted winetricks script."""
+    marker = os.path.join(extract_dir, ".custom_verbs_injected")
+    if os.path.isfile(marker):
+        return  # already injected
+
+    logger.info("Injecting custom winetricks verbs (vcrun2026, webview2)")
+    with open(winetricks_script, "a") as fh:
+        fh.write(_TUXBELLUM_VERBS)
+
+    # Write marker so we skip on future runs
+    with open(marker, "w") as fh:
+        fh.write("tuxbellum\n")
+    logger.info("[OK] Custom verbs injected")
 
 
 def check_proton(
