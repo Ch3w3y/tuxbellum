@@ -46,9 +46,7 @@ def run_repair(wineprefix: str, logger: Logger) -> dict:
     if manifest.desktop_entry_path and not os.path.isfile(manifest.desktop_entry_path):
         logger.info("Desktop entry missing — regenerating...")
         try:
-            icon_path = os.path.join(
-                path_mgr.app_data_root(), "packages", "launcher_1_256x256x32.png"
-            )
+            icon_path = path_mgr.bundled_path("launcher_1_256x256x32.png")
             from tuxbellum.installer.desktop import generate_desktop_files
 
             generate_desktop_files(manifest.wineprefix, icon_path, manifest.gpu_type, logger)
@@ -60,9 +58,7 @@ def run_repair(wineprefix: str, logger: Logger) -> dict:
     if manifest.icon_path and not os.path.isfile(manifest.icon_path):
         logger.info("Icon missing — recopying...")
         try:
-            icon_src = os.path.join(
-                path_mgr.app_data_root(), "packages", "launcher_1_256x256x32.png"
-            )
+            icon_src = path_mgr.bundled_path("launcher_1_256x256x32.png")
             from tuxbellum.installer.desktop import copy_icon
 
             copy_icon(icon_src)

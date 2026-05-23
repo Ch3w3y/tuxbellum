@@ -13,18 +13,32 @@ class PathManager:
             if candidate.exists():
                 return str(candidate)
 
-        for candidate in [
-            PathManager.system_data("tuxbellum"),
-            Path(__file__).resolve().parents[3],
-        ]:
-            if (Path(candidate) / "packages").exists():
-                return str(candidate)
-
-        return str(Path(__file__).resolve().parents[3])
+        # Prefer system-installed data directory; fall back to source tree
+        sys_data = PathManager.system_data("tuxbellum")
+        src_tree = str(Path(__file__).resolve().parents[3])
+        if Path(sys_data).is_dir():
+            return sys_data
+        if Path(src_tree).is_dir():
+            return src_tree
+        return src_tree
 
     @staticmethod
     def bundled_path(*paths: str) -> str:
-        return str(Path(PathManager.app_data_root()).joinpath(*paths))
+        """Resolve a path to a bundled file.
+
+        In the source tree files live under ``packages/`` (e.g.
+        ``packages/winetricks.tar.gz``).  When installed they may be
+        flat under ``/usr/share/tuxbellum/``.  This tries both layouts.
+        """
+        root = PathManager.app_data_root()
+        flat = str(Path(root).joinpath(*paths))
+        if os.path.exists(flat):
+            return flat
+        nested = str(Path(root, "packages", *paths))
+        if os.path.exists(nested):
+            return nested
+        # Return flat as best guess even if missing
+        return flat
 
     @staticmethod
     def user_home(*paths: str) -> str:

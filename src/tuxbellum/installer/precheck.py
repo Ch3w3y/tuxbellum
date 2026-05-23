@@ -5,6 +5,7 @@ import re
 from dataclasses import dataclass
 from pathlib import Path
 
+from tuxbellum.config.paths import path_mgr
 from tuxbellum.config.versions import DEFAULT_VERSIONS
 from tuxbellum.core.commands import run_capture, run_checked
 from tuxbellum.core.gpu import detect_gpu
@@ -222,15 +223,15 @@ def check_winetricks(workdir: str, logger: Logger) -> str:
     Always uses the bundled winetricks-modified so that custom verbs
     (vcrun2026, dotnet9, dotnetdesktop9, webview2, etc.) are available.
     """
-    archive = os.path.join(
-        workdir, "packages", f"winetricks-{DEFAULT_VERSIONS.winetricks_ver}.tar.gz"
+    archive = path_mgr.bundled_path(
+        f"winetricks-{DEFAULT_VERSIONS.winetricks_ver}.tar.gz"
     )
     if not os.path.isfile(archive):
         logger.error(f"bundled winetricks archive not found: {archive}")
         raise RuntimeError(f"bundled winetricks archive not found: {archive}")
 
     logger.info(f"Extracting bundled winetricks from {archive}")
-    tmp_base = os.path.join(workdir, "packages", ".tmp")
+    tmp_base = os.path.join(path_mgr.app_data_root(), ".tmp")
     os.makedirs(tmp_base, exist_ok=True)
     import tempfile
 
@@ -314,7 +315,7 @@ def run_prechecks(
 
     winetricks_path = check_winetricks(resource_root, logger)
 
-    package_root = os.path.join(resource_root, "packages")
+    package_root = path_mgr.app_data_root()
     proton_ver, proton_path = check_proton(package_root, gpu_type, fsr41, logger)
 
     logger.info("[OK] All prechecks passed!")

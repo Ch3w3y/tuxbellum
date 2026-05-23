@@ -3,14 +3,15 @@
 import os
 import shutil
 
+from tuxbellum.config.paths import path_mgr
 from tuxbellum.config.versions import DEFAULT_VERSIONS
 from tuxbellum.core.commands import run_checked
 from tuxbellum.core.logging import Logger
 
 
-def copy_fsr41_upgrade_dll(workdir: str, logger: Logger) -> None:
+def copy_fsr41_upgrade_dll(logger: Logger) -> None:
     """Copy amdxcffx64.dll into protonfixes upscalers cache."""
-    fs_path = os.path.join(workdir, "packages", "fsr4")
+    fs_path = path_mgr.bundled_path("fsr4")
     source = os.path.join(fs_path, "amdxcffx64.dll")
     if not os.path.isfile(source):
         logger.warn(f"FSR 4.1 DLL not found: {source}")
@@ -27,7 +28,6 @@ def copy_fsr41_upgrade_dll(workdir: str, logger: Logger) -> None:
 
 def upgrade_fsr(
     wineprefix: str,
-    workdir: str,
     gpu_type: str,
     logger: Logger,
 ) -> None:
@@ -36,7 +36,7 @@ def upgrade_fsr(
     if "amd" not in gpu_lower and "radeon" not in gpu_lower:
         return
 
-    fs_path = os.path.join(workdir, "packages", "fsr4")
+    fs_path = path_mgr.bundled_path("fsr4")
     if not os.path.isdir(fs_path):
         logger.warn(f"FSR 4.1.0 directory not found: {fs_path}, skipping upgrade")
         return

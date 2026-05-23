@@ -11,14 +11,14 @@ from tuxbellum.core.logging import Logger
 from tuxbellum.core.system import look_path
 
 
-def install_dxvk(gpu_type: str, resource_root: str, logger: Logger) -> None:
+def install_dxvk(gpu_type: str, logger: Logger) -> None:
     """Install DXVK into the current WINEPREFIX.  No-op for non-AMD GPUs."""
     gpu_lower = gpu_type.lower()
     if "amd" not in gpu_lower and "radeon" not in gpu_lower:
         logger.info(f"Skipping DXVK installation for non-AMD GPU: {gpu_type}")
         return
 
-    archive = _resolve_dxvk_archive(resource_root, logger)
+    archive = _resolve_dxvk_archive(logger)
 
     logger.info("Installing DXVK...")
     tmp = tempfile.mkdtemp(prefix="dxvk.")
@@ -65,10 +65,8 @@ def install_dxvk(gpu_type: str, resource_root: str, logger: Logger) -> None:
     logger.info("[OK] DXVK installed")
 
 
-def _resolve_dxvk_archive(resource_root: str, logger: Logger) -> str:
-    bundled = os.path.join(
-        resource_root,
-        "packages",
+def _resolve_dxvk_archive(logger: Logger) -> str:
+    bundled = path_mgr.bundled_path(
         f"dxvk-{DEFAULT_VERSIONS.dxvk_ver}.tar.gz",
     )
     if os.path.isfile(bundled):

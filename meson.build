@@ -6,7 +6,7 @@ python = import('python').find_installation('python3')
 install_subdir('src/tuxbellum', install_dir: python.get_install_dir())
 
 # Install packages directory to data dir
-install_subdir('packages', install_dir: get_option('datadir') / 'tuxbellum')
+install_subdir('packages', install_dir: get_option('datadir') / 'tuxbellum', strip_directory: false)
 
 # Install locales
 install_subdir('locales', install_dir: get_option('datadir') / 'tuxbellum')
