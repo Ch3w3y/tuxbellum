@@ -43,9 +43,9 @@ def init_wineprefix(proton_path: str, wineprefix: str, logger: Logger) -> None:
     )
 
 
-def install_winedlls(logger: Logger) -> None:
-    """Install every required DLL via winetricks."""
+def install_winedlls(winetricks_path: str, logger: Logger) -> None:
+    """Install every required DLL via the bundled winetricks-modified."""
     logger.info("Installing required winedlls")
     for dll in _WINEDLLS:
-        run_checked(["winetricks", "-q", dll], label=f"winetricks {dll}")
+        run_checked([winetricks_path, "-q", dll], label=f"winetricks {dll}")
         logger.info(f"[OK] {dll}")

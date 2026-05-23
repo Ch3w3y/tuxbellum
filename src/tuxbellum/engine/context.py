@@ -30,6 +30,7 @@ class InstallContext:
     proton_version: str = ""
     proton_path: str = ""
     launcher_exe: str = ""
+    winetricks_path: str = ""
 
     # ── Logger ───────────────────────────────────────────────────────────
     logger: Logger | None = None

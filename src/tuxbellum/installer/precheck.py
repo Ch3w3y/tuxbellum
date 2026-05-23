@@ -30,6 +30,7 @@ class PrecheckResult:
     is_amd_gpu: bool = False
     proton_ver: str = ""
     proton_path: str = ""
+    winetricks_path: str = ""
 
 
 def validate_wineprefix(
@@ -214,21 +215,20 @@ def check_wine_version(logger: Logger, force: bool = False) -> None:
         logger.info(f"[OK] Wine {installed} (>= 11.0) found")
 
 
-def check_winetricks(workdir: str, logger: Logger) -> None:
-    """Locate or extract winetricks."""
-    if look_path("winetricks"):
-        logger.info(f"[OK] winetricks binary found: {look_path('winetricks')}")
-        return
+def check_winetricks(workdir: str, logger: Logger) -> str:
+    """Extract and return the path to the bundled winetricks-modified script.
 
-    logger.warn("winetricks binary not found, attempting to install from local archive...")
+    Always uses the bundled winetricks-modified so that custom verbs
+    (vcrun2026, dotnet9, dotnetdesktop9, webview2, etc.) are available.
+    """
     archive = os.path.join(
         workdir, "packages", f"winetricks-{DEFAULT_VERSIONS.winetricks_ver}.tar.gz"
     )
     if not os.path.isfile(archive):
-        logger.error(f"winetricks binary not found in PATH and {archive} not found")
-        raise RuntimeError("winetricks not found")
+        logger.error(f"bundled winetricks archive not found: {archive}")
+        raise RuntimeError(f"bundled winetricks archive not found: {archive}")
 
-    logger.info(f"Extracting {archive} into packages/.tmp/winetricks/...")
+    logger.info(f"Extracting bundled winetricks from {archive}")
     tmp_base = os.path.join(workdir, "packages", ".tmp")
     os.makedirs(tmp_base, exist_ok=True)
     import tempfile
@@ -240,29 +240,15 @@ def check_winetricks(workdir: str, logger: Logger) -> None:
         label="winetricks extraction",
     )
 
-    if not is_dir(tmp_dir):
-        raise RuntimeError("winetricks extraction failed")
+    winetricks_script = os.path.join(tmp_dir, "src", "winetricks")
+    if not os.path.isfile(winetricks_script):
+        raise RuntimeError(f"winetricks script not found after extraction: {winetricks_script}")
 
-    logger.info("Installing winetricks...")
-    run_checked(
-        ["sudo", "make", "install"],
-        label="winetricks make install",
-    )
+    # Make executable
+    os.chmod(winetricks_script, 0o755)
 
-    if not look_path("winetricks"):
-        raise RuntimeError("winetricks installation failed")
-
-    logger.info("Running winetricks self-update...")
-    run_checked(
-        ["sudo", "winetricks", "--self-update"],
-        label="winetricks self-update",
-    )
-    logger.info("[OK] winetricks installed and updated successfully")
-
-    logger.info("Cleaning up extracted winetricks directory...")
-    import shutil
-
-    shutil.rmtree(os.path.join(workdir, "packages", ".tmp"), ignore_errors=True)
+    logger.info(f"[OK] winetricks-modified ready at {winetricks_script}")
+    return winetricks_script
 
 
 def check_proton(
@@ -325,7 +311,7 @@ def run_prechecks(
     else:
         logger.info("[OK] wget found for launcher installer download")
 
-    check_winetricks(resource_root, logger)
+    winetricks_path = check_winetricks(resource_root, logger)
 
     package_root = os.path.join(resource_root, "packages")
     proton_ver, proton_path = check_proton(package_root, gpu_type, fsr41, logger)
@@ -341,6 +327,7 @@ def run_prechecks(
         proton_path=proton_path,
         force_wine_version=force_wine_version,
         launcher_installer=launcher_installer_path,
+        winetricks_path=winetricks_path,
     )
 
 

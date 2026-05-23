@@ -44,3 +44,4 @@ def step(ctx: InstallContext) -> None:
     ctx.gpu_type = result.gpu_type
     ctx.is_amd_gpu = result.is_amd_gpu
     ctx.launcher_exe = result.launcher_installer
+    ctx.winetricks_path = result.winetricks_path

@@ -10,15 +10,15 @@ def step(ctx: InstallContext) -> None:
     if ctx.logger:
         ctx.logger.info("Configuring WINEPREFIX with things Bellum likes")
 
-    run_checked(["winetricks", "win11"], label="winetricks win11")
+    run_checked([ctx.winetricks_path, "win11"], label="winetricks win11")
 
     run_checked(
-        ["winetricks", "grabfullscreen=y", "windowmanagerdecorated=n", "mwo=disabled"],
+        [ctx.winetricks_path, "grabfullscreen=y", "windowmanagerdecorated=n", "mwo=disabled"],
         label="winetricks tuning",
     )
 
     if ctx.is_amd_gpu:
-        run_checked(["winetricks", "remove_mono"], label="winetricks remove_mono")
+        run_checked([ctx.winetricks_path, "remove_mono"], label="winetricks remove_mono")
 
     # DirectInput RawInput
     run_checked(
