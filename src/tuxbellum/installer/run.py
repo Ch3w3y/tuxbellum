@@ -76,5 +76,7 @@ def run_installation(config: InstallConfig, logger: Logger) -> None:
                 logger.info(f"[OK] {r.name}")
 
     finally:
-        os.environ.clear()
+        added = set(os.environ) - set(original_env)
+        for key in added:
+            del os.environ[key]
         os.environ.update(original_env)

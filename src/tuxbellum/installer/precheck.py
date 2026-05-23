@@ -186,7 +186,7 @@ def check_wine_binaries(logger: Logger) -> None:
         DEFAULT_VERSIONS.binaries.winecfg,
         DEFAULT_VERSIONS.binaries.wineserver,
     ]
-    missing = [b for b in required if not os.path.isfile(b)]
+    missing = [b for b in required if not look_path(b)]
     if missing:
         logger.error("Required Wine binaries not found:")
         for b in missing:
@@ -353,6 +353,7 @@ def _is_ssd(path: str, logger: Logger) -> bool:
 
 
 def _get_wine_version(logger: Logger) -> str:
+    saved_prefix = os.environ.get("WINEPREFIX")
     os.environ["WINEPREFIX"] = os.path.join(str(Path.home()), ".wine")
     try:
         result = run_capture(["wine", "--version"])
@@ -361,4 +362,9 @@ def _get_wine_version(logger: Logger) -> str:
             return m.group(1)
     except Exception:
         pass
+    finally:
+        if saved_prefix is not None:
+            os.environ["WINEPREFIX"] = saved_prefix
+        else:
+            del os.environ["WINEPREFIX"]
     return ""
