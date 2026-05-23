@@ -34,5 +34,5 @@ def step(ctx: InstallContext) -> None:
     on_line = ctx.logger.info if ctx.logger else None
     ctx.put(
         "launcher_exit_code",
-        run_streaming([wine_bin, ctx.launcher_exe], on_line=on_line),
+        run_streaming([wine_bin, ctx.launcher_exe], on_line=on_line, timeout=1800),
     )

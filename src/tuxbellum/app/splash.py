@@ -41,7 +41,8 @@ class SplashWindow(Gtk.Window):
                 pixbuf = GdkPixbuf.Pixbuf.new_from_file(icon_path)
                 scaled = pixbuf.scale_simple(80, 80, GdkPixbuf.InterpType.BILINEAR)
                 image = Gtk.Image.new_from_pixbuf(scaled)
-            except Exception:  # noqa: S110
+            except Exception as exc:  # noqa: S110
+                print(f"[WARN] Failed to load splash icon: {exc}")
                 image = Gtk.Image.new_from_icon_name("applications-games-symbolic")
         else:
             image = Gtk.Image.new_from_icon_name("applications-games-symbolic")

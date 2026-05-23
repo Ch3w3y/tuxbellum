@@ -122,7 +122,6 @@ def _build_script(
 
 def _write_system_bin(content: str, logger: Logger) -> None:
     target = os.path.join(path_mgr.user_local_bin(), _TAIL_NAME)
-    os.makedirs(os.path.dirname(target), exist_ok=True)
     os.makedirs(path_mgr.user_local_bin(), exist_ok=True)
 
     with open(target, "w") as fh:

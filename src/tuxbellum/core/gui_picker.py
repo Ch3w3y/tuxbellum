@@ -1,6 +1,7 @@
 """GUI directory picker with terminal fallback."""
 
 import os
+import shutil
 import subprocess
 from dataclasses import dataclass
 
@@ -70,11 +71,7 @@ def _try_picker(title: str, initial_path: str = "") -> DirectoryPickerResult:
 
 
 def _exists(name: str) -> bool:
-    try:
-        subprocess.check_output(["which", name], stderr=subprocess.DEVNULL)
-        return True
-    except subprocess.CalledProcessError:
-        return False
+    return shutil.which(name) is not None
 
 
 def validate_directory(path: str) -> tuple[bool, str]:
