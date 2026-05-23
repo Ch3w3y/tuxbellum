@@ -216,7 +216,8 @@ def check_wine_version(logger: Logger, force: bool = False) -> None:
 
 
 def check_winetricks(workdir: str, logger: Logger) -> str:
-    """Extract and return the path to the bundled winetricks-modified script.
+    """
+    Extract and return the path to the bundled winetricks-modified script.
 
     Always uses the bundled winetricks-modified so that custom verbs
     (vcrun2026, dotnet9, dotnetdesktop9, webview2, etc.) are available.
