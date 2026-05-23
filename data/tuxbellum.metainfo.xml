@@ -21,7 +21,7 @@
     </screenshot>
   </screenshots>
   <releases>
-    <release version="4.0.18" date="2026-05-23">
+    <release version="4.0.19" date="2026-05-23">
       <description>
         <p>Fix: vcrun2026 and webview2 verbs baked directly into bundled winetricks-modified archive. Removed runtime injection. Stale cache detection for extracted scripts.</p>
       </description>
