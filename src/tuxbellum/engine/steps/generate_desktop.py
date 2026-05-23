@@ -1,7 +1,5 @@
 """Generate desktop entries — .desktop files, icon, and launch vars."""
 
-import os
-
 from tuxbellum.config.paths import path_mgr
 from tuxbellum.engine.context import InstallContext
 from tuxbellum.installer.desktop import copy_icon, generate_desktop_files

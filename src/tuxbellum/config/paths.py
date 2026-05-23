@@ -24,7 +24,8 @@ class PathManager:
 
     @staticmethod
     def bundled_path(*paths: str) -> str:
-        """Resolve a path to a bundled file.
+        """
+        Resolve a path to a bundled file.
 
         In the source tree files live under ``packages/`` (e.g.
         ``packages/winetricks.tar.gz``).  When installed they may be
