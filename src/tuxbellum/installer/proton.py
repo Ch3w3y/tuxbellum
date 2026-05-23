@@ -165,7 +165,7 @@ def ensure_proton(
                 dir_exists = False
 
         if not dir_exists:
-            # Check for cached proton in packages/
+            # Check for cached proton in user cache
             cached_pattern = os.path.join(package_root, "proton-*")
             import glob as _glob
 

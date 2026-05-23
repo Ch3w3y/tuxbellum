@@ -79,6 +79,9 @@ def run_installation(config: InstallConfig, logger: Logger) -> None:
             else:
                 logger.info(f"[OK] {r.name}")
 
+    except KeyboardInterrupt:
+        logger.warn("Installation interrupted by user")
+        raise
     finally:
         added = set(os.environ) - set(original_env)
         for key in added:

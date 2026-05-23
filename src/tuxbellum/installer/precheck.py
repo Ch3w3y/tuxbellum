@@ -216,7 +216,7 @@ def check_wine_version(logger: Logger, force: bool = False) -> None:
         logger.info(f"[OK] Wine {installed} (>= 11.0) found")
 
 
-def check_winetricks(workdir: str, logger: Logger) -> str:
+def check_winetricks(logger: Logger) -> str:
     """
     Extract and return the path to the bundled winetricks-modified script.
 
@@ -315,7 +315,7 @@ def run_prechecks(
     else:
         logger.info("[OK] wget found for launcher installer download")
 
-    winetricks_path = check_winetricks(resource_root, logger)
+    winetricks_path = check_winetricks(logger)
 
     package_root = path_mgr.user_cache("tuxbellum")
     proton_ver, proton_path = check_proton(package_root, gpu_type, fsr41, logger)

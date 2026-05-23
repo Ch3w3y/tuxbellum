@@ -5,6 +5,8 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import signal
+import sys as _sys
 from pathlib import Path
 
 from tuxbellum.config.paths import path_mgr
@@ -27,6 +29,17 @@ def main(argv: list[str] | None = None) -> int:
     log_file = os.path.join(path_mgr.logs_dir(), "tuxbellum-cli.log")
     os.makedirs(os.path.dirname(log_file), exist_ok=True)
     logger = Logger(log_file)
+
+    interrupted = False
+
+    def _handle_signal(signum, frame):
+        nonlocal interrupted
+        interrupted = True
+        logger.warn(f"Interrupted by signal {signum} — cleaning up...")
+        _sys.exit(128 + signum)
+
+    signal.signal(signal.SIGINT, _handle_signal)
+    signal.signal(signal.SIGTERM, _handle_signal)
 
     try:
         if args.command == "install":
@@ -60,7 +73,7 @@ def _build_parser() -> argparse.ArgumentParser:
     p_install.add_argument("--fsr41", action="store_true", help="Enable FSR 4.1 (AMD only)")
     p_install.add_argument("--yes", "-y", action="store_true", help="Skip confirmation prompts")
     p_install.add_argument(
-        "--json", action="store_true", default=True, help="Machine-readable output"
+        "--json", action="store_true", default=False, help="Machine-readable output"
     )
 
     # status
@@ -199,4 +212,25 @@ def _cmd_repair(args, logger: Logger) -> int:
 def _format_output(data: dict, args) -> str:
     if getattr(args, "json", False):
         return json.dumps(data, indent=2)
-    return json.dumps(data, indent=2)  # Always JSON for now
+    # Human-readable text output
+    lines = []
+    for key, value in data.items():
+        if isinstance(value, list):
+            if value and isinstance(value[0], dict):
+                lines.append(f"{key}:")
+                for item in value:
+                    name = item.get("name", "?")
+                    status = item.get("status", "?")
+                    msg = item.get("message", "")
+                    lines.append(f"  [{status}] {name}" + (f": {msg}" if msg else ""))
+            else:
+                lines.append(f"{key}: {', '.join(str(v) for v in value)}")
+        elif isinstance(value, dict):
+            lines.append(f"{key}:")
+            for k, v in value.items():
+                lines.append(f"  {k}: {v}")
+        elif isinstance(value, bool):
+            lines.append(f"{key}: {'yes' if value else 'no'}")
+        else:
+            lines.append(f"{key}: {value}")
+    return "\n".join(lines)

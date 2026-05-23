@@ -24,9 +24,6 @@ class ConfigManager:
         self.load()
 
     def load(self) -> None:
-        # Set language default from system locale
-        self.config["language"] = get_system_locale()
-
         if os.path.isfile(self.config_file):
             with open(self.config_file) as f:
                 for line in f:
@@ -39,6 +36,10 @@ class ConfigManager:
         for key, default in self.DEFAULT_CONFIG.items():
             if key not in self.config:
                 self.config[key] = default
+
+        # Set language from system locale only if no user preference
+        if not self.config.get("language"):
+            self.config["language"] = get_system_locale()
 
     def save(self) -> None:
         os.makedirs(self.config_dir, exist_ok=True)

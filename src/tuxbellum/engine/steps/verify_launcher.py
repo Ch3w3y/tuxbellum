@@ -51,14 +51,9 @@ def step(ctx: InstallContext) -> None:
 
     if not installed_exe:
         exit_code = ctx.get("launcher_exit_code", "unknown")
-        expected = os.path.join(
-            ctx.wineprefix,
-            "drive_c/users/steamuser/AppData/Local",
-            "Astarte Industries/Astarte Launcher/AstarteLauncher.exe",
-        )
         raise RuntimeError(
             f"Launcher installation failed (exit code {exit_code})"
-            f" — executable not found at {expected}"
+            f" — executable not found in any user profile under {ctx.wineprefix}/drive_c/users/"
         )
 
     if ctx.logger:
