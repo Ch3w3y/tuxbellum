@@ -3,10 +3,10 @@ from dataclasses import dataclass, field
 
 @dataclass(frozen=True)
 class Binaries:
-    wine: str = "/usr/bin/wine"
-    wineboot: str = "/usr/bin/wineboot"
-    winecfg: str = "/usr/bin/winecfg"
-    wineserver: str = "/usr/bin/wineserver"
+    wine: str = "wine"
+    wineboot: str = "wineboot"
+    winecfg: str = "winecfg"
+    wineserver: str = "wineserver"
 
 
 @dataclass(frozen=True)
