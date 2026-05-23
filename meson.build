@@ -1,4 +1,4 @@
-project('tuxbellum', version: '4.0.14', meson_version: '>=1.2.0', license: 'Apache-2.0')
+project('tuxbellum', version: '4.0.15', meson_version: '>=1.2.0', license: 'Apache-2.0')
 
 python = import('python').find_installation('python3')
 
