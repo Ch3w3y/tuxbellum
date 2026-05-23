@@ -20,9 +20,7 @@ def step(ctx: InstallContext) -> None:
     launcher = os.path.join(path_mgr.user_local_bin(), "Bellum")
 
     dxvk_source = "bundled"
-    dxvk_archive = path_mgr.bundled_path(
-        f"dxvk-{DEFAULT_VERSIONS.dxvk_ver}.tar.gz"
-    )
+    dxvk_archive = path_mgr.bundled_path(f"dxvk-{DEFAULT_VERSIONS.dxvk_ver}.tar.gz")
     if not os.path.isfile(dxvk_archive):
         dxvk_source = "downloaded"
 

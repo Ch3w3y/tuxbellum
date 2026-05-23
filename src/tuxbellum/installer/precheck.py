@@ -223,9 +223,7 @@ def check_winetricks(workdir: str, logger: Logger) -> str:
     Always uses the bundled winetricks-modified so that custom verbs
     (vcrun2026, dotnet9, dotnetdesktop9, webview2, etc.) are available.
     """
-    archive = path_mgr.bundled_path(
-        f"winetricks-{DEFAULT_VERSIONS.winetricks_ver}.tar.gz"
-    )
+    archive = path_mgr.bundled_path(f"winetricks-{DEFAULT_VERSIONS.winetricks_ver}.tar.gz")
     if not os.path.isfile(archive):
         logger.error(f"bundled winetricks archive not found: {archive}")
         raise RuntimeError(f"bundled winetricks archive not found: {archive}")
