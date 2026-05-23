@@ -45,7 +45,7 @@ def generate_desktop_files(
     elif gpu_type == "NVIDIA":
         comment = "Launch Bellum via Proton (NVIDIA optimized)"
     else:
-        raise RuntimeError(f"unsupported GPU type for desktop file: {gpu_type}")
+        comment = "Launch Bellum via Wine/Proton"
 
     installed_icon = os.path.join(icon_dir, "bellum.png") if icon_path else ""
 

@@ -31,6 +31,7 @@ class InstallContext:
     proton_path: str = ""
     launcher_exe: str = ""
     winetricks_path: str = ""
+    launch_options: dict = field(default_factory=dict)
 
     # ── Logger ───────────────────────────────────────────────────────────
     logger: Logger | None = None

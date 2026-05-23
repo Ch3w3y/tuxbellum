@@ -228,19 +228,23 @@ def check_winetricks(workdir: str, logger: Logger) -> str:
         logger.error(f"bundled winetricks archive not found: {archive}")
         raise RuntimeError(f"bundled winetricks archive not found: {archive}")
 
-    logger.info(f"Extracting bundled winetricks from {archive}")
-    tmp_base = path_mgr.user_cache("tuxbellum", "winetricks")
-    os.makedirs(tmp_base, exist_ok=True)
-    import tempfile
+    # Use a fixed cache dir so re-installs skip re-extraction
+    extract_dir = path_mgr.user_cache("tuxbellum", "winetricks", "extracted")
+    winetricks_script = os.path.join(extract_dir, "src", "winetricks")
 
-    tmp_dir = tempfile.mkdtemp(prefix="winetricks.", dir=tmp_base)
+    if os.path.isfile(winetricks_script) and os.access(winetricks_script, os.X_OK):
+        logger.info(f"[OK] winetricks-modified cached at {winetricks_script}")
+        return winetricks_script
+
+    logger.info(f"Extracting bundled winetricks from {archive}")
+    os.makedirs(extract_dir, exist_ok=True)
 
     run_checked(
-        ["tar", "-xzf", archive, "-C", tmp_dir],
+        ["tar", "-xzf", archive, "-C", extract_dir],
         label="winetricks extraction",
     )
 
-    winetricks_script = os.path.join(tmp_dir, "src", "winetricks")
+    winetricks_script = os.path.join(extract_dir, "src", "winetricks")
     if not os.path.isfile(winetricks_script):
         raise RuntimeError(f"winetricks script not found after extraction: {winetricks_script}")
 
@@ -313,7 +317,7 @@ def run_prechecks(
 
     winetricks_path = check_winetricks(resource_root, logger)
 
-    package_root = path_mgr.app_data_root()
+    package_root = path_mgr.user_cache("tuxbellum")
     proton_ver, proton_path = check_proton(package_root, gpu_type, fsr41, logger)
 
     logger.info("[OK] All prechecks passed!")

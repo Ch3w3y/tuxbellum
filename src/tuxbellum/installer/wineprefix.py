@@ -46,6 +46,13 @@ def init_wineprefix(proton_path: str, wineprefix: str, logger: Logger) -> None:
 def install_winedlls(winetricks_path: str, logger: Logger) -> None:
     """Install every required DLL via the bundled winetricks-modified."""
     logger.info("Installing required winedlls")
+    failed: list[str] = []
     for dll in _WINEDLLS:
-        run_checked([winetricks_path, "-q", dll], label=f"winetricks {dll}")
-        logger.info(f"[OK] {dll}")
+        try:
+            run_checked([winetricks_path, "-q", dll], label=f"winetricks {dll}")
+            logger.info(f"[OK] {dll}")
+        except Exception as exc:
+            logger.warn(f"[FAIL] {dll}: {exc}")
+            failed.append(dll)
+    if failed:
+        raise RuntimeError(f"Failed to install DLLs: {', '.join(failed)}")

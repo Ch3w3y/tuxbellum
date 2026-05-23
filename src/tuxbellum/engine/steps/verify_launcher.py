@@ -7,32 +7,40 @@ from tuxbellum.installer.launcher import cleanup_launcher_installer
 
 
 def _find_launcher(wineprefix: str) -> str:
-    """Find AstarteLauncher.exe regardless of Wine path casing."""
-    # Canonical path (most Wine builds preserve Windows casing)
-    canonical = os.path.join(
-        wineprefix,
-        "drive_c/users/steamuser/AppData/Local",
-        "Astarte Industries/Astarte Launcher/AstarteLauncher.exe",
-    )
-    if os.path.isfile(canonical):
-        return canonical
-
-    # Fallback: search case-insensitively for the AppData subtree
-    appdata_base = os.path.join(wineprefix, "drive_c", "users", "steamuser")
-    if not os.path.isdir(appdata_base):
+    """Find AstarteLauncher.exe regardless of Wine path casing or username."""
+    launcher_rel = "Astarte Industries/Astarte Launcher/AstarteLauncher.exe"
+    users_dir = os.path.join(wineprefix, "drive_c", "users")
+    if not os.path.isdir(users_dir):
         return ""
 
-    for entry in os.scandir(appdata_base):
-        if entry.is_dir() and entry.name.lower() in ("appdata", "application data"):
-            local = os.path.join(entry.path, "Local")
-            if not os.path.isdir(local):
-                local = os.path.join(entry.path, "local")
-            candidate = os.path.join(
-                local,
-                "Astarte Industries/Astarte Launcher/AstarteLauncher.exe",
-            )
-            if os.path.isfile(candidate):
-                return candidate
+    # Scan every user profile directory (not just steamuser)
+    try:
+        user_dirs = [
+            e.name
+            for e in os.scandir(users_dir)
+            if e.is_dir() and e.name not in (".", "..", "Public", "Default")
+        ]
+    except OSError:
+        return ""
+
+    for username in user_dirs:
+        appdata_base = os.path.join(users_dir, username)
+        canonical = os.path.join(appdata_base, "AppData", "Local", launcher_rel)
+        if os.path.isfile(canonical):
+            return canonical
+
+        # Fallback: case-insensitive search for AppData
+        try:
+            for entry in os.scandir(appdata_base):
+                if entry.is_dir() and entry.name.lower() in ("appdata", "application data"):
+                    local = os.path.join(entry.path, "Local")
+                    if not os.path.isdir(local):
+                        local = os.path.join(entry.path, "local")
+                    candidate = os.path.join(local, launcher_rel)
+                    if os.path.isfile(candidate):
+                        return candidate
+        except OSError:
+            continue
 
     return ""
 

@@ -19,7 +19,7 @@ from tuxbellum.domain.install_state import discover_manifest  # noqa: E402
 from tuxbellum.i18n.locale import setup_gettext  # noqa: E402
 
 _tr = setup_gettext()
-VERSION = "4.0.10"
+VERSION = "4.0.11"
 
 CONFIG_DIR = path_mgr.user_config("tuxbellum")
 os.makedirs(CONFIG_DIR, exist_ok=True)
@@ -242,6 +242,12 @@ class MainWindow(Gtk.ApplicationWindow):
                     resource_root=resource_root,
                     cache_dir=cache_dir,
                     is_fsr41=data.get("fsr41", "") in ("true", "True", True),
+                    launch_options={
+                        "gamescope": data.get("gamescope", "") in ("true", "True", True),
+                        "gamemode": data.get("gamemode", "") in ("true", "True", True),
+                        "hdr": data.get("hdr", "") in ("true", "True", True),
+                        "nvapi": data.get("nvapi", "") in ("true", "True", True),
+                    },
                 )
 
                 progress.set_status(_tr("Installing Bellum..."), 0.15)

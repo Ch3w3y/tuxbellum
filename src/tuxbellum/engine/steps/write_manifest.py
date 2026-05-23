@@ -25,7 +25,7 @@ def step(ctx: InstallContext) -> None:
         dxvk_source = "downloaded"
 
     manifest = InstallManifest.now(
-        tuxbellum_version="4.0.10",
+        tuxbellum_version="4.0.11",
         wineprefix=ctx.wineprefix,
         proton_version=ctx.proton_version,
         proton_path=ctx.proton_path,
@@ -41,10 +41,10 @@ def step(ctx: InstallContext) -> None:
         owned_files=[launcher, desktop_entry, desktop_shortcut, icon],
         owned_directories=[ctx.wineprefix, os.path.dirname(ctx.proton_path)],
         launch_options={
-            "gamescope": False,
-            "gamemode": False,
-            "hdr": False,
-            "nvapi": False,
+            "gamescope": ctx.launch_options.get("gamescope", False),
+            "gamemode": ctx.launch_options.get("gamemode", False),
+            "hdr": ctx.launch_options.get("hdr", False),
+            "nvapi": ctx.launch_options.get("nvapi", False),
         },
     )
 

@@ -21,6 +21,7 @@ class InstallConfig:
     resource_root: str = ""
     cache_dir: str = ""
     is_fsr41: bool = False
+    launch_options: dict = None  # type: ignore[assignment]
 
 
 def run_installation(config: InstallConfig, logger: Logger) -> None:
@@ -44,6 +45,8 @@ def run_installation(config: InstallConfig, logger: Logger) -> None:
         print()
 
         # Build context
+        # Default launch options from config if not provided
+        launch_opts = config.launch_options or {}
         ctx = InstallContext(
             wineprefix=config.wineprefix,
             resource_root=config.resource_root,
@@ -53,6 +56,7 @@ def run_installation(config: InstallConfig, logger: Logger) -> None:
             is_fsr41=config.is_fsr41,
             proton_path=config.proton_path,
             launcher_exe=config.launcher_installer,
+            launch_options=launch_opts,
             logger=logger,
         )
 
