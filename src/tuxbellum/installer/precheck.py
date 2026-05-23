@@ -229,7 +229,7 @@ def check_winetricks(workdir: str, logger: Logger) -> str:
         raise RuntimeError(f"bundled winetricks archive not found: {archive}")
 
     logger.info(f"Extracting bundled winetricks from {archive}")
-    tmp_base = os.path.join(path_mgr.app_data_root(), ".tmp")
+    tmp_base = path_mgr.user_cache("tuxbellum", "winetricks")
     os.makedirs(tmp_base, exist_ok=True)
     import tempfile
 
