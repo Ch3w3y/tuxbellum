@@ -21,9 +21,9 @@
     </screenshot>
   </screenshots>
   <releases>
-    <release version="4.0.7" date="2026-05-23">
+    <release version="4.0.8" date="2026-05-23">
       <description>
-        <p>Fix: Always use bundled winetricks-modified for DLL install instead of system winetricks, which lacks custom verbs (vcrun2026, dotnet9, dotnetdesktop9, webview2).</p>
+        <p>Fix: Always use bundled winetricks-modified for DLL install (vcrun2026, dotnet9, etc). Fix bundled file resolution for flat installed layouts. Layout-resilient bundled_path() handles both source-tree and system-installed paths.</p>
       </description>
     </release>
     <release version="4.0.6" date="2026-05-14">
