@@ -1,0 +1,5 @@
+dxvk: latest=3.1 tag=v3.1
+umu-launcher: latest=1.4.4 tag=1.4.4
+vkd3d-proton: latest=3.0.1 tag=v3.0.1
+winetricks: latest=20260125 tag=20260125
+wine: CHECK_FAILED
